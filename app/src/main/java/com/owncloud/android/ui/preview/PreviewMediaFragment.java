@@ -49,9 +49,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.ui.StyledPlayerControlView;
+
 import com.nextcloud.client.account.User;
 import com.nextcloud.client.account.UserAccountManager;
 import com.nextcloud.client.di.Injectable;
@@ -94,18 +92,22 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.PlayerControlView;
 
-/**
+@UnstableApi /**
  * This fragment shows a preview of a downloaded media file (audio or video).
  * <p>
- * Trying to get an instance with NULL {@link OCFile} or ownCloud {@link User} values will produce an {@link
- * IllegalStateException}.
+ * Trying to get an instance with NULL {@link OCFile} or ownCloud {@link User} values will produce an
+ * {@link IllegalStateException}.
  * <p>
  * By now, if the {@link OCFile} passed is not downloaded, an {@link IllegalStateException} is generated on
  * instantiation too.
  */
 public class PreviewMediaFragment extends FileFragment implements OnTouchListener,
-    Injectable, StyledPlayerControlView.OnFullScreenModeChangedListener {
+    Injectable, PlayerControlView.OnFullScreenModeChangedListener {
 
     private static final String TAG = PreviewMediaFragment.class.getSimpleName();
 
@@ -113,7 +115,7 @@ public class PreviewMediaFragment extends FileFragment implements OnTouchListene
     public static final String EXTRA_USER = "USER";
     public static final String EXTRA_AUTOPLAY = "AUTOPLAY";
     public static final String EXTRA_START_POSITION = "START_POSITION";
-    
+
     private static final String EXTRA_PLAY_POSITION = "PLAY_POSITION";
     private static final String EXTRA_PLAYING = "PLAYING";
     private static final double MIN_DENSITY_RATIO = 24.0;
@@ -354,7 +356,7 @@ public class PreviewMediaFragment extends FileFragment implements OnTouchListene
                     Executors.newSingleThreadExecutor().execute(() -> {
                         try {
                             nextcloudClient = clientFactory.createNextcloudClient(accountManager.getUser());
-                            handler.post(() ->{
+                            handler.post(() -> {
                                 exoPlayer = NextcloudExoPlayer.createNextcloudExoplayer(requireContext(), nextcloudClient);
                                 exoPlayer.addListener(new ExoplayerListener(requireContext(), binding.exoplayerView, exoPlayer));
                                 playVideo();
@@ -585,7 +587,7 @@ public class PreviewMediaFragment extends FileFragment implements OnTouchListene
     @Override
     public void onResume() {
         super.onResume();
-        if(getActivity() instanceof FileDisplayActivity){
+        if (getActivity() instanceof FileDisplayActivity) {
             ((FileDisplayActivity) getActivity()).configureToolbarForMediaPreview(getFile());
         }
         Log_OC.v(TAG, "onResume");

@@ -148,6 +148,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
@@ -156,6 +157,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.media3.common.util.UnstableApi;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import kotlin.Unit;
 
@@ -165,6 +167,7 @@ import static com.owncloud.android.utils.PermissionUtil.PERMISSION_CHOICE_DIALOG
 /**
  * Displays, what files the user has available in his ownCloud. This is the main view.
  */
+@OptIn(markerClass = UnstableApi.class)
 public class FileDisplayActivity extends FileActivity
     implements FileFragment.ContainerActivity,
     OnEnforceableRefreshListener, SortingOrderDialogFragment.OnSortingOrderListener,
@@ -2301,7 +2304,7 @@ public class FileDisplayActivity extends FileActivity
      * Opens EditImageActivity with given file loaded. If file is not available locally, it will be synced before
      * opening the image editor.
      *
-     * @param file      {@link OCFile} (image) to be loaded into image editor
+     * @param file {@link OCFile} (image) to be loaded into image editor
      */
     public void startImageEditor(OCFile file) {
         if (file.isDown()) {
@@ -2310,7 +2313,7 @@ public class FileDisplayActivity extends FileActivity
             startActivity(editImageIntent);
         } else {
             mWaitingToPreview = file;
-            requestForDownload(file,EditImageActivity.OPEN_IMAGE_EDITOR, getPackageName(),
+            requestForDownload(file, EditImageActivity.OPEN_IMAGE_EDITOR, getPackageName(),
                                this.getClass().getSimpleName());
             updateActionBarTitleAndHomeButton(file);
             setFile(file);
