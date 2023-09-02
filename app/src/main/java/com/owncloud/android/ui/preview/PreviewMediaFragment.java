@@ -31,7 +31,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
@@ -46,9 +45,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-
 
 import com.nextcloud.client.account.User;
 import com.nextcloud.client.account.UserAccountManager;
@@ -86,18 +82,22 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerControlView;
 
-@UnstableApi /**
+@UnstableApi
+/**
  * This fragment shows a preview of a downloaded media file (audio or video).
  * <p>
  * Trying to get an instance with NULL {@link OCFile} or ownCloud {@link User} values will produce an
@@ -141,6 +141,8 @@ public class PreviewMediaFragment extends FileFragment implements OnTouchListene
     private ViewGroup emptyListView;
     private ExoPlayer exoPlayer;
     private NextcloudClient nextcloudClient;
+    private WindowInsetsControllerCompat windowInsetsController;
+    private ActionBar actionBar;
 
     /**
      * Creates a fragment to preview a file.
@@ -372,24 +374,31 @@ public class PreviewMediaFragment extends FileFragment implements OnTouchListene
         }
     }
 
+    private void initWindowInsetsController() {
+        windowInsetsController = WindowCompat.getInsetsController(requireActivity().getWindow(), requireActivity().getWindow().getDecorView());
+        windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+    }
+
+    private void initActionBar() {
+        AppCompatActivity appCompatActivity = (AppCompatActivity) requireActivity();
+        actionBar = appCompatActivity.getSupportActionBar();
+    }
+
     private void setupVideoView() {
+        initWindowInsetsController();
+        initActionBar();
+
+        int type = WindowInsetsCompat.Type.systemBars();
+        binding.exoplayerView.setFullscreenButtonClickListener(isFullScreen -> {
+            if (isFullScreen) {
+                windowInsetsController.hide(type);
+                actionBar.hide();
+            } else {
+                windowInsetsController.show(type);
+                actionBar.show();
+            }
+        });
         binding.exoplayerView.setPlayer(exoPlayer);
-        LinearLayout linearLayout = binding.exoplayerView.findViewById(R.id.exo_center_controls);
-
-        if (linearLayout.getChildCount() == 5) {
-            AppCompatImageButton fullScreenButton = new AppCompatImageButton(requireContext());
-            fullScreenButton.setImageResource(R.drawable.exo_styled_controls_fullscreen_exit);
-            fullScreenButton.setLayoutParams(new LinearLayout.LayoutParams(143, 143));
-            fullScreenButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            fullScreenButton.setBackgroundColor(Color.TRANSPARENT);
-
-            fullScreenButton.setOnClickListener(l -> {
-                startFullScreenVideo();
-            });
-
-            linearLayout.addView(fullScreenButton);
-            linearLayout.invalidate();
-        }
     }
 
     private void stopAudio() {
@@ -603,6 +612,10 @@ public class PreviewMediaFragment extends FileFragment implements OnTouchListene
     public void onDestroyView() {
         Log_OC.v(TAG, "onDestroyView");
         super.onDestroyView();
+        if (windowInsetsController != null && actionBar != null) {
+            windowInsetsController.show(WindowInsetsCompat.Type.systemBars());
+            actionBar.show();
+        }
         binding = null;
     }
 
@@ -635,10 +648,10 @@ public class PreviewMediaFragment extends FileFragment implements OnTouchListene
     }
 
     private void startFullScreenVideo() {
-        final FragmentActivity activity = getActivity();
-        if (activity != null) {
-            new PreviewVideoFullscreenDialog(activity, nextcloudClient, exoPlayer, binding.exoplayerView).show();
-        }
+//        final FragmentActivity activity = getActivity();
+//        if (activity != null) {
+//            new PreviewVideoFullscreenDialog(activity, nextcloudClient, exoPlayer, binding.exoplayerView).show();
+//        }
     }
 
     @Override
