@@ -91,7 +91,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.ui.PlayerControlView;
 
 @UnstableApi
 /**
@@ -104,7 +103,7 @@ import androidx.media3.ui.PlayerControlView;
  * instantiation too.
  */
 public class PreviewMediaFragment extends FileFragment implements
-    Injectable, PlayerControlView.OnFullScreenModeChangedListener {
+    Injectable {
 
     private static final String TAG = PreviewMediaFragment.class.getSimpleName();
 
@@ -387,6 +386,7 @@ public class PreviewMediaFragment extends FileFragment implements
 
         int type = WindowInsetsCompat.Type.systemBars();
         binding.exoplayerView.setFullscreenButtonClickListener(isFullScreen -> {
+            Log_OC.e(TAG, "Fullscreen: " + isFullScreen);
             if (isFullScreen) {
                 windowInsetsController.hide(type);
                 actionBar.hide();
@@ -525,11 +525,6 @@ public class PreviewMediaFragment extends FileFragment implements
 
         // only autoplay video once
         autoplay = false;
-    }
-
-    @Override
-    public void onFullScreenModeChanged(boolean isFullScreen) {
-        Log_OC.e(TAG, "Fullscreen: " + isFullScreen);
     }
 
     private static class LoadStreamUrl extends AsyncTask<Long, Void, Uri> {
