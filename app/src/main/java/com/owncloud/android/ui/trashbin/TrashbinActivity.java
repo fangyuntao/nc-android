@@ -55,6 +55,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -87,6 +88,7 @@ public class TrashbinActivity extends DrawerActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         final User currentUser = getUser().orElse(accountProvider.getUser());
         final String targetAccount = getIntent().getStringExtra(Intent.EXTRA_USER);
         if (targetAccount != null && !currentUser.nameEquals(targetAccount)) {
@@ -112,6 +114,7 @@ public class TrashbinActivity extends DrawerActivity implements
         findViewById(R.id.switch_grid_view_button).setVisibility(View.GONE);
         updateActionBarTitleAndHomeButtonByString(getString(R.string.trashbin_activity_title));
         setupDrawer(R.id.nav_trashbin);
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
     }
 
     @Override
@@ -238,10 +241,12 @@ public class TrashbinActivity extends DrawerActivity implements
         trashbinListAdapter.cancelAllPendingTasks();
     }
 
-    @Override
-    public void onBackPressed() {
-        trashbinPresenter.navigateUp();
-    }
+    private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            trashbinPresenter.navigateUp();
+        }
+    };
 
     public void close() {
         super.onBackPressed();
