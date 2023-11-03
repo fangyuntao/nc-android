@@ -64,7 +64,7 @@ class GalleryAdapter(
     transferServiceGetter: ComponentsGetter,
     viewThemeUtils: ViewThemeUtils,
     var columns: Int,
-    val defaultThumbnailSize: Int,
+    private val defaultThumbnailSize: Int,
     private val clientFactory: ClientFactory
 ) : SectionedRecyclerViewAdapter<SectionedViewHolder>(), CommonOCFileListAdapterInterface, PopupTextProvider {
     var files: List<GalleryItems> = mutableListOf()
@@ -87,6 +87,8 @@ class GalleryAdapter(
             showShareAvatar = false,
             viewThemeUtils
         )
+
+        setHasStableIds(true)
     }
 
     override fun showFooters(): Boolean = false
@@ -111,6 +113,14 @@ class GalleryAdapter(
                 clientFactory
             )
         }
+    }
+
+    override fun getItemViewType(section: Int, relativePosition: Int, absolutePosition: Int): Int {
+        return absolutePosition
+    }
+
+    override fun getItemId(section: Int, position: Int): Long {
+        return position.toLong()
     }
 
     override fun onBindViewHolder(
