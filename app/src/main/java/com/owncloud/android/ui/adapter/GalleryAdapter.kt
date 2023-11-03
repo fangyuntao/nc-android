@@ -35,7 +35,6 @@ import com.afollestad.sectionedrecyclerview.SectionedRecyclerViewAdapter
 import com.afollestad.sectionedrecyclerview.SectionedViewHolder
 import com.nextcloud.client.account.User
 import com.nextcloud.client.network.ClientFactory
-import com.nextcloud.client.preferences.AppPreferences
 import com.owncloud.android.databinding.GalleryHeaderBinding
 import com.owncloud.android.databinding.GalleryRowBinding
 import com.owncloud.android.datamodel.FileDataStorageManager
@@ -46,11 +45,9 @@ import com.owncloud.android.ui.activity.ComponentsGetter
 import com.owncloud.android.ui.fragment.GalleryFragment
 import com.owncloud.android.ui.fragment.GalleryFragmentBottomSheetDialog
 import com.owncloud.android.ui.fragment.SearchType
-import com.owncloud.android.ui.interfaces.OCFileListFragmentInterface
 import com.owncloud.android.utils.DisplayUtils
 import com.owncloud.android.utils.FileSortOrder
 import com.owncloud.android.utils.MimeTypeUtil
-import com.owncloud.android.utils.theme.ViewThemeUtils
 import me.zhanghai.android.fastscroll.PopupTextProvider
 import java.util.Calendar
 import java.util.Date
@@ -59,35 +56,20 @@ import java.util.Date
 class GalleryAdapter(
     val context: Context,
     private val user: User,
-    ocFileListFragmentInterface: OCFileListFragmentInterface,
-    preferences: AppPreferences,
     transferServiceGetter: ComponentsGetter,
-    viewThemeUtils: ViewThemeUtils,
     var columns: Int,
     private val defaultThumbnailSize: Int,
-    private val clientFactory: ClientFactory
+    private val clientFactory: ClientFactory,
+    private val ocFileListDelegate: OCFileListDelegate,
+    private val galleryRowItemClick: GalleryRowHolder.GalleryRowItemClick
 ) : SectionedRecyclerViewAdapter<SectionedViewHolder>(), CommonOCFileListAdapterInterface, PopupTextProvider {
+
     var files: List<GalleryItems> = mutableListOf()
-    private val ocFileListDelegate: OCFileListDelegate
+
     private var storageManager: FileDataStorageManager
 
     init {
         storageManager = transferServiceGetter.storageManager
-
-        ocFileListDelegate = OCFileListDelegate(
-            context,
-            ocFileListFragmentInterface,
-            user,
-            storageManager,
-            false,
-            preferences,
-            true,
-            transferServiceGetter,
-            showMetadata = false,
-            showShareAvatar = false,
-            viewThemeUtils
-        )
-
         setHasStableIds(true)
     }
 
@@ -106,10 +88,10 @@ class GalleryAdapter(
             GalleryRowHolder(
                 GalleryRowBinding.inflate(LayoutInflater.from(parent.context), parent, false),
                 defaultThumbnailSize.toFloat(),
-                ocFileListDelegate,
                 this,
                 user,
-                clientFactory
+                clientFactory,
+                galleryRowItemClick
             )
         }
     }
