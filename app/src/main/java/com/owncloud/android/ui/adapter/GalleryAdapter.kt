@@ -107,7 +107,6 @@ class GalleryAdapter(
                 GalleryRowBinding.inflate(LayoutInflater.from(parent.context), parent, false),
                 defaultThumbnailSize.toFloat(),
                 ocFileListDelegate,
-                storageManager,
                 this,
                 user,
                 clientFactory
@@ -129,9 +128,10 @@ class GalleryAdapter(
         relativePosition: Int,
         absolutePosition: Int
     ) {
-        if (holder != null) {
-            val rowHolder = holder as GalleryRowHolder
-            rowHolder.bind(files[section].rows[relativePosition])
+        holder?.let {
+            val galleryRowHolder = it as GalleryRowHolder
+            val row = files[section].rows[relativePosition]
+            galleryRowHolder.bind(row)
         }
     }
 
