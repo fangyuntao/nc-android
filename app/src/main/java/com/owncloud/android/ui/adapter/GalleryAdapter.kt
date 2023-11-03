@@ -34,6 +34,7 @@ import androidx.annotation.VisibleForTesting
 import com.afollestad.sectionedrecyclerview.SectionedRecyclerViewAdapter
 import com.afollestad.sectionedrecyclerview.SectionedViewHolder
 import com.nextcloud.client.account.User
+import com.nextcloud.client.network.ClientFactory
 import com.nextcloud.client.preferences.AppPreferences
 import com.owncloud.android.databinding.GalleryHeaderBinding
 import com.owncloud.android.databinding.GalleryRowBinding
@@ -57,13 +58,14 @@ import java.util.Date
 @Suppress("LongParameterList")
 class GalleryAdapter(
     val context: Context,
-    user: User,
+    private val user: User,
     ocFileListFragmentInterface: OCFileListFragmentInterface,
     preferences: AppPreferences,
     transferServiceGetter: ComponentsGetter,
     viewThemeUtils: ViewThemeUtils,
     var columns: Int,
-    val defaultThumbnailSize: Int
+    val defaultThumbnailSize: Int,
+    private val clientFactory: ClientFactory
 ) : SectionedRecyclerViewAdapter<SectionedViewHolder>(), CommonOCFileListAdapterInterface, PopupTextProvider {
     var files: List<GalleryItems> = mutableListOf()
     private val ocFileListDelegate: OCFileListDelegate
@@ -104,7 +106,9 @@ class GalleryAdapter(
                 defaultThumbnailSize.toFloat(),
                 ocFileListDelegate,
                 storageManager,
-                this
+                this,
+                user,
+                clientFactory
             )
         }
     }

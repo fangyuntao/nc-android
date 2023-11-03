@@ -34,6 +34,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.nextcloud.client.network.ClientFactory
 import com.owncloud.android.BuildConfig
 import com.owncloud.android.R
 import com.owncloud.android.datamodel.FileDataStorageManager
@@ -70,6 +71,10 @@ class GalleryFragment : OCFileListFragment(), GalleryFragmentBottomSheetActions 
     @JvmField
     @Inject
     var fileDataStorageManager: FileDataStorageManager? = null
+
+    @JvmField
+    @Inject
+    var clientFactory: ClientFactory? = null
 
     private val maxColumnSizeLandscape = 5
     private val maxColumnSizePortrait = 2
@@ -130,7 +135,8 @@ class GalleryFragment : OCFileListFragment(), GalleryFragmentBottomSheetActions 
             mContainerActivity,
             viewThemeUtils,
             columnSize,
-            ThumbnailsCacheManager.getThumbnailDimension()
+            ThumbnailsCacheManager.getThumbnailDimension(),
+            clientFactory
         )
         setRecyclerViewAdapter(mAdapter)
 
