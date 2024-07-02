@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Vytvorenie účtu sa nepodarilo</string>
     <string name="account_icon">Ikona účtu</string>
     <string name="account_not_found">Účet sa nenašiel!</string>
-    <string name="action_clear_failed_uploads">Odstrániť zlyhané nahrávania</string>
     <string name="action_edit">Upraviť</string>
     <string name="action_empty_notifications">Odstrániť všetky upozornenia</string>
     <string name="action_empty_trashbin">Vyprázdniť kôš</string>
@@ -35,6 +34,9 @@
     <string name="add_to_cloud">Pridaj do %1$s</string>
     <string name="advanced_settings">Rozšírené nastavenia</string>
     <string name="allow_resharing">Povoliť sprístupňovanie ďalej</string>
+    <string name="app_config_base_url_title">Základná URL</string>
+    <string name="app_config_proxy_host_title">Názov proxy servera</string>
+    <string name="app_config_proxy_port_title">Brána proxy</string>
     <string name="app_widget_description">Zobrazí jeden widget z hlavného panela</string>
     <string name="appbar_search_in">Hľadať v %s</string>
     <string name="assistant_screen_all_task_type">Všetko</string>
@@ -57,6 +59,8 @@
     <string name="assistant_screen_task_types_error_state_message">Nie je možné načítať typy úloh, skontrolujte svoje internetové pripojenie.</string>
     <string name="assistant_screen_top_bar_title">Asistent</string>
     <string name="assistant_screen_unknown_task_status_text">Neznámy</string>
+    <string name="assistant_task_detail_screen_input_button_title">Vstup</string>
+    <string name="assistant_task_detail_screen_output_button_title">Výstup</string>
     <string name="associated_account_not_found">Priradený účet sa nenašiel</string>
     <string name="auth_access_failed">Prístup zamietnutý: %1$s</string>
     <string name="auth_account_does_not_exist">Účet zatiaľ v zariadení neexistuje</string>
@@ -87,6 +91,8 @@
     <string name="auth_unknown_host_title">Nemožno nájsť server</string>
     <string name="auth_unsupported_multiaccount">%1$s nepodporuje viacero účtov</string>
     <string name="auth_wrong_connection_title">Nepodarilo sa nadviazať spojenie</string>
+    <string name="authenticator_activity_cancel_login">Zrušiť prihlasovanie</string>
+    <string name="authenticator_activity_please_complete_login_process">Prosím, dokončite proces prihlasovania vo vašom prehliadači</string>
     <string name="auto_upload_file_behaviour_kept_in_folder">ponechané v pôvodnom priečinku, pretože je iba na čítanie</string>
     <string name="auto_upload_on_wifi">Nahrávaj iba na neobmedzenom Wi-Fi</string>
     <string name="auto_upload_path">/AutomatickéNahrávanie</string>
@@ -171,7 +177,7 @@
     <string name="confirmation_remove_folder_alert">Naozaj chcete odstrániť %1$s a jeho obsah?</string>
     <string name="confirmation_remove_folders_alert">Naozaj chcete odstrániť vybraté položky a ich obsah?</string>
     <string name="confirmation_remove_local">Iba lokálne</string>
-    <string name="conflict_dialog_error">Chyba pri vytváraní konfliktného dialógového okna!</string>
+    <string name="conflict_dialog_error">Dialógové okno riešenia konfliktov nemožno vytvoriť</string>
     <string name="conflict_file_headline">Konfliktný súbor %1$s</string>
     <string name="conflict_local_file">Lokálny súbor</string>
     <string name="conflict_message_description">Ak vyberiete obe verzie, miestny súbor bude mať k svojmu názvu pridané číslo.</string>
@@ -198,13 +204,11 @@
     <string name="could_not_retrieve_url">Nepodarilo sa načítať webovú adresu</string>
     <string name="create">Vytvoriť</string>
     <string name="create_dir_fail_msg">Nemožno vytvoriť priečinok</string>
-    <string name="create_new">Vytvoriť nový</string>
-    <string name="create_new_document">Vytvoriť nový dokument</string>
-    <string name="create_new_folder">Vytvoriť nový priečinok</string>
-    <string name="create_new_presentation">Vytvoriť novú prezentáciu</string>
-    <string name="create_new_spreadsheet">Vytvoriť novú tabuľku</string>
-    <string name="create_rich_workspace">Pridať informácie o priečinku</string>
-    <string name="creates_rich_workspace">vytvorí informácie o priečinku</string>
+    <string name="create_new">Nový</string>
+    <string name="create_new_document">Nový dokument</string>
+    <string name="create_new_folder">Nový priečinok</string>
+    <string name="create_new_presentation">Nová prezentácia</string>
+    <string name="create_new_spreadsheet">Nová tabuľka</string>
     <string name="credentials_disabled">Prihlasovacie údaje zakázané</string>
     <string name="daily_backup">Denná záloha</string>
     <string name="data_to_back_up">Dáta pre zálohovanie</string>
@@ -888,12 +892,12 @@
     <string name="upload_action_cancelled_resume">Obnoviť zrušené nahrávania</string>
     <string name="upload_action_failed_clear">Odstrániť zlyhané nahrávania</string>
     <string name="upload_action_failed_retry">Zopakovať zlyhané nahrávania</string>
-    <string name="upload_action_file_not_exist_message">Niektoré súbory neexistujú, tieto súbory nie je možné znova nahrať.</string>
     <string name="upload_action_global_upload_pause">Pozastaviť všetky nahrávania</string>
     <string name="upload_action_global_upload_resume">Obnoviť všetky nahrávania</string>
     <string name="upload_cannot_create_file">Nieje možné vytvoriť lokálny súbor</string>
     <string name="upload_chooser_title">Nahrať z…</string>
     <string name="upload_content_from_other_apps">Nahrať obsah z iných aplikácií</string>
+    <string name="upload_direct_camera_photo">Fotka</string>
     <string name="upload_direct_camera_upload">Nahrať z fotoaparátu</string>
     <string name="upload_file_dialog_filename">Názov súboru</string>
     <string name="upload_file_dialog_filetype">Typ súboru</string>

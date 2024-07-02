@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2022 Álvaro Brey <alvaro@alvarobrey.com>
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.ui.fileactions
 
@@ -67,14 +67,14 @@ class FileActionsBottomSheet : BottomSheetDialogFragment(), Injectable {
     private lateinit var viewModel: FileActionsViewModel
 
     private var _binding: FileActionsBottomSheetBinding? = null
-    private val binding
+    val binding
         get() = _binding!!
 
     private lateinit var componentsGetter: ComponentsGetter
 
     private val thumbnailAsyncTasks = mutableListOf<ThumbnailsCacheManager.ThumbnailGenerationTask>()
 
-    interface ResultListener {
+    fun interface ResultListener {
         fun onResult(@IdRes actionId: Int)
     }
 
@@ -99,9 +99,7 @@ class FileActionsBottomSheet : BottomSheetDialogFragment(), Injectable {
         return binding.root
     }
 
-    private fun handleState(
-        state: FileActionsViewModel.UiState
-    ) {
+    private fun handleState(state: FileActionsViewModel.UiState) {
         toggleLoadingOrContent(state)
         when (state) {
             is FileActionsViewModel.UiState.LoadedForSingleFile -> {
@@ -192,9 +190,7 @@ class FileActionsBottomSheet : BottomSheetDialogFragment(), Injectable {
         }
     }
 
-    private fun displayActions(
-        actions: List<FileAction>
-    ) {
+    private fun displayActions(actions: List<FileAction>) {
         if (binding.fileActionsList.isEmpty()) {
             actions.forEach { action ->
                 val view = inflateActionView(action)

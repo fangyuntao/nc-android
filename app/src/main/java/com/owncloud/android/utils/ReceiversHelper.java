@@ -4,7 +4,7 @@
  * SPDX-FileCopyrightText: 2020 Chris Narkiewicz <hello@ezaquarii.com>
  * SPDX-FileCopyrightText: 2017 Mario Danic <mario@lovelyhq.com>
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.utils;
 
@@ -49,10 +49,10 @@ public final class ReceiversHelper {
                 DNSCache.clear();
                 walledCheckCache.clear();
                 if (connectivityService.getConnectivity().isConnected()) {
-                    FilesSyncHelper.restartJobsIfNeeded(uploadsStorageManager,
-                                                        accountManager,
-                                                        connectivityService,
-                                                        powerManagementService);
+                    FilesSyncHelper.restartUploadsIfNeeded(uploadsStorageManager,
+                                                           accountManager,
+                                                           connectivityService,
+                                                           powerManagementService);
                 }
             }
         };
@@ -76,10 +76,10 @@ public final class ReceiversHelper {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (Intent.ACTION_POWER_CONNECTED.equals(intent.getAction())) {
-                    FilesSyncHelper.restartJobsIfNeeded(uploadsStorageManager,
-                                                        accountManager,
-                                                        connectivityService,
-                                                        powerManagementService);
+                    FilesSyncHelper.restartUploadsIfNeeded(uploadsStorageManager,
+                                                           accountManager,
+                                                           connectivityService,
+                                                           powerManagementService);
                 }
             }
         };
@@ -102,10 +102,10 @@ public final class ReceiversHelper {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (!powerManagementService.isPowerSavingEnabled()) {
-                    FilesSyncHelper.restartJobsIfNeeded(uploadsStorageManager,
-                                                        accountManager,
-                                                        connectivityService,
-                                                        powerManagementService);
+                    FilesSyncHelper.restartUploadsIfNeeded(uploadsStorageManager,
+                                                           accountManager,
+                                                           connectivityService,
+                                                           powerManagementService);
                 }
             }
         };

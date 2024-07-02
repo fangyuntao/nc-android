@@ -1,9 +1,9 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.jobs.upload
 
@@ -21,6 +21,9 @@ import com.nextcloud.client.network.ConnectivityService
 import com.nextcloud.client.preferences.AppPreferences
 import com.nextcloud.model.WorkerState
 import com.nextcloud.model.WorkerStateLiveData
+import com.nextcloud.utils.extensions.getPercent
+import com.nextcloud.utils.extensions.showToast
+import com.owncloud.android.R
 import com.owncloud.android.datamodel.FileDataStorageManager
 import com.owncloud.android.datamodel.ThumbnailsCacheManager
 import com.owncloud.android.datamodel.UploadsStorageManager
@@ -54,7 +57,6 @@ class FileUploadWorker(
         val TAG: String = FileUploadWorker::class.java.simpleName
 
         const val NOTIFICATION_ERROR_ID: Int = 413
-        private const val MAX_PROGRESS: Int = 100
         const val ACCOUNT = "data_account"
         var currentUploadFileOperation: UploadFileOperation? = null
 
@@ -99,9 +101,10 @@ class FileUploadWorker(
             backgroundJobManager.logStartOfWorker(BackgroundJobManagerImpl.formatClassTag(this::class))
             val result = retrievePagesBySortingUploadsByID()
             backgroundJobManager.logEndOfWorker(BackgroundJobManagerImpl.formatClassTag(this::class), result)
+            notificationManager.dismissNotification()
             result
         } catch (t: Throwable) {
-            Log_OC.e(TAG, "Error caught at FileUploadWorker " + t.localizedMessage)
+            Log_OC.e(TAG, "Error caught at FileUploadWorker $t")
             Result.failure()
         }
     }
@@ -111,7 +114,7 @@ class FileUploadWorker(
 
         setIdleWorkerState()
         currentUploadFileOperation?.cancel(null)
-        notificationManager.dismissWorkerNotifications()
+        notificationManager.dismissNotification()
 
         super.onStopped()
     }
@@ -127,11 +130,12 @@ class FileUploadWorker(
     @Suppress("ReturnCount")
     private fun retrievePagesBySortingUploadsByID(): Result {
         val accountName = inputData.getString(ACCOUNT) ?: return Result.failure()
-        var currentPage = uploadsStorageManager.getCurrentAndPendingUploadsForAccountPageAscById(-1, accountName)
+        var uploadsPerPage = uploadsStorageManager.getCurrentAndPendingUploadsForAccountPageAscById(-1, accountName)
+        val totalUploadSize = uploadsStorageManager.getTotalUploadSize(accountName)
 
-        notificationManager.dismissWorkerNotifications()
+        Log_OC.d(TAG, "Total upload size: $totalUploadSize")
 
-        while (currentPage.isNotEmpty() && !isStopped) {
+        while (uploadsPerPage.isNotEmpty() && !isStopped) {
             if (preferences.isGlobalUploadPaused) {
                 Log_OC.d(TAG, "Upload is paused, skip uploading files!")
                 notificationManager.notifyPaused(
@@ -140,10 +144,10 @@ class FileUploadWorker(
                 return Result.success()
             }
 
-            Log_OC.d(TAG, "Handling ${currentPage.size} uploads for account $accountName")
-            val lastId = currentPage.last().uploadId
-            uploadFiles(currentPage, accountName)
-            currentPage =
+            Log_OC.d(TAG, "Handling ${uploadsPerPage.size} uploads for account $accountName")
+            val lastId = uploadsPerPage.last().uploadId
+            uploadFiles(totalUploadSize, uploadsPerPage, accountName)
+            uploadsPerPage =
                 uploadsStorageManager.getCurrentAndPendingUploadsForAccountPageAscById(lastId, accountName)
         }
 
@@ -155,31 +159,43 @@ class FileUploadWorker(
         return Result.success()
     }
 
-    private fun uploadFiles(uploads: List<OCUpload>, accountName: String) {
+    private fun uploadFiles(totalUploadSize: Int, uploadsPerPage: List<OCUpload>, accountName: String) {
         val user = userAccountManager.getUser(accountName)
-        setWorkerState(user.get(), uploads)
+        setWorkerState(user.get(), uploadsPerPage)
 
-        for (upload in uploads) {
-            if (isStopped) {
-                break
-            }
+        run uploads@{
+            uploadsPerPage.forEachIndexed { currentUploadIndex, upload ->
+                if (isStopped) {
+                    return@uploads
+                }
 
-            if (user.isPresent) {
-                val operation = createUploadFileOperation(upload, user.get())
+                if (user.isPresent) {
+                    val uploadFileOperation = createUploadFileOperation(upload, user.get())
 
-                currentUploadFileOperation = operation
-                val result = upload(operation, user.get())
-                currentUploadFileOperation = null
+                    currentUploadFileOperation = uploadFileOperation
 
-                fileUploaderDelegate.sendBroadcastUploadFinished(
-                    operation,
-                    result,
-                    operation.oldFile?.storagePath,
-                    context,
-                    localBroadcastManager
-                )
-            } else {
-                uploadsStorageManager.removeUpload(upload.uploadId)
+                    notificationManager.prepareForStart(
+                        uploadFileOperation,
+                        cancelPendingIntent = intents.startIntent(uploadFileOperation),
+                        startIntent = intents.notificationStartIntent(uploadFileOperation),
+                        currentUploadIndex = currentUploadIndex + 1,
+                        totalUploadSize = totalUploadSize
+                    )
+
+                    val result = upload(uploadFileOperation, user.get())
+
+                    currentUploadFileOperation = null
+
+                    fileUploaderDelegate.sendBroadcastUploadFinished(
+                        uploadFileOperation,
+                        result,
+                        uploadFileOperation.oldFile?.storagePath,
+                        context,
+                        localBroadcastManager
+                    )
+                } else {
+                    uploadsStorageManager.removeUpload(upload.uploadId)
+                }
             }
         }
     }
@@ -205,40 +221,33 @@ class FileUploadWorker(
     }
 
     @Suppress("TooGenericExceptionCaught", "DEPRECATION")
-    private fun upload(operation: UploadFileOperation, user: User): RemoteOperationResult<Any?> {
+    private fun upload(uploadFileOperation: UploadFileOperation, user: User): RemoteOperationResult<Any?> {
         lateinit var result: RemoteOperationResult<Any?>
 
-        notificationManager.prepareForStart(
-            operation,
-            intents.startIntent(operation),
-            intents.notificationStartIntent(operation)
-        )
-
         try {
-            val storageManager = operation.storageManager
+            val storageManager = uploadFileOperation.storageManager
             val ocAccount = OwnCloudAccount(user.toPlatformAccount(), context)
             val uploadClient = OwnCloudClientManagerFactory.getDefaultSingleton().getClientFor(ocAccount, context)
-            result = operation.execute(uploadClient)
+            result = uploadFileOperation.execute(uploadClient)
 
             val task = ThumbnailsCacheManager.ThumbnailGenerationTask(storageManager, user)
-            val file = File(operation.originalStoragePath)
-            val remoteId: String? = operation.file.remoteId
+            val file = File(uploadFileOperation.originalStoragePath)
+            val remoteId: String? = uploadFileOperation.file.remoteId
             task.execute(ThumbnailsCacheManager.ThumbnailGenerationTaskObject(file, remoteId))
         } catch (e: Exception) {
             Log_OC.e(TAG, "Error uploading", e)
             result = RemoteOperationResult<Any?>(e)
         } finally {
-            cleanupUploadProcess(result, operation)
+            cleanupUploadProcess(result, uploadFileOperation)
         }
 
         return result
     }
 
-    private fun cleanupUploadProcess(result: RemoteOperationResult<Any?>, operation: UploadFileOperation) {
+    private fun cleanupUploadProcess(result: RemoteOperationResult<Any?>, uploadFileOperation: UploadFileOperation) {
         if (!isStopped || !result.isCancelled) {
-            uploadsStorageManager.updateDatabaseUploadResult(result, operation)
-            notifyUploadResult(operation, result)
-            notificationManager.dismissWorkerNotifications()
+            uploadsStorageManager.updateDatabaseUploadResult(result, uploadFileOperation)
+            notifyUploadResult(uploadFileOperation, result)
         }
     }
 
@@ -260,9 +269,13 @@ class FileUploadWorker(
 
         // Only notify if it is not same file on remote that causes conflict
         if (uploadResult.code == ResultCode.SYNC_CONFLICT && FileUploadHelper().isSameFileOnRemote(
-                uploadFileOperation.user, File(uploadFileOperation.storagePath), uploadFileOperation.remotePath, context
+                uploadFileOperation.user,
+                File(uploadFileOperation.storagePath),
+                uploadFileOperation.remotePath,
+                context
             )
         ) {
+            context.showToast(R.string.file_upload_worker_same_file_already_exists)
             return
         }
 
@@ -300,41 +313,53 @@ class FileUploadWorker(
                 null
             }
 
-            notifyForFailedResult(uploadResult.code, conflictResolveIntent, credentialIntent, errorMessage)
-            showNewNotification(uploadFileOperation)
+            notifyForFailedResult(
+                uploadFileOperation,
+                uploadResult.code,
+                conflictResolveIntent,
+                credentialIntent,
+                errorMessage
+            )
         }
     }
 
+    @Suppress("MagicNumber")
+    private val minProgressUpdateInterval = 750
+    private var lastUpdateTime = 0L
+
+    @Suppress("MagicNumber")
     override fun onTransferProgress(
         progressRate: Long,
         totalTransferredSoFar: Long,
         totalToTransfer: Long,
         fileAbsoluteName: String
     ) {
-        val percent = (MAX_PROGRESS * totalTransferredSoFar.toDouble() / totalToTransfer.toDouble()).toInt()
+        val percent = getPercent(totalTransferredSoFar, totalToTransfer)
+        val currentTime = System.currentTimeMillis()
 
-        if (percent != lastPercent) {
+        if (percent != lastPercent && (currentTime - lastUpdateTime) >= minProgressUpdateInterval) {
             notificationManager.run {
-                updateUploadProgress(fileAbsoluteName, percent, currentUploadFileOperation)
-
                 val accountName = currentUploadFileOperation?.user?.accountName
                 val remotePath = currentUploadFileOperation?.remotePath
 
+                updateUploadProgress(percent, currentUploadFileOperation)
+
                 if (accountName != null && remotePath != null) {
-                    val key: String =
-                        FileUploadHelper.buildRemoteName(accountName, remotePath)
+                    val key: String = FileUploadHelper.buildRemoteName(accountName, remotePath)
                     val boundListener = FileUploadHelper.mBoundListeners[key]
+                    val filename = currentUploadFileOperation?.fileName ?: ""
 
                     boundListener?.onTransferProgress(
                         progressRate,
                         totalTransferredSoFar,
                         totalToTransfer,
-                        fileAbsoluteName
+                        filename
                     )
                 }
 
                 dismissOldErrorNotification(currentUploadFileOperation)
             }
+            lastUpdateTime = currentTime
         }
 
         lastPercent = percent

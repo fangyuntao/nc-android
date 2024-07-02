@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2022 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.widget
 
@@ -45,9 +45,12 @@ class DashboardWidgetProvider : AppWidgetProvider() {
         AndroidInjection.inject(this, context)
 
         if (intent?.action == OPEN_INTENT) {
-            val clickIntent = Intent(Intent.ACTION_VIEW, intent.data)
-            clickIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context?.startActivity(clickIntent)
+            context?.let {
+                val clickIntent = Intent(Intent.ACTION_VIEW, intent.data).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                context.startActivity(clickIntent)
+            }
         }
     }
 

@@ -5,7 +5,7 @@
  * SPDX-FileCopyrightText: 2017 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2016 ownCloud Inc.
  * SPDX-FileCopyrightText: 2015 María Asensio Valverde <masensio@solidgear.es>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.utils;
 
@@ -293,9 +293,9 @@ public final class ErrorMessageAdapter {
 
         } else {
             if (result.getCode() == ResultCode.FORBIDDEN) {
-                // Error --> No permissions
-                return String.format(res.getString(R.string.forbidden_permissions),
-                                     res.getString(R.string.forbidden_permissions_delete));
+                return String.format(res.getString(R.string.forbidden_permissions), res.getString(R.string.forbidden_permissions_delete));
+            } else if (result.getCode() == ResultCode.LOCKED) {
+                return res.getString(R.string.preview_media_unhandled_http_code_message);
             }
         }
 

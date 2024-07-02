@@ -1,9 +1,9 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.jobs.download
 
@@ -22,10 +22,7 @@ import com.owncloud.android.ui.preview.PreviewImageFragment
 
 class FileDownloadIntents(private val context: Context) {
 
-    fun newDownloadIntent(
-        download: DownloadFileOperation,
-        linkedToRemotePath: String
-    ): Intent {
+    fun newDownloadIntent(download: DownloadFileOperation, linkedToRemotePath: String): Intent {
         return Intent(FileDownloadWorker.getDownloadAddedMessage()).apply {
             putExtra(FileDownloadWorker.EXTRA_ACCOUNT_NAME, download.user.accountName)
             putExtra(FileDownloadWorker.EXTRA_REMOTE_PATH, download.remotePath)

@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud
  * contributors
- * SPDX-FileCopyrightText: 2024 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2024 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-License-Identifier: MIT
  */
 
@@ -34,4 +34,9 @@ fun Task.statusData(): Pair<Int, Int> {
             Pair(R.drawable.ic_unknown, R.string.assistant_screen_unknown_task_status_text)
         }
     }
+}
+
+// TODO add
+fun Task.completionDateRepresentation(): String {
+    return completionExpectedAt ?: "TODO IMPLEMENT IT"
 }

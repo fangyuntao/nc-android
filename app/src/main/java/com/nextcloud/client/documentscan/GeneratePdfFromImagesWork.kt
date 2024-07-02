@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2022 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.documentscan
 
@@ -112,7 +112,8 @@ class GeneratePdfFromImagesWork(
             user,
             arrayOf(pdfPath),
             arrayOf(uploadPath),
-            FileUploadWorker.LOCAL_BEHAVIOUR_DELETE, // MIME type will be detected from file name
+            // MIME type will be detected from file name
+            FileUploadWorker.LOCAL_BEHAVIOUR_DELETE,
             true,
             UploadFileOperation.CREATED_BY_USER,
             false,

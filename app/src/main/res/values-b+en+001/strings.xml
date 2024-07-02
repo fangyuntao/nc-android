@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Account creation failed</string>
     <string name="account_icon">Account icon</string>
     <string name="account_not_found">Account not found!</string>
-    <string name="action_clear_failed_uploads">Clear failed uploads</string>
     <string name="action_edit">Edit</string>
     <string name="action_empty_notifications">Clear all notifications</string>
     <string name="action_empty_trashbin">Empty trash bin</string>
@@ -35,6 +34,9 @@
     <string name="add_to_cloud">Add to %1$s</string>
     <string name="advanced_settings">Advanced Settings</string>
     <string name="allow_resharing">Allow resharing</string>
+    <string name="app_config_base_url_title">Base Url</string>
+    <string name="app_config_proxy_host_title">Proxy Host Name</string>
+    <string name="app_config_proxy_port_title">Proxy Port</string>
     <string name="app_widget_description">Shows one widget from dashboard</string>
     <string name="appbar_search_in">Search in %s</string>
     <string name="assistant_screen_all_task_type">All</string>
@@ -57,6 +59,8 @@
     <string name="assistant_screen_task_types_error_state_message">Unable to fetch task types, please check your internet connection.</string>
     <string name="assistant_screen_top_bar_title">Assistant</string>
     <string name="assistant_screen_unknown_task_status_text">Unknown</string>
+    <string name="assistant_task_detail_screen_input_button_title">Input</string>
+    <string name="assistant_task_detail_screen_output_button_title">Output</string>
     <string name="associated_account_not_found">Associated account not found!</string>
     <string name="auth_access_failed">Access failed: %1$s</string>
     <string name="auth_account_does_not_exist">The account is not added on this device yet</string>
@@ -87,6 +91,9 @@
     <string name="auth_unknown_host_title">Could not find host</string>
     <string name="auth_unsupported_multiaccount">%1$s does not support multiple accounts</string>
     <string name="auth_wrong_connection_title">Could not establish connection</string>
+    <string name="authenticator_activity_cancel_login">Cancel Login</string>
+    <string name="authenticator_activity_login_error">There was an issue processing your login request. Please try again later.</string>
+    <string name="authenticator_activity_please_complete_login_process">Please complete login process in your browser</string>
     <string name="auto_upload_file_behaviour_kept_in_folder">kept in original folder, as it is readonly</string>
     <string name="auto_upload_on_wifi">Only upload on unmetered Wi-Fi</string>
     <string name="auto_upload_path">/AutoUpload</string>
@@ -171,7 +178,7 @@
     <string name="confirmation_remove_folder_alert">Do you really want to delete %1$s and its content?</string>
     <string name="confirmation_remove_folders_alert">Do you really want to delete the selected items and their contents?</string>
     <string name="confirmation_remove_local">Local only</string>
-    <string name="conflict_dialog_error">Error creating conflict dialogue!</string>
+    <string name="conflict_dialog_error">Conflict resolver dialog cannot be created</string>
     <string name="conflict_file_headline">Conflicting file %1$s</string>
     <string name="conflict_local_file">Local file</string>
     <string name="conflict_message_description">If you select both versions, the local file will have a number appended to its name.</string>
@@ -198,13 +205,13 @@
     <string name="could_not_retrieve_url">Could not retrieve URL</string>
     <string name="create">Create</string>
     <string name="create_dir_fail_msg">Could not create folder</string>
-    <string name="create_new">Create new</string>
-    <string name="create_new_document">Create new document</string>
-    <string name="create_new_folder">Create new folder</string>
-    <string name="create_new_presentation">Create new presentation</string>
-    <string name="create_new_spreadsheet">Create new spreadsheet</string>
-    <string name="create_rich_workspace">Add folder info</string>
-    <string name="creates_rich_workspace">creates folder info</string>
+    <string name="create_new">New</string>
+    <string name="create_new_document">New document</string>
+    <string name="create_new_folder">New folder</string>
+    <string name="create_new_presentation">New presentation</string>
+    <string name="create_new_spreadsheet">New spreadsheet</string>
+    <string name="create_rich_workspace">Add folder description</string>
+    <string name="creates_rich_workspace">Adds folder description</string>
     <string name="credentials_disabled">Credentials disabled</string>
     <string name="daily_backup">Daily backup</string>
     <string name="data_to_back_up">Data to back up</string>
@@ -315,6 +322,7 @@
     <string name="error_showing_encryption_dialog">Error showing encryption setup dialogue!</string>
     <string name="error_starting_direct_camera_upload">Error starting camera</string>
     <string name="error_starting_doc_scan">Error starting document scan</string>
+    <string name="error_uploading_direct_camera_upload">Failed to upload taken media</string>
     <string name="etm_accounts">Accounts</string>
     <string name="etm_background_execution_count">Times run in 48h</string>
     <string name="etm_background_job_created">Created</string>
@@ -346,6 +354,7 @@
     <string name="failed_update_ui">Failed to update UI</string>
     <string name="favorite">Add to favourites</string>
     <string name="favorite_icon">Favourite</string>
+    <string name="file_activity_shared_file_cannot_be_updated">Shared file cannot be updated</string>
     <string name="file_already_exists">Filename already exists</string>
     <string name="file_delete">Delete</string>
     <string name="file_detail_activity_error">Error retrieving activities for file</string>
@@ -353,7 +362,7 @@
     <string name="file_icon">File</string>
     <string name="file_keep">Keep</string>
     <string name="file_list_empty">Upload some content or sync with your devices.</string>
-    <string name="file_list_empty_favorite_headline">Nothing favourited yet</string>
+    <string name="file_list_empty_favorite_headline">Nothing has been marked as favourite yet</string>
     <string name="file_list_empty_favorites_filter_list">Files and folders you mark as favorites will show up here.</string>
     <string name="file_list_empty_gallery">Found no images or videos</string>
     <string name="file_list_empty_headline">No files here</string>
@@ -399,6 +408,7 @@
     <string name="file_not_found">File not found</string>
     <string name="file_not_synced">File could not be synced. Showing latest available version.</string>
     <string name="file_rename">Rename</string>
+    <string name="file_upload_worker_same_file_already_exists">Same file already exists, no conflict detected</string>
     <string name="file_version_restored_error">Error restoring file version!</string>
     <string name="file_version_restored_successfully">Successfully restored file version.</string>
     <string name="filedetails_details">Details</string>
@@ -657,6 +667,7 @@
     <string name="preview_image_description">Image preview</string>
     <string name="preview_image_error_no_local_file">There is no local file to preview</string>
     <string name="preview_image_error_unknown_format">Unable to show image</string>
+    <string name="preview_media_unhandled_http_code_message">File is currently locked by another user or process and therefore not deletable. Please try again later.</string>
     <string name="preview_sorry">Sorry</string>
     <string name="privacy">Privacy</string>
     <string name="public_share_name">New name</string>
@@ -664,6 +675,7 @@
     <string name="push_notifications_old_login">No push notifications due to outdated login session. Please consider re-adding your account.</string>
     <string name="push_notifications_temp_error">Push notifications currently not available.</string>
     <string name="qr_could_not_be_read">QR code could not be read!</string>
+    <string name="receive_external_files_activity_start_sync_folder_is_not_exists_message">Folder cannot be found, sync operation is cancelled</string>
     <string name="recommend_subject">Try %1$s on your device!</string>
     <string name="recommend_text">I want to invite you to use %1$s on your device.\nDownload here: %2$s</string>
     <string name="recommend_urls">%1$s or %2$s</string>
@@ -888,13 +900,16 @@
     <string name="upload_action_cancelled_resume">Resume cancelled uploads</string>
     <string name="upload_action_failed_clear">Clear failed uploads</string>
     <string name="upload_action_failed_retry">Retry failed uploads</string>
-    <string name="upload_action_file_not_exist_message">Some files not exists those files cannot be resumed</string>
+    <string name="upload_action_file_not_exist_message">Some files no longer exist. These uploads cannot be resumed.</string>
     <string name="upload_action_global_upload_pause">Pause all uploads</string>
     <string name="upload_action_global_upload_resume">Resume all uploads</string>
     <string name="upload_cannot_create_file">Cannot create local file</string>
     <string name="upload_chooser_title">Upload from…</string>
     <string name="upload_content_from_other_apps">Upload content from other apps</string>
+    <string name="upload_direct_camera_photo">Photo</string>
+    <string name="upload_direct_camera_promt">Do you want to take a photo or video?</string>
     <string name="upload_direct_camera_upload">Upload from camera</string>
+    <string name="upload_direct_camera_video">Video</string>
     <string name="upload_file_dialog_filename">Filename</string>
     <string name="upload_file_dialog_filetype">Filetype</string>
     <string name="upload_file_dialog_filetype_googlemap_shortcut">Google Maps shortcut file(%s)</string>
@@ -907,11 +922,13 @@
     <string name="upload_list_delete">Delete</string>
     <string name="upload_list_empty_headline">No uploads available</string>
     <string name="upload_list_empty_text_auto_upload">Upload some content or activate auto upload.</string>
+    <string name="upload_list_expand_header">Toggle expansion of header</string>
     <string name="upload_list_resolve_conflict">Resolve conflict</string>
     <string name="upload_local_storage_full">Local storage full</string>
     <string name="upload_local_storage_not_copied">File could not be copied to local storage</string>
     <string name="upload_lock_failed">Locking folder failed</string>
     <string name="upload_manually_cancelled">Upload was cancelled by user</string>
+    <string name="upload_notification_manager_start_text">%1$d / %2$d - %3$s</string>
     <string name="upload_old_android">Encryption is only possible with &gt;= Android 5.0</string>
     <string name="upload_query_move_foreign_files">Insufficient space prevents copying the selected files into the %1$s folder. Would you like to move them there instead?</string>
     <string name="upload_quota_exceeded">Storage quota exceeded</string>

@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Ustvarjanje računa je spodletelo</string>
     <string name="account_icon">ikona računa</string>
     <string name="account_not_found">Računa ni mogoče najti!</string>
-    <string name="action_clear_failed_uploads">Počisti dnevnik spodletelih pošiljanj</string>
     <string name="action_edit">Uredi</string>
     <string name="action_empty_notifications">Počisti vsa obvestila</string>
     <string name="action_empty_trashbin">Izprazni smeti</string>
@@ -34,6 +33,7 @@
     <string name="add_to_cloud">Dodaj v %1$s</string>
     <string name="advanced_settings">Napredne nastavitve</string>
     <string name="allow_resharing">Dovoli nadaljnje omogočanje souporabe</string>
+    <string name="app_config_proxy_port_title">Vrata posredniškega strežnika</string>
     <string name="app_widget_description">Pokaži en gradnik iz nadzorne plošče</string>
     <string name="appbar_search_in">Poišči v %s</string>
     <string name="assistant_screen_all_task_type">Vse</string>
@@ -153,7 +153,6 @@
     <string name="confirmation_remove_folder_alert">Ali res želite izbrisati %1$s skupaj z vsebino?</string>
     <string name="confirmation_remove_folders_alert">Ali zares želite izbrisati izbrane predmete in vsebino?</string>
     <string name="confirmation_remove_local">Le krajevno</string>
-    <string name="conflict_dialog_error">Prišlo je do napake med ustvarjanjem pogovornega okna spora!</string>
     <string name="conflict_file_headline">Različice %1$s v sporu.</string>
     <string name="conflict_local_file">Krajevna datoteka</string>
     <string name="conflict_message_description">Če izberete obe različici, bo k imenu krajevne datoteke dodana številka.</string>
@@ -180,13 +179,11 @@
     <string name="could_not_retrieve_url">Naslova URL ni mogoče pridobiti</string>
     <string name="create">Ustvari</string>
     <string name="create_dir_fail_msg">Ni mogoče ustvariti mape</string>
-    <string name="create_new">Ustvari novo</string>
-    <string name="create_new_document">Ustvari nov dokument</string>
-    <string name="create_new_folder">Ustvari novo mapo</string>
-    <string name="create_new_presentation">Ustvari novo predstavitev</string>
-    <string name="create_new_spreadsheet">Ustvari novo preglednico</string>
-    <string name="create_rich_workspace">Dodaj podrobnosti mape</string>
-    <string name="creates_rich_workspace">ustvari podrobnosti mape</string>
+    <string name="create_new">Novo</string>
+    <string name="create_new_document">Nov dokument</string>
+    <string name="create_new_folder">Nova mapa</string>
+    <string name="create_new_presentation">Nova predstavitev</string>
+    <string name="create_new_spreadsheet">Nova preglednica</string>
     <string name="credentials_disabled">Poverila so onemogočena</string>
     <string name="daily_backup">Dnevna varnostna kopija</string>
     <string name="data_to_back_up">Podatki za varnostno kopiranje</string>
@@ -701,7 +698,7 @@
     <string name="share_no_password_title">Nastavi geslo</string>
     <string name="share_password_title">Zaščiteno z geslom</string>
     <string name="share_permission_can_edit">Lahko ureja</string>
-    <string name="share_permission_file_drop">Poteg datotek</string>
+    <string name="share_permission_file_drop">Poteg datotek v mapo</string>
     <string name="share_permission_secure_file_drop">Varno pošiljanje daottek</string>
     <string name="share_permission_view_only">Le ogled</string>
     <string name="share_permissions">Dovoljenja souporabe</string>
@@ -839,6 +836,7 @@
     <string name="upload_cannot_create_file">Krajevne datoteke ni mogoče ustvariti</string>
     <string name="upload_chooser_title">Pošlji iz …</string>
     <string name="upload_content_from_other_apps">Pošlji vsebino iz drugih programov</string>
+    <string name="upload_direct_camera_photo">Slika</string>
     <string name="upload_direct_camera_upload">Pošlji s kamere</string>
     <string name="upload_file_dialog_filename">Ime datoteke</string>
     <string name="upload_file_dialog_filetype">Vrsta datoteke</string>

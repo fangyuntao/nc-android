@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Error al crear la cuenta</string>
     <string name="account_icon">Ícono de la cuenta</string>
     <string name="account_not_found">¡No se encontró la cuenta!</string>
-    <string name="action_clear_failed_uploads">Borrar cargas fallidas</string>
     <string name="action_edit">Editar</string>
     <string name="action_empty_notifications">Borrar todas las notificaciones</string>
     <string name="action_send_share">Enviar/Compartir</string>
@@ -143,7 +142,8 @@
     <string name="copy_move_to_encrypted_folder_not_supported">Copiar/ mover a la carpeta encriptada no se encuentra soportado por el momento.</string>
     <string name="create">Crear</string>
     <string name="create_dir_fail_msg">No fue posible crear la carpeta</string>
-    <string name="create_new_folder">Crear nueva carpeta</string>
+    <string name="create_new">Nuevo</string>
+    <string name="create_new_folder">Carpeta nueva </string>
     <string name="delete_account">Cerrar sesión</string>
     <string name="deselect_all">Deseleccionar todo</string>
     <string name="dev_version_new_version_available">Nueva versión disponible</string>
@@ -474,6 +474,7 @@
     <string name="upload_action_failed_retry">Reintentar cargas fallidas</string>
     <string name="upload_chooser_title">Cargar forma…</string>
     <string name="upload_content_from_other_apps">Cargar contenido de otras aplicaciones</string>
+    <string name="upload_direct_camera_photo">Foto</string>
     <string name="upload_file_dialog_filename">Nombre de archivo</string>
     <string name="upload_file_dialog_filetype">Tipo de archivo</string>
     <string name="upload_file_dialog_filetype_googlemap_shortcut">Archivo de acceso directo a Google Maps(%s)</string>

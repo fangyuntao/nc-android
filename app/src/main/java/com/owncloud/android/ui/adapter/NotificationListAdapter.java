@@ -6,7 +6,7 @@
  * SPDX-FileCopyrightText: 2018-2022 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2017 Andy Scherzinger <info@andy-scherzinger.de>
  * SPDX-FileCopyrightText: 2017 Mario Danic <mario@lovelyhq.com>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.adapter;
 
@@ -36,9 +36,9 @@ import com.bumptech.glide.load.resource.file.FileToStreamDecoder;
 import com.caverock.androidsvg.SVG;
 import com.google.android.material.button.MaterialButton;
 import com.nextcloud.android.common.ui.theme.utils.ColorRole;
+import com.nextcloud.common.NextcloudClient;
 import com.owncloud.android.R;
 import com.owncloud.android.databinding.NotificationListItemBinding;
-import com.owncloud.android.lib.common.OwnCloudClient;
 import com.owncloud.android.lib.resources.notifications.models.Action;
 import com.owncloud.android.lib.resources.notifications.models.Notification;
 import com.owncloud.android.lib.resources.notifications.models.RichObject;
@@ -71,11 +71,11 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
     private final ForegroundColorSpan foregroundColorSpanBlack;
 
     private final List<Notification> notificationsList;
-    private final OwnCloudClient client;
+    private final NextcloudClient client;
     private final NotificationsActivity notificationsActivity;
     private final ViewThemeUtils viewThemeUtils;
 
-    public NotificationListAdapter(OwnCloudClient client,
+    public NotificationListAdapter(NextcloudClient client,
                                    NotificationsActivity notificationsActivity,
                                    ViewThemeUtils viewThemeUtils) {
         this.notificationsList = new ArrayList<>();

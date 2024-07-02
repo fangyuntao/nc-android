@@ -1,8 +1,8 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2024 Alper Ozturk <alper_ozturk@proton.me>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2024 Alper Ozturk <alper.ozturk@nextcloud.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.ui.composeComponents.bottomSheet
 
@@ -37,11 +37,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("ResourceAsColor")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoreActionsBottomSheet(
-    title: String? = null,
-    actions: List<Triple<Int, Int, () -> Unit>>,
-    dismiss: () -> Unit
-) {
+fun MoreActionsBottomSheet(title: String? = null, actions: List<Triple<Int, Int, () -> Unit>>, dismiss: () -> Unit) {
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
 

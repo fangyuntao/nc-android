@@ -2,7 +2,7 @@
  * Nextcloud - Android Client
  *
  * SPDX-FileCopyrightText: 2020 Chris Narkiewicz <hello@ezaquarii.com>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.jobs
 
@@ -28,6 +28,7 @@ import com.nextcloud.client.documentscan.GeneratePdfFromImagesWork
 import com.nextcloud.client.jobs.download.FileDownloadWorker
 import com.nextcloud.client.jobs.upload.FileUploadWorker
 import com.nextcloud.client.preferences.AppPreferences
+import com.nextcloud.utils.extensions.isWorkRunning
 import com.nextcloud.utils.extensions.isWorkScheduled
 import com.owncloud.android.datamodel.OCFile
 import com.owncloud.android.operations.DownloadType
@@ -264,7 +265,7 @@ internal class BackgroundJobManagerImpl(
             .setConstraints(constrains)
             .build()
 
-        workManager.enqueueUniqueWork(JOB_CONTENT_OBSERVER, ExistingWorkPolicy.APPEND, request)
+        workManager.enqueueUniqueWork(JOB_CONTENT_OBSERVER, ExistingWorkPolicy.REPLACE, request)
     }
 
     override fun schedulePeriodicContactsBackup(user: User) {
@@ -403,32 +404,53 @@ internal class BackgroundJobManagerImpl(
         workManager.cancelJob(JOB_PERIODIC_CALENDAR_BACKUP, user)
     }
 
-    override fun schedulePeriodicFilesSyncJob() {
+    override fun bothFilesSyncJobsRunning(syncedFolderID: Long): Boolean {
+        return workManager.isWorkRunning(JOB_PERIODIC_FILES_SYNC + "_" + syncedFolderID) &&
+            workManager.isWorkRunning(JOB_IMMEDIATE_FILES_SYNC + "_" + syncedFolderID)
+    }
+
+    override fun schedulePeriodicFilesSyncJob(syncedFolderID: Long) {
+        val arguments = Data.Builder()
+            .putLong(FilesSyncWork.SYNCED_FOLDER_ID, syncedFolderID)
+            .build()
+
         val request = periodicRequestBuilder(
             jobClass = FilesSyncWork::class,
-            jobName = JOB_PERIODIC_FILES_SYNC,
+            jobName = JOB_PERIODIC_FILES_SYNC + "_" + syncedFolderID,
             intervalMins = DEFAULT_PERIODIC_JOB_INTERVAL_MINUTES
-        ).build()
-        workManager.enqueueUniquePeriodicWork(JOB_PERIODIC_FILES_SYNC, ExistingPeriodicWorkPolicy.REPLACE, request)
+        )
+            .setInputData(arguments)
+            .build()
+        workManager.enqueueUniquePeriodicWork(
+            JOB_PERIODIC_FILES_SYNC + "_" + syncedFolderID,
+            ExistingPeriodicWorkPolicy.REPLACE,
+            request
+        )
     }
 
     override fun startImmediateFilesSyncJob(
+        syncedFolderID: Long,
         overridePowerSaving: Boolean,
         changedFiles: Array<String>
     ) {
         val arguments = Data.Builder()
             .putBoolean(FilesSyncWork.OVERRIDE_POWER_SAVING, overridePowerSaving)
             .putStringArray(FilesSyncWork.CHANGED_FILES, changedFiles)
+            .putLong(FilesSyncWork.SYNCED_FOLDER_ID, syncedFolderID)
             .build()
 
         val request = oneTimeRequestBuilder(
             jobClass = FilesSyncWork::class,
-            jobName = JOB_IMMEDIATE_FILES_SYNC
+            jobName = JOB_IMMEDIATE_FILES_SYNC + "_" + syncedFolderID
         )
             .setInputData(arguments)
             .build()
 
-        workManager.enqueueUniqueWork(JOB_IMMEDIATE_FILES_SYNC, ExistingWorkPolicy.APPEND, request)
+        workManager.enqueueUniqueWork(
+            JOB_IMMEDIATE_FILES_SYNC + "_" + syncedFolderID,
+            ExistingWorkPolicy.APPEND,
+            request
+        )
     }
 
     override fun scheduleOfflineSync() {
@@ -532,7 +554,6 @@ internal class BackgroundJobManagerImpl(
         val tag = startFileDownloadJobTag(user, file.fileId)
 
         val data = workDataOf(
-            FileDownloadWorker.WORKER_ID to file.fileId.toInt(),
             FileDownloadWorker.ACCOUNT_NAME to user.accountName,
             FileDownloadWorker.FILE_REMOTE_PATH to file.remotePath,
             FileDownloadWorker.BEHAVIOUR to behaviour,

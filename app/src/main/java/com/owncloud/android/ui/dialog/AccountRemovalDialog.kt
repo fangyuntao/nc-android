@@ -4,7 +4,7 @@
  * SPDX-FileCopyrightText: 2023 ZetaTom
  * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2020-2023 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.dialog
 
@@ -40,7 +40,7 @@ class AccountRemovalDialog : DialogFragment(), AvatarGenerationListener, Injecta
     private var user: User? = null
     private lateinit var alertDialog: AlertDialog
     private var _binding: AccountRemovalDialogBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

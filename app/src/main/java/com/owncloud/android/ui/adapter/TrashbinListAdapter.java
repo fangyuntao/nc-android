@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2018 Tobias Kaminsky
  * SPDX-FileCopyrightText: 2018 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.adapter;
 
@@ -83,7 +83,7 @@ public class TrashbinListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         files.addAll(trashbinFiles);
 
         files = preferences.getSortOrderByType(FileSortOrder.Type.trashBinView,
-                                               FileSortOrder.sort_new_to_old).sortTrashbinFiles(files);
+                                               FileSortOrder.SORT_NEW_TO_OLD).sortTrashbinFiles(files);
 
         notifyDataSetChanged();
     }

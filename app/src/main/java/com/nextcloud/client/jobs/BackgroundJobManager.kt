@@ -2,7 +2,7 @@
  * Nextcloud - Android Client
  *
  * SPDX-FileCopyrightText: 2020 Chris Narkiewicz <hello@ezaquarii.com>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.jobs
 
@@ -119,9 +119,13 @@ interface BackgroundJobManager {
 
     fun startImmediateFilesExportJob(files: Collection<OCFile>): LiveData<JobInfo?>
 
-    fun schedulePeriodicFilesSyncJob()
+    fun schedulePeriodicFilesSyncJob(syncedFolderID: Long)
 
+    /**
+     * Immediately start File Sync job for given syncFolderID.
+     */
     fun startImmediateFilesSyncJob(
+        syncedFolderID: Long,
         overridePowerSaving: Boolean = false,
         changedFiles: Array<String> = arrayOf<String>()
     )
@@ -163,4 +167,5 @@ interface BackgroundJobManager {
     fun cancelAllJobs()
     fun schedulePeriodicHealthStatus()
     fun startHealthStatus()
+    fun bothFilesSyncJobsRunning(syncedFolderID: Long): Boolean
 }

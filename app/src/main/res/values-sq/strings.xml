@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Krijimi i llogarisë dështoi</string>
     <string name="account_icon">Ikona e llogarisë</string>
     <string name="account_not_found">Llogaria nuk u gjet!</string>
-    <string name="action_clear_failed_uploads">Pastroni ngarkimet e dështuara</string>
     <string name="action_edit">Përpuno</string>
     <string name="action_empty_notifications">Pastro të gjithë njoftimet</string>
     <string name="action_send_share">Dërgoje/Shpërndaje</string>
@@ -131,7 +130,6 @@
     <string name="confirmation_remove_folder_alert">Doni vërtet të hiqet %1$s dhe përmbajtja e tij?</string>
     <string name="confirmation_remove_folders_alert">Doni vërtet të hiqni artikujt e zgjedhur dhe përmbajtjen e tyre?</string>
     <string name="confirmation_remove_local">Vetëm vendorja</string>
-    <string name="conflict_dialog_error">Gabim në krijimin e dialogut për konflikte!</string>
     <string name="conflict_message_description">Nëse zgjidhni të dy versionet, skedari lokal do të ketë një numër të bashkangjitur në emër</string>
     <string name="contactlist_item_icon">Ikona e përdoruesit për listën e kontakteve</string>
     <string name="contactlist_no_permission">Asnjë leje e dhënë, nuk u importua asgjë.</string>
@@ -151,13 +149,8 @@
     <string name="could_not_retrieve_url">Nuk mund të rikthej URL-në</string>
     <string name="create">Krijo</string>
     <string name="create_dir_fail_msg">S’u krijua dot dosja</string>
-    <string name="create_new">Krijo të ri</string>
-    <string name="create_new_document">Krijo një dokument te ri</string>
-    <string name="create_new_folder">Krijo një dosje të re</string>
-    <string name="create_new_presentation">Krijo një prezantim të ri</string>
-    <string name="create_new_spreadsheet">Krijo një spreadsheet të ri</string>
-    <string name="create_rich_workspace">Shto informacion për dosjen</string>
-    <string name="creates_rich_workspace">Krijon informacionin e dosjeve</string>
+    <string name="create_new">I ri</string>
+    <string name="create_new_folder">Dosje e re</string>
     <string name="credentials_disabled">Kredencialet të pa aktivizuara</string>
     <string name="default_credentials_wrong">Kredenciele jo të sakta</string>
     <string name="delete_account">Hiqe llogarinë</string>
@@ -624,7 +617,7 @@
     <string name="trashbin_not_emptied">Skedarët nuk mund të fshihen përgjithmonë!</string>
     <string name="unread_comments">Ekzistojnë komente të palexuara</string>
     <string name="unset_encrypted">Hiq enkriptimin</string>
-    <string name="unset_favorite">Hiqe nga të parapëlqyerat</string>
+    <string name="unset_favorite">Hiqeni nga të parapëlqyerat</string>
     <string name="unshare_link_forbidden_permissions">për zhbërje të ndarjes me të tjerët të kësaj kartele</string>
     <string name="unsharing_failed">Mos ndarja dështoi</string>
     <string name="untrusted_domain">Aksesi nëpërmjet një domaini jo të besuar. Ju lutem shikoni dokumentimin për info të mëtejshme. </string>

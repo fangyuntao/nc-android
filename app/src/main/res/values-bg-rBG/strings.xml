@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Създаването на профила се провали</string>
     <string name="account_icon">Профил</string>
     <string name="account_not_found">Няма намерен профил!</string>
-    <string name="action_clear_failed_uploads">Изчисти провалените качвания</string>
     <string name="action_edit">Променяне</string>
     <string name="action_empty_notifications">Премахнете известията</string>
     <string name="action_empty_trashbin">Изпразване на кошчето</string>
@@ -33,6 +32,7 @@
     <string name="add_to_cloud">Добави към %1$s</string>
     <string name="advanced_settings">Допълнителни настройки</string>
     <string name="allow_resharing">Може да споделя повторно</string>
+    <string name="app_config_proxy_port_title">Порт на прокси сървъра</string>
     <string name="app_widget_description">Показва един изпълним модул от таблото за управление</string>
     <string name="appbar_search_in">Търсене в %s</string>
     <string name="assistant_screen_all_task_type">Всички</string>
@@ -153,7 +153,6 @@
     <string name="confirmation_remove_folder_alert">Наистина ли желаете %1$s и съдържанието ѝ да бъдат изтрито?</string>
     <string name="confirmation_remove_folders_alert">Наистина ли желаете избраните елементи и съдържанието им да бъдат премахнати?</string>
     <string name="confirmation_remove_local">Само локално</string>
-    <string name="conflict_dialog_error">Грешка при създаване на диалог за конфликт!</string>
     <string name="conflict_file_headline">Несъвместим файл %1$s</string>
     <string name="conflict_local_file">Локален файл</string>
     <string name="conflict_message_description">Ако изберете и двете версии, ще бъде добавен номер към името на локалния файл.</string>
@@ -179,13 +178,11 @@
     <string name="could_not_retrieve_url">URL адресът не може да бъде извлечен</string>
     <string name="create">Създай</string>
     <string name="create_dir_fail_msg">Не може да се създаде папка</string>
-    <string name="create_new">Създай нов</string>
+    <string name="create_new">Нов</string>
     <string name="create_new_document">Нов документ</string>
-    <string name="create_new_folder">Създай нова папка</string>
+    <string name="create_new_folder">Нова папка</string>
     <string name="create_new_presentation">Нова презентация</string>
-    <string name="create_new_spreadsheet">Нова таблица</string>
-    <string name="create_rich_workspace">Добави папката в</string>
-    <string name="creates_rich_workspace">създава информация за папките</string>
+    <string name="create_new_spreadsheet">Нова електронна таблица</string>
     <string name="credentials_disabled">Потребителските данни са спрени</string>
     <string name="daily_backup">Ежедневно архивиране</string>
     <string name="data_to_back_up">Данни за архивиране</string>
@@ -794,7 +791,7 @@
     <string name="unlock_file">Отключване на файл</string>
     <string name="unread_comments">Съществуват непрочетени коментари</string>
     <string name="unset_encrypted">Изключи криптиране</string>
-    <string name="unset_favorite">Премахни от любимите</string>
+    <string name="unset_favorite">Премахване от любими</string>
     <string name="unshare_link_file_error">Възникна грешка при опита за прекратяване на споделянето на този файл или папка</string>
     <string name="unshare_link_file_no_exist">Неуспешен опит за прекратяване на споделянето. Проверете дали  файла съществува.</string>
     <string name="unshare_link_forbidden_permissions">за премахване споделянето на файла</string>

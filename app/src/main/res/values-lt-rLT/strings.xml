@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Paskyros sukūrimas nepavyko</string>
     <string name="account_icon">Paskyros piktograma</string>
     <string name="account_not_found">Paskyra nerasta!</string>
-    <string name="action_clear_failed_uploads">Išvalyti nepavykusius įkėlimus</string>
     <string name="action_edit">Taisyti</string>
     <string name="action_empty_notifications">Išvalyti visus pranešimus</string>
     <string name="action_empty_trashbin">Išvalyti šiukšlinę</string>
@@ -32,6 +31,7 @@
     <string name="add_to_cloud">Pridėti į %1$s</string>
     <string name="advanced_settings">Išplėstiniai nustatymai</string>
     <string name="allow_resharing">Leisti bendrinti iš naujo</string>
+    <string name="app_config_proxy_port_title">Įgaliotojo serverio prievadas</string>
     <string name="appbar_search_in">Ieškoti %s</string>
     <string name="assistant_screen_all_task_type">Visos</string>
     <string name="assistant_screen_failed_task_text">Nepavyko</string>
@@ -147,7 +147,6 @@
     <string name="confirmation_remove_folder_alert">Ar tikrai norite ištrinti %1$s ir jo turinį?</string>
     <string name="confirmation_remove_folders_alert">Ar tikrai norite ištrinti pažymėtus elementus ir jų turinį?</string>
     <string name="confirmation_remove_local">Tik vietiniai</string>
-    <string name="conflict_dialog_error">Klaida kuriant konflikto dialogą!</string>
     <string name="conflict_file_headline">Nesuderinamas failas%1$s</string>
     <string name="conflict_local_file">Vietinis failas</string>
     <string name="conflict_message_description">Jei pasirinksite abi versijas, vietinis failas prie pavadinimo turės numerį.</string>
@@ -172,13 +171,11 @@
     <string name="could_not_retrieve_url">Nepavyko nuskaityti URL</string>
     <string name="create">Sukurti</string>
     <string name="create_dir_fail_msg">Nepavyko sukurti failo</string>
-    <string name="create_new">Sukurti naują</string>
-    <string name="create_new_document">Sukurti naują dokumentą</string>
-    <string name="create_new_folder">Sukurti naują aplanką</string>
-    <string name="create_new_presentation">Sukurti naują pateiktį</string>
-    <string name="create_new_spreadsheet">Sukurti naują skaičiuoklę</string>
-    <string name="create_rich_workspace"> Pridėti aplanko informaciją</string>
-    <string name="creates_rich_workspace">sukuria aplanko informaciją</string>
+    <string name="create_new">Nauja</string>
+    <string name="create_new_document">Naujas dokumentas</string>
+    <string name="create_new_folder">Naujas aplankas</string>
+    <string name="create_new_presentation">Nauja pateiktis</string>
+    <string name="create_new_spreadsheet">Nauja skaičiuoklė</string>
     <string name="credentials_disabled">Prisijungimo duomenys išjungti</string>
     <string name="daily_backup">Kasdienės atsarginės kopijos</string>
     <string name="data_to_back_up">Duomenys, kurių atsarginę kopiją daryti</string>
@@ -735,7 +732,7 @@
     <string name="unlock_file">Atrakinti failą</string>
     <string name="unread_comments">Yra neskaitytų komentarų</string>
     <string name="unset_encrypted">Atjungti šifravimą</string>
-    <string name="unset_favorite">Šalinti iš mėgstamų</string>
+    <string name="unset_favorite">Šalinti iš svarbiausių</string>
     <string name="unshare_link_file_error">Bandant nustoti bendrinti šį failą ar aplanką įvyko klaida.</string>
     <string name="unshare_link_file_no_exist">Nepavyko nustoti bendrinti. Prašome, patikrinkite ar failas egzistuoja.</string>
     <string name="unshare_link_forbidden_permissions">nustoti bendrinti šį failą</string>
@@ -750,6 +747,7 @@
     <string name="upload_cannot_create_file">Nepavyksta sukurti vietinį failą</string>
     <string name="upload_chooser_title">Įkelti iš…</string>
     <string name="upload_content_from_other_apps">Įkelti turinį iš kitų programėlių</string>
+    <string name="upload_direct_camera_photo">Nuotrauka</string>
     <string name="upload_direct_camera_upload">Įkelti iš kameros</string>
     <string name="upload_file_dialog_filename">Failo pavadinimas</string>
     <string name="upload_file_dialog_filetype">Failo tipas</string>

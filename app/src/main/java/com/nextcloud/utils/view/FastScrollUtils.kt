@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2022 Álvaro Brey <alvaro@alvarobrey.com>
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.utils.view
 
@@ -17,10 +17,7 @@ import javax.inject.Inject
 
 class FastScrollUtils @Inject constructor(private val viewThemeUtils: ViewThemeUtils) {
     @JvmOverloads
-    fun applyFastScroll(
-        recyclerView: RecyclerView,
-        viewHelper: FastScroller.ViewHelper? = null
-    ) {
+    fun applyFastScroll(recyclerView: RecyclerView, viewHelper: FastScroller.ViewHelper? = null) {
         val builder =
             FastScrollerBuilder(recyclerView).let {
                 viewThemeUtils.files.themeFastScrollerBuilder(

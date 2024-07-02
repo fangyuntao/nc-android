@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.adapter
 
@@ -78,10 +78,7 @@ class UnifiedSearchItemViewHolder(
         binding.unifiedSearchItemLayout.setOnClickListener { listInterface.onSearchResultClicked(entry) }
     }
 
-    private fun getPlaceholder(
-        entry: SearchResultEntry,
-        mimetype: String?
-    ): Drawable {
+    private fun getPlaceholder(entry: SearchResultEntry, mimetype: String?): Drawable {
         val drawable = with(entry.icon) {
             when {
                 equals("icon-folder") ->

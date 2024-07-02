@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.fragment
 
@@ -21,8 +21,8 @@ import com.owncloud.android.R
 import com.owncloud.android.ui.TextDrawable
 
 internal class AvatarTestFragment : Fragment() {
-    lateinit var list1: LinearLayout
-    lateinit var list2: LinearLayout
+    private lateinit var list1: LinearLayout
+    private lateinit var list2: LinearLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.avatar_fragment, null)
@@ -34,7 +34,7 @@ internal class AvatarTestFragment : Fragment() {
     }
 
     fun addAvatar(name: String, avatarRadius: Float, width: Int, targetContext: Context) {
-        val margin = padding
+        val margin = PADDING
         val imageView = ImageView(targetContext)
         imageView.setImageDrawable(TextDrawable.createNamedAvatar(name, avatarRadius))
 
@@ -47,7 +47,7 @@ internal class AvatarTestFragment : Fragment() {
     }
 
     fun addBitmap(bitmap: Bitmap, width: Int, list: Int, targetContext: Context) {
-        val margin = padding
+        val margin = PADDING
         val imageView = ImageView(targetContext)
         imageView.setImageBitmap(bitmap)
 
@@ -64,6 +64,6 @@ internal class AvatarTestFragment : Fragment() {
     }
 
     companion object {
-        private const val padding = 10
+        private const val PADDING = 10
     }
 }

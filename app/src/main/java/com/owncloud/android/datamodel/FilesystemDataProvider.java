@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2017 Mario Danic <mario@lovelyhq.com>
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.datamodel;
 
@@ -19,6 +19,7 @@ import com.owncloud.android.utils.SyncedFolderUtils;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
@@ -107,6 +108,7 @@ public class FilesystemDataProvider {
 
     public void storeOrUpdateFileValue(String localPath, long modifiedAt, boolean isFolder, SyncedFolder syncedFolder) {
 
+        // takes multiple milliseconds to query data from database (around 75% of execution time) (6ms)
         FileSystemDataSet data = getFilesystemDataSet(localPath, syncedFolder);
 
         int isFolderValue = 0;
@@ -145,7 +147,7 @@ public class FilesystemDataProvider {
                 }
             }
 
-
+            // updating data takes multiple milliseconds (around 25% of exec time) (2 ms)
             int result = contentResolver.update(
                 ProviderMeta.ProviderTableMeta.CONTENT_URI_FILESYSTEM,
                 cv,
@@ -211,7 +213,8 @@ public class FilesystemDataProvider {
 
     private long getFileChecksum(String filepath) {
 
-        try (InputStream inputStream = new BufferedInputStream(new FileInputStream(filepath))) {
+        try (FileInputStream fileInputStream = new FileInputStream(filepath);
+            InputStream inputStream = new BufferedInputStream(fileInputStream)) {
             CRC32 crc = new CRC32();
             byte[] buf = new byte[1024 * 64];
             int size;

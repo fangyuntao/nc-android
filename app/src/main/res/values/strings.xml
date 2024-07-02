@@ -3,7 +3,7 @@
   ~ Nextcloud - Android Client
   ~
   ~ SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
-  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
 -->
 <resources>
     <string name="about_android">%1$s Android app</string>
@@ -25,6 +25,12 @@
     <string name="menu_item_sort_by_size_smallest_first">Smallest first</string>
 
     <string name="ecosystem_apps_display_assistant">Assistant</string>
+
+    <string name="app_config_base_url_title">Base Url</string>
+    <string name="app_config_proxy_host_title">Proxy Host Name</string>
+    <string name="app_config_proxy_port_title">Proxy Port</string>
+
+    <string name="anonymous_account_type" translatable="false">AnonymousAccountType</string>
 
     <string name="assistant_screen_task_types_error_state_message">Unable to fetch task types, please check your internet connection.</string>
     <string name="assistant_screen_task_list_error_state_message">Unable to fetch task list, please check your internet connection.</string>
@@ -51,6 +57,9 @@
     <string name="assistant_screen_successful_task_text">Completed</string>
     <string name="assistant_screen_failed_task_text">Failed</string>
     <string name="assistant_screen_running_task_text">In Progress</string>
+
+    <string name="assistant_task_detail_screen_input_button_title">Input</string>
+    <string name="assistant_task_detail_screen_output_button_title">Output</string>
 
     <string name="assistant_screen_all_task_type">All</string>
 
@@ -124,6 +133,7 @@
     <string name="uploader_upload_files_behaviour_only_upload">Keep file in source folder</string>
     <string name="uploader_upload_files_behaviour_upload_and_delete_from_source">Delete file from source folder</string>
     <string name="file_list_seconds_ago">seconds ago</string>
+    <string name="file_upload_worker_same_file_already_exists">Same file already exists, no conflict detected</string>
     <string name="file_list_live">LIVE</string>
     <string name="file_list_empty_headline">No files here</string>
     <string name="folder_list_empty_headline">No folders here</string>
@@ -178,8 +188,11 @@
     <string name="active_user">Active user</string>
     <string name="upload_chooser_title">Upload from…</string>
     <string name="uploader_info_dirname">Folder name</string>
+
+    <string name="upload_notification_manager_start_text">%1$d / %2$d - %3$s</string>
+    <string name="upload_notification_manager_upload_in_progress_text" translatable="false">%1$d%%</string>
+
     <string name="uploader_upload_in_progress_ticker">Uploading…</string>
-    <string name="uploader_upload_in_progress">%1$d%% %2$s</string>
     <string name="uploader_upload_in_progress_content">%1$d%% Uploading %2$s</string>
     <string name="uploader_upload_succeeded_content_single">%1$s uploaded</string>
     <string name="uploader_upload_failed_ticker">Upload failed</string>
@@ -208,8 +221,11 @@
     <string name="uploads_view_upload_status_fetching_server_version">Fetching server version…</string>
     <string name="uploads_view_later_waiting_to_upload">Waiting to upload</string>
     <string name="uploads_view_group_header" translatable="false">%1$s (%2$d)</string>
+
+    <string name="downloader_notification_manager_download_text" translatable="false">%1$d / %2$d - %3$s</string>
+    <string name="downloader_notification_manager_in_progress_text" translatable="false">%1$d%%</string>
+
     <string name="downloader_download_in_progress_ticker">Downloading…</string>
-    <string name="downloader_download_in_progress">%1$d%% %2$s</string>
     <string name="downloader_download_in_progress_content">%1$d%% Downloading %2$s</string>
     <string name="downloader_download_succeeded_ticker">Downloaded</string>
     <string name="downloader_download_succeeded_content">%1$s downloaded</string>
@@ -331,8 +347,12 @@
     <string name="auth_account_does_not_exist">The account is not added on this device yet</string>
     <string name="auth_access_failed">Access failed: %1$s</string>
 
+    <string name="authenticator_activity_cancel_login">Cancel Login</string>
+    <string name="authenticator_activity_please_complete_login_process">Please complete login process in your browser</string>
+    <string name="authenticator_activity_login_error">There was an issue processing your login request. Please try again later.</string>
+
     <string name="favorite">Add to favorites</string>
-    <string name="unset_favorite">Remove from favourites</string>
+    <string name="unset_favorite">Remove from favorites</string>
     <string name="encrypted">Set as encrypted</string>
     <string name="unset_encrypted">Unset encryption</string>
     <string name="common_rename">Rename</string>
@@ -396,6 +416,8 @@
     <string name="instant_upload_path">/InstantUpload</string>
     <string name="auto_upload_path">/AutoUpload</string>
 
+    <string name="preview_media_unhandled_http_code_message">File is currently locked by another user or process and therefore not deletable. Please try again later.</string>
+
     <string name="preview_sorry">Sorry</string>
     <string name="preview_image_description">Image preview</string>
     <string name="preview_image_error_unknown_format">Unable to show image</string>
@@ -428,6 +450,8 @@
     <string name="clipboard_no_text_to_copy">Received no text to copy to clipboard</string>
     <string name="clipboard_unexpected_error">Unexpected error while copying to clipboard</string>
     <string name="clipboard_label">Text copied from %1$s</string>
+
+    <string name="receive_external_files_activity_start_sync_folder_is_not_exists_message">Folder cannot be found, sync operation is cancelled</string>
 
     <string name="error_cant_bind_to_operations_service">Critical error: Unable to perform operations</string>
 
@@ -674,7 +698,6 @@
     <string name="autoupload_hide_folder">Hide folder</string>
     <string name="autoupload_configure">Configure</string>
     <string name="synced_folders_configure_folders">Configure folders</string>
-    <string name="autoupload_worker_foreground_info">Preparing auto upload</string>
 
     <string name="empty" translatable="false" />
     <string name="test_server_button">Test server connection</string>
@@ -790,9 +813,13 @@
     <string name="add_to_cloud">Add to %1$s</string>
     <string name="upload_files">Upload files</string>
     <string name="upload_direct_camera_upload">Upload from camera</string>
+    <string name="upload_direct_camera_promt">Do you want to take a photo or video?</string>
+    <string name="upload_direct_camera_photo">Photo</string>
+    <string name="upload_direct_camera_video">Video</string>
+    <string name="error_uploading_direct_camera_upload">Failed to upload taken media</string>
     <string name="upload_scan_doc_upload">Scan document from camera</string>
     <string name="upload_content_from_other_apps">Upload content from other apps</string>
-    <string name="create_new_folder">Create new folder</string>
+    <string name="create_new_folder">New folder</string>
     <string name="uploads_view_upload_status_virus_detected">Virus detected. Upload cannot be completed!</string>
     <string name="tags">Tags</string>
     <string name="sharee_add_failed">Adding sharee failed</string>
@@ -858,9 +885,9 @@
     <string name="unread_comments">Unread comments exist</string>
     <string name="grid_file_features_live_photo_content_description">This icon indicates availability of live photo</string>
     <string name="richdocuments_failed_to_load_document">Failed to load document!</string>
-    <string name="create_new_document">Create new document</string>
-    <string name="create_new_spreadsheet">Create new spreadsheet</string>
-    <string name="create_new_presentation">Create new presentation</string>
+    <string name="create_new_document">New document</string>
+    <string name="create_new_spreadsheet">New spreadsheet</string>
+    <string name="create_new_presentation">New presentation</string>
     <string name="select_template">Select template</string>
     <string name="filename_hint">Filename</string>
     <string name="thumbnail">Thumbnail</string>
@@ -886,12 +913,13 @@
     <string name="upload_quota_exceeded">Storage quota exceeded</string>
     <string name="host_not_available">Server not available</string>
     <string name="delete_entries">Delete entries</string>
+    <string name="upload_list_expand_header">Toggle expansion of header</string>
     <string name="upload_action_failed_retry">Retry failed uploads</string>
     <string name="upload_action_failed_clear">Clear failed uploads</string>
     <string name="upload_action_global_upload_pause">Pause all uploads</string>
     <string name="upload_action_global_upload_resume">Resume all uploads</string>
     <string name="dismiss_notification_description">Dismiss notification</string>
-    <string name="upload_action_file_not_exist_message">Some files not exists those files cannot be resumed</string>
+    <string name="upload_action_file_not_exist_message">Some files no longer exist. These uploads cannot be resumed.</string>
     <string name="upload_action_cancelled_resume">Resume cancelled uploads</string>
     <string name="upload_action_cancelled_clear">Clear cancelled uploads</string>
     <string name="upload_manually_cancelled">Upload was cancelled by user</string>
@@ -971,8 +999,8 @@
     <string name="share_internal_link">Share internal link</string>
     <string name="action_edit">Edit</string>
     <string name="failed_to_start_editor">Failed to start editor</string>
-    <string name="create_rich_workspace">Add folder info</string>
-    <string name="creates_rich_workspace">creates folder info</string>
+    <string name="create_rich_workspace">Add folder description</string>
+    <string name="creates_rich_workspace">Adds folder description</string>
     <string name="uploader_local_files_uploaded">Retry to upload failed local files</string>
     <string name="uploader_file_not_found_on_server_message">We couldnt locate the file on server. Another user may have deleted the file</string>
     <string name="uploader_file_not_found_message">File not found. Are you sure that this file exists or has a previous conflict not been resolved?</string>
@@ -980,7 +1008,7 @@
     <string name="uploader_upload_failed_sync_conflict_error_content">Pick which version to keep of %1$s</string>
     <string name="upload_list_resolve_conflict">Resolve conflict</string>
     <string name="upload_list_delete">Delete</string>
-    <string name="create_new">Create new</string>
+    <string name="create_new">New</string>
     <string name="editor_placeholder" translatable="false">%1$s %2$s</string>
 
     <string name="sync_not_enough_space_dialog_action_choose">Choose what to sync</string>
@@ -994,7 +1022,7 @@
     <string name="thumbnail_for_new_file_desc">Thumbnail for new file</string>
     <string name="thumbnail_for_existing_file_description">Thumbnail for existing file</string>
     <string name="invalid_url">Invalid URL</string>
-    <string name="conflict_dialog_error">Error creating conflict dialog!</string>
+    <string name="conflict_dialog_error">Conflict resolver dialog cannot be created</string>
     <string name="qr_could_not_be_read">QR code could not be read!</string>
     <string name="note_icon_hint">Note icon</string>
     <string name="add_another_public_share_link">Add another link</string>
@@ -1126,6 +1154,7 @@
     <string name="check_back_later_or_reload">Check back later or reload.</string>
     <string name="e2e_not_yet_setup">E2E not yet setup</string>
     <string name="error_file_actions">Error showing file actions</string>
+    <string name="file_activity_shared_file_cannot_be_updated">Shared file cannot be updated</string>
     <string name="pin_home">Pin to Home screen</string>
     <string name="pin_shortcut_label">Open %1$s</string>
     <string name="displays_mnemonic">Displays your 12 word passphrase</string>

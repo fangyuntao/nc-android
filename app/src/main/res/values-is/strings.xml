@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Gerð notandaaðgangs mistókst</string>
     <string name="account_icon">Táknmynd fyrir notandaaðgang</string>
     <string name="account_not_found">Notandaaðgangur fannst ekki!</string>
-    <string name="action_clear_failed_uploads">Hreinsa lista yfir innsendingar sem mistókust</string>
     <string name="action_edit">Breyta</string>
     <string name="action_empty_notifications">Hreinsa allar tilkynningar</string>
     <string name="action_empty_trashbin">Tæma ruslið</string>
@@ -33,6 +32,7 @@
     <string name="add_to_cloud">Bæta við %1$s</string>
     <string name="advanced_settings">Ítarlegar stillingar</string>
     <string name="allow_resharing">Leyfa endurdeilingu</string>
+    <string name="app_config_proxy_port_title">Gátt milliþjóns</string>
     <string name="app_widget_description">Sýnir einn viðmótshluta af stjórnborði</string>
     <string name="appbar_search_in">Leita í %s</string>
     <string name="assistant_screen_all_task_type">Allt</string>
@@ -150,7 +150,6 @@
     <string name="confirmation_remove_folder_alert">Ertu viss um að þú viljir eyða %1$s og innihaldi þess?</string>
     <string name="confirmation_remove_folders_alert">Ertu viss um að þú viljir eyða völdum atriðum og innihaldi þeirra?</string>
     <string name="confirmation_remove_local">Einungis staðvært</string>
-    <string name="conflict_dialog_error">Villa við að búa til árekstraglugga!</string>
     <string name="conflict_local_file">Skrá á tölvunni</string>
     <string name="conflict_message_description">Ef þú velur báðar útgáfur, þá mun verða bætt tölustaf aftan við heiti afrituðu skrárinnar.</string>
     <string name="conflict_server_file">Skrá á netþjóni</string>
@@ -176,13 +175,8 @@
     <string name="could_not_retrieve_url">Tókst ekki að ná í slóð</string>
     <string name="create">Búa til</string>
     <string name="create_dir_fail_msg">gat ekki búið til möppuna %1</string>
-    <string name="create_new">Búa til nýjan</string>
-    <string name="create_new_document">Búa til nýtt skjal</string>
-    <string name="create_new_folder">Búa til nýja möppu</string>
-    <string name="create_new_presentation">Búa til nýja kynningu</string>
-    <string name="create_new_spreadsheet">Búa til nýtt töflureiknisskjal</string>
-    <string name="create_rich_workspace">Bæta við upplýsingum möppu</string>
-    <string name="creates_rich_workspace">býr til upplýsingar um möppu</string>
+    <string name="create_new">Nýtt</string>
+    <string name="create_new_folder">Ný mappa</string>
     <string name="credentials_disabled">Auðkenni óvirk</string>
     <string name="daily_backup">Dagleg öryggisafritun</string>
     <string name="data_to_back_up">Gögn sem á að taka öryggisafrit af</string>
@@ -811,7 +805,6 @@
     <string name="unlock_file">Aflæsa skrá</string>
     <string name="unread_comments">Ólesnar athugasemdir eru fyrirliggjandi</string>
     <string name="unset_encrypted">Gera dulritun óvirka</string>
-    <string name="unset_favorite">Fjarlægja úr eftirlætislista</string>
     <string name="unshare_link_file_error">Villa kom upp við að reyna að hætta deilingu á þessari skrá eða möppu.</string>
     <string name="unshare_link_file_no_exist">Get ekki hætt deilingu. Athugaðu hvort skráin sé til.</string>
     <string name="unshare_link_forbidden_permissions">til að hætta deilingu á þessari skrá</string>

@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Errore in sa creatzione de su contu</string>
     <string name="account_icon">Icona de su contu</string>
     <string name="account_not_found">Contu no agatadu!</string>
-    <string name="action_clear_failed_uploads">Boga·nche is carrigamentos faddidos</string>
     <string name="action_edit">Modìfica</string>
     <string name="action_empty_notifications">Boga·nche totu is notìficas</string>
     <string name="action_empty_trashbin">Bòida s\'àliga</string>
@@ -32,6 +31,7 @@
     <string name="add_to_cloud">Agiunghe a %1$s</string>
     <string name="advanced_settings">Cunfiguratziones avantzadas</string>
     <string name="allow_resharing">Permite sa re-cumpartzidura</string>
+    <string name="app_config_proxy_port_title">Port serbidore intermèdiu</string>
     <string name="appbar_search_in">Chirca in %s</string>
     <string name="assistant_screen_all_task_type">Totu</string>
     <string name="assistant_screen_successful_task_text">Cumpletadu</string>
@@ -144,7 +144,6 @@
     <string name="confirmation_remove_folder_alert">A beru boles cantzellare %1$s e is cuntenutos suos?</string>
     <string name="confirmation_remove_folders_alert">A beru boles cantzellare is elementos seberados e is cuntenutos issoro?</string>
     <string name="confirmation_remove_local">Locale isceti</string>
-    <string name="conflict_dialog_error">Errore creende una bentana de cunflitu!</string>
     <string name="conflict_file_headline">Archìviu in cunflitu %1$s</string>
     <string name="conflict_message_description">Si seletzionas ambas is versiones, s\'archìviu locale at a tènnere unu nùmeru in agiunta a su nùmene.</string>
     <string name="contactlist_item_icon">Icona utente pro lista de cuntatos</string>
@@ -167,13 +166,11 @@
     <string name="could_not_retrieve_url">No at fatu a recuperare s\'URL</string>
     <string name="create">Crea</string>
     <string name="create_dir_fail_msg">No at fatu a creare sa cartella</string>
-    <string name="create_new">Crea·nde una noa</string>
-    <string name="create_new_document">Crea archìviu nou</string>
-    <string name="create_new_folder">Crea cartella noa</string>
-    <string name="create_new_presentation">Crea presentatzione noa</string>
-    <string name="create_new_spreadsheet">Crea fògiu eletrònicu nou</string>
-    <string name="create_rich_workspace">Agiunghe informatziones de sa cartella</string>
-    <string name="creates_rich_workspace">creat informatziones de sa cartella</string>
+    <string name="create_new">Nou</string>
+    <string name="create_new_document">Documentu nou</string>
+    <string name="create_new_folder">Cartella noa</string>
+    <string name="create_new_presentation">Presentatzione noa</string>
+    <string name="create_new_spreadsheet">Fògiu eletrònicu nou</string>
     <string name="credentials_disabled">Credentziales disativadas</string>
     <string name="default_credentials_wrong">Credentziales isballiadas</string>
     <string name="delete_account">Boga·nche su contu</string>
@@ -707,7 +704,7 @@
     <string name="unlock_file">Isbloca su documentu</string>
     <string name="unread_comments">Ddoe sunt cummentos non lèghidos</string>
     <string name="unset_encrypted">Tzifradura non cunfigurada</string>
-    <string name="unset_favorite">Boga·nche·ddu dae is preferidos</string>
+    <string name="unset_favorite">Boga·nche dae preferidos</string>
     <string name="unshare_link_file_error">Ddoe at àpidu un\'errore in s\'annullamentu de sa cumpartzidura de s\'archìviu o de sa cartella.</string>
     <string name="unshare_link_file_no_exist">No at fatu a annnullare sa cumpartzidura. Controlla si s\'archìviu esistit.</string>
     <string name="unshare_link_forbidden_permissions">de annullare sa cumpartzidura de custu documentu</string>

@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2022 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.utils
 
@@ -25,13 +25,7 @@ import java.io.InputStream
 
 class FileExportUtils {
     @Throws(IllegalStateException::class)
-    fun exportFile(
-        fileName: String,
-        mimeType: String,
-        contentResolver: ContentResolver,
-        ocFile: OCFile?,
-        file: File?
-    ) {
+    fun exportFile(fileName: String, mimeType: String, contentResolver: ContentResolver, ocFile: OCFile?, file: File?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             exportFileAndroid10AndAbove(
                 fileName,

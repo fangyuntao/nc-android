@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Skapande av konto misslyckades</string>
     <string name="account_icon">Kontoikon</string>
     <string name="account_not_found">Kontot hittades inte!</string>
-    <string name="action_clear_failed_uploads">Ta bort misslyckade uppladdningar</string>
     <string name="action_edit">Redigera</string>
     <string name="action_empty_notifications">Rensa alla aviseringar</string>
     <string name="action_empty_trashbin">Töm papperskorgen</string>
@@ -35,6 +34,9 @@
     <string name="add_to_cloud">Lägg till %1$s</string>
     <string name="advanced_settings">Avancerade inställningar</string>
     <string name="allow_resharing">Tillåt dela vidare</string>
+    <string name="app_config_base_url_title">Bas-URL</string>
+    <string name="app_config_proxy_host_title">Proxy-värdnamn</string>
+    <string name="app_config_proxy_port_title">Proxyport</string>
     <string name="app_widget_description">Visa en widget från dashboard</string>
     <string name="appbar_search_in">Sök i %s</string>
     <string name="assistant_screen_all_task_type">Alla</string>
@@ -57,6 +59,8 @@
     <string name="assistant_screen_task_types_error_state_message">Det går inte att hämta uppgiftstyper, kontrollera din internetanslutning.</string>
     <string name="assistant_screen_top_bar_title">Assistent</string>
     <string name="assistant_screen_unknown_task_status_text">Okänd</string>
+    <string name="assistant_task_detail_screen_input_button_title">Inmatning</string>
+    <string name="assistant_task_detail_screen_output_button_title">Utdata</string>
     <string name="associated_account_not_found">Associerat konto kunde inte hittas!</string>
     <string name="auth_access_failed">Åtkomst misslyckades: %1$s</string>
     <string name="auth_account_does_not_exist">Kontot har ännu inte lagts till på den här enheten</string>
@@ -87,6 +91,9 @@
     <string name="auth_unknown_host_title">Kunde inte hitta värden</string>
     <string name="auth_unsupported_multiaccount">%1$s har inte stöd för multipla konton</string>
     <string name="auth_wrong_connection_title">Kunde inte upprätta anslutning</string>
+    <string name="authenticator_activity_cancel_login">Avbryt inloggning</string>
+    <string name="authenticator_activity_login_error">Det uppstod ett problem när din inloggningsförfrågan behandlades. Försök igen senare.</string>
+    <string name="authenticator_activity_please_complete_login_process">Slutför inloggningsprocessen i din webbläsare</string>
     <string name="auto_upload_file_behaviour_kept_in_folder">behålls i originalmappen, eftersom den är skrivskyddad</string>
     <string name="auto_upload_on_wifi">Ladda bara upp via obelastad Wi-Fi</string>
     <string name="auto_upload_path">/AutomatiskUppladdning</string>
@@ -171,7 +178,7 @@
     <string name="confirmation_remove_folder_alert">Vill du verkligen ta bort %1$s och dess innehåll?</string>
     <string name="confirmation_remove_folders_alert">Vill du verkligen radera de valda objekten och dess innehåll?</string>
     <string name="confirmation_remove_local">Endast lokalt</string>
-    <string name="conflict_dialog_error">Fel vid skapande av konfliktdialog!</string>
+    <string name="conflict_dialog_error">Dialogrutan för konfliktlösning kan inte skapas</string>
     <string name="conflict_file_headline">Konfliktande fil %1$s</string>
     <string name="conflict_local_file">Lokal fil</string>
     <string name="conflict_message_description">Om du väljer båda versionerna kommer den lokala filen få ett nummer tillagt i filnamnet.</string>
@@ -198,13 +205,13 @@
     <string name="could_not_retrieve_url">Kunde inte hämta URL</string>
     <string name="create">Skapa</string>
     <string name="create_dir_fail_msg">Kunde inte skapa mapp</string>
-    <string name="create_new">Skapa ny</string>
-    <string name="create_new_document">Skapa nytt dokument</string>
-    <string name="create_new_folder">Skapa ny mapp</string>
-    <string name="create_new_presentation">Skapa ny presentation</string>
-    <string name="create_new_spreadsheet">Skapa nytt kalkylblad</string>
-    <string name="create_rich_workspace">Lägg till mappinfo</string>
-    <string name="creates_rich_workspace">skapar mappinfo</string>
+    <string name="create_new">Ny</string>
+    <string name="create_new_document">Nytt dokument</string>
+    <string name="create_new_folder">Ny mapp</string>
+    <string name="create_new_presentation">Ny presentation</string>
+    <string name="create_new_spreadsheet">Nytt kalkylblad</string>
+    <string name="create_rich_workspace">Lägg till mappbeskrivning</string>
+    <string name="creates_rich_workspace">Lägg till mappbeskrivning</string>
     <string name="credentials_disabled">Inloggningsuppgifter inaktiverade</string>
     <string name="daily_backup">Daglig säkerhetskopiering</string>
     <string name="data_to_back_up">Data att säkerhetskopiera</string>
@@ -315,6 +322,7 @@
     <string name="error_showing_encryption_dialog">Det gick inte att visa dialogrutan för krypteringsinställningar!</string>
     <string name="error_starting_direct_camera_upload">Fel vid start av kamera</string>
     <string name="error_starting_doc_scan">Fel vid start av dokumentskanning</string>
+    <string name="error_uploading_direct_camera_upload">Kunde inte ladda upp tagen media</string>
     <string name="etm_accounts">Konton</string>
     <string name="etm_background_execution_count">Antal körningar på 48 timmar</string>
     <string name="etm_background_job_created">Skapat</string>
@@ -346,6 +354,7 @@
     <string name="failed_update_ui">Misslyckades med att uppdatera UI</string>
     <string name="favorite">Lägg till favoriter</string>
     <string name="favorite_icon">Favoritisera</string>
+    <string name="file_activity_shared_file_cannot_be_updated">Delad fil kan inte uppdateras</string>
     <string name="file_already_exists">Filnamnet finns redan</string>
     <string name="file_delete">Ta bort</string>
     <string name="file_detail_activity_error">Fel vid hämtning av aktiviteter för fil</string>
@@ -399,6 +408,7 @@
     <string name="file_not_found">Filen hittades inte</string>
     <string name="file_not_synced">Filen kunde inte synkroniseras. Visar senaste tillgängliga versionen.</string>
     <string name="file_rename">Byt namn</string>
+    <string name="file_upload_worker_same_file_already_exists">Samma fil finns redan, ingen konflikt upptäckt</string>
     <string name="file_version_restored_error">Fel vid återställning av filversion!</string>
     <string name="file_version_restored_successfully">Lyckades återställa filversion.</string>
     <string name="filedetails_details">Detaljer</string>
@@ -658,6 +668,7 @@
     <string name="preview_image_description">Förhandsvisa bild</string>
     <string name="preview_image_error_no_local_file">Där finns ingen lokal fil att förhandsvisa</string>
     <string name="preview_image_error_unknown_format">Kan inte visa bild</string>
+    <string name="preview_media_unhandled_http_code_message">Filen är för närvarande låst av en annan användare eller process och kan därför inte raderas. Försök igen senare.</string>
     <string name="preview_sorry">Tyvärr</string>
     <string name="privacy">Privat</string>
     <string name="public_share_name">Nytt namn</string>
@@ -665,6 +676,7 @@
     <string name="push_notifications_old_login">Inga push-aviseringar på grund av utgången inloggningssession. Överväg att lägga till ditt konto på nytt.</string>
     <string name="push_notifications_temp_error">Push-aviseringar är inte tillgängligt för tillfället.</string>
     <string name="qr_could_not_be_read">QR-koden kunde inte läsas!</string>
+    <string name="receive_external_files_activity_start_sync_folder_is_not_exists_message">Mappen kan inte hittas, synkroniseringen avbryts</string>
     <string name="recommend_subject">Försök%1$s på din enhet!</string>
     <string name="recommend_text">Jag vill bjuda in dig att använda %1$s på din enhet.\nHämta här: %2$s</string>
     <string name="recommend_urls">%1$s eller %2$s</string>
@@ -889,13 +901,16 @@
     <string name="upload_action_cancelled_resume">Återuppta avbrutna uppladdningar</string>
     <string name="upload_action_failed_clear">Ta bort misslyckade uppladdningar</string>
     <string name="upload_action_failed_retry">Försök igen med misslyckade uppladdningar</string>
-    <string name="upload_action_file_not_exist_message">Vissa filer finns inte. Dessa filer kan inte återupptas</string>
+    <string name="upload_action_file_not_exist_message">Vissa filer finns inte längre. Dessa uppladdningar kan inte återupptas.</string>
     <string name="upload_action_global_upload_pause">Pausa alla uppladdningar</string>
     <string name="upload_action_global_upload_resume">Återuppta alla uppladdningar</string>
     <string name="upload_cannot_create_file">Kan inte skapa lokal fil</string>
     <string name="upload_chooser_title">Ladda upp från…</string>
     <string name="upload_content_from_other_apps">Ladda upp innehåll från andra appar</string>
+    <string name="upload_direct_camera_photo">Bild</string>
+    <string name="upload_direct_camera_promt">Vill du ta en bild eller en film?</string>
     <string name="upload_direct_camera_upload">Ladda upp från kamera</string>
+    <string name="upload_direct_camera_video">Film</string>
     <string name="upload_file_dialog_filename">Filnamn</string>
     <string name="upload_file_dialog_filetype">Filtyp</string>
     <string name="upload_file_dialog_filetype_googlemap_shortcut">Google Kartor-genväg(%s)</string>
@@ -908,6 +923,7 @@
     <string name="upload_list_delete">Ta bort</string>
     <string name="upload_list_empty_headline">Inga uppladdningar tillgängliga</string>
     <string name="upload_list_empty_text_auto_upload">Ladda upp något innehåll eller aktivera automatisk uppladdning.</string>
+    <string name="upload_list_expand_header">Växla expansion av rubrik</string>
     <string name="upload_list_resolve_conflict">Lös konflikt</string>
     <string name="upload_local_storage_full">Lokal lagring full</string>
     <string name="upload_local_storage_not_copied">Filen kunde inte kopieras till lokal lagringsplats</string>

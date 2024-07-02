@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Account aanmaken mislukt</string>
     <string name="account_icon">Accountpictogram</string>
     <string name="account_not_found">Account niet gevonden!</string>
-    <string name="action_clear_failed_uploads">Wis mislukte uploads</string>
     <string name="action_edit">Bewerken</string>
     <string name="action_empty_notifications">Handel alle meldingen af</string>
     <string name="action_empty_trashbin">Prullenbak legen</string>
@@ -34,6 +33,7 @@
     <string name="add_to_cloud">Voeg toe aan %1$s</string>
     <string name="advanced_settings">Geavanceerde instellingen</string>
     <string name="allow_resharing">Opnieuw delen toestaan</string>
+    <string name="app_config_proxy_port_title">Proxy poort</string>
     <string name="app_widget_description">Toont één widget van dashboard</string>
     <string name="appbar_search_in">Zoeken in %s</string>
     <string name="assistant_screen_all_task_type">Alle</string>
@@ -167,7 +167,6 @@
     <string name="confirmation_remove_folder_alert">Wil je %1$s en de inhoud ervan werkelijk verwijderen?</string>
     <string name="confirmation_remove_folders_alert">Wil je de geselecteerde objecten en hun inhoud echt verwijderen?</string>
     <string name="confirmation_remove_local">Alleen lokaal</string>
-    <string name="conflict_dialog_error">Fout bij het maken van conflictdialoog!</string>
     <string name="conflict_file_headline">Conflicterend bestand%1$s</string>
     <string name="conflict_local_file">Lokaal bestand</string>
     <string name="conflict_message_description">Als je beide versies selecteert, zal het lokale bestand een nummer aan de naam toegevoegd krijgen.</string>
@@ -193,13 +192,11 @@
     <string name="could_not_retrieve_url">Kon URL niet ophalen</string>
     <string name="create">Creëren</string>
     <string name="create_dir_fail_msg">Kan map niet aanmaken</string>
-    <string name="create_new">Maak nieuw</string>
-    <string name="create_new_document">Creëer nieuw document</string>
-    <string name="create_new_folder">Nieuwe map aanmaken</string>
-    <string name="create_new_presentation">Creëer nieuwe presentatie</string>
-    <string name="create_new_spreadsheet">Creëren nieuw werkblad</string>
-    <string name="create_rich_workspace">Toevoegen mapinfo</string>
-    <string name="creates_rich_workspace">maakt mapinfo</string>
+    <string name="create_new">Nieuw</string>
+    <string name="create_new_document">Nieuw document</string>
+    <string name="create_new_folder">Nieuwe map</string>
+    <string name="create_new_presentation">Nieuwe presentatie</string>
+    <string name="create_new_spreadsheet">Nieuw werkblad</string>
     <string name="credentials_disabled">Inloggegevens uitgeschakeld</string>
     <string name="daily_backup">Dagelijkse back-up</string>
     <string name="data_to_back_up">Te back-uppen data</string>
@@ -828,7 +825,7 @@
     <string name="unlock_file">Ontgrendel bestand</string>
     <string name="unread_comments">Er zijn ongelezen reacties</string>
     <string name="unset_encrypted">Niet ingestelde versleuteling</string>
-    <string name="unset_favorite">Verwijderen uit favorieten</string>
+    <string name="unset_favorite">Verwijder uit favorieten</string>
     <string name="unshare_link_file_error">Het beëindigen van het delen van dit bestand of deze map is mislukt.</string>
     <string name="unshare_link_file_no_exist">Kan delen niet beëindigen. Controleer of het bestand bestaat.</string>
     <string name="unshare_link_forbidden_permissions">om dit bestand niet meer te delen</string>

@@ -1,9 +1,9 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.utils.extensions
 
@@ -14,7 +14,7 @@ import com.owncloud.android.lib.common.utils.Log_OC
 import java.io.Serializable
 
 @Suppress("TopLevelPropertyNaming")
-private const val tag = "IntentExtension"
+private const val TAG = "IntentExtension"
 
 fun <T : Serializable?> Intent?.getSerializableArgument(key: String, type: Class<T>): T? {
     if (this == null) {
@@ -33,7 +33,7 @@ fun <T : Serializable?> Intent?.getSerializableArgument(key: String, type: Class
             }
         }
     } catch (e: ClassCastException) {
-        Log_OC.e(tag, e.localizedMessage)
+        Log_OC.e(TAG, e.localizedMessage)
         null
     }
 }
@@ -51,7 +51,7 @@ fun <T : Parcelable?> Intent?.getParcelableArgument(key: String, type: Class<T>)
             this.getParcelableExtra(key)
         }
     } catch (e: ClassCastException) {
-        Log_OC.e(tag, e.localizedMessage)
+        Log_OC.e(TAG, e.localizedMessage)
         null
     }
 }

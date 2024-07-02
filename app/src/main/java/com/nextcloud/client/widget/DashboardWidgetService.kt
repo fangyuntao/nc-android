@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2022 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.widget
 
@@ -95,19 +95,20 @@ class StackRemoteViewsFactory(
     override fun onDataSetChanged() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                if (widgetConfiguration.user.isPresent) {
-                    val client = clientFactory.createNextcloudClient(widgetConfiguration.user.get())
-                    val result = DashboardGetWidgetItemsRemoteOperation(widgetConfiguration.widgetId, LIMIT_SIZE)
-                        .execute(client)
-                    widgetItems = if (result.isSuccess) {
-                        result.resultData[widgetConfiguration.widgetId] ?: emptyList()
-                    } else {
-                        emptyList()
-                    }
-                    hasLoadMore = widgetConfiguration.moreButton != null && widgetItems.size == LIMIT_SIZE
-                } else {
+                if (!widgetConfiguration.user.isPresent) {
                     Log_OC.w(TAG, "User not present for widget update")
+                    return@launch
                 }
+
+                val client = clientFactory.createNextcloudClient(widgetConfiguration.user.get())
+                val result = DashboardGetWidgetItemsRemoteOperation(widgetConfiguration.widgetId, LIMIT_SIZE)
+                    .execute(client)
+                widgetItems = if (result.isSuccess) {
+                    result.resultData[widgetConfiguration.widgetId] ?: emptyList()
+                } else {
+                    emptyList()
+                }
+                hasLoadMore = widgetConfiguration.moreButton != null && widgetItems.size == LIMIT_SIZE
             } catch (e: ClientFactory.CreationException) {
                 Log_OC.e(TAG, "Error updating widget", e)
             }

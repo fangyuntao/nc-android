@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.dialog
 
@@ -52,11 +52,7 @@ class SendFilesDialog : BottomSheetDialogFragment(R.layout.send_files_fragment),
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = SendFilesFragmentBinding.inflate(inflater, container, false)
 
         setupSendButtonRecyclerView()
@@ -102,7 +98,8 @@ class SendFilesDialog : BottomSheetDialogFragment(R.layout.send_files_fragment),
             icon = match.loadIcon(requireActivity().packageManager)
             label = match.loadLabel(requireActivity().packageManager)
             sendButtonData = SendButtonData(
-                icon, label,
+                icon,
+                label,
                 match.activityInfo.packageName,
                 match.activityInfo.name
             )

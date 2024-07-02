@@ -4,7 +4,7 @@
   ~
   ~ SPDX-FileCopyrightText: 2018 Tobias Kaminsky <tobias@kaminsky.me>
   ~ SPDX-FileCopyrightText: 2015-2016 Bartosz Przybylski
-  ~ SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+  ~ SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
@@ -15,7 +15,7 @@
 
     <ImageView
         android:id="@+id/whatsNewImage"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/splash_image_size"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/alternate_margin"

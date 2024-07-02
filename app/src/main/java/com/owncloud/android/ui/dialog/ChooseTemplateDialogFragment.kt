@@ -80,11 +80,13 @@ class ChooseTemplateDialogFragment : DialogFragment(), View.OnClickListener, Tem
     private var creator: Creator? = null
 
     enum class Type {
-        DOCUMENT, SPREADSHEET, PRESENTATION
+        DOCUMENT,
+        SPREADSHEET,
+        PRESENTATION
     }
 
     private var _binding: ChooseTemplateBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     override fun onStart() {
         super.onStart()
@@ -282,12 +284,13 @@ class ChooseTemplateDialogFragment : DialogFragment(), View.OnClickListener, Tem
         override fun doInBackground(vararg params: Void): String {
             return try {
                 val client = clientFactory!!.create(user)
+                val nextcloudClient = clientFactory.createNextcloudClient(user)
                 val result = DirectEditingCreateFileRemoteOperation(
                     path,
                     creator!!.editor,
                     creator.id,
                     template.title
-                ).execute(client)
+                ).execute(nextcloudClient)
                 if (!result.isSuccess) {
                     return ""
                 }
@@ -352,7 +355,7 @@ class ChooseTemplateDialogFragment : DialogFragment(), View.OnClickListener, Tem
 
         override fun doInBackground(vararg voids: Void): TemplateList {
             return try {
-                val client = clientFactory!!.create(user)
+                val client = clientFactory!!.createNextcloudClient(user)
                 val result = DirectEditingObtainListOfTemplatesRemoteOperation(
                     creator!!.editor,
                     creator.id

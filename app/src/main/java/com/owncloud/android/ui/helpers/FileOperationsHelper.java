@@ -9,11 +9,10 @@
  * SPDX-FileCopyrightText: 2015 ownCloud Inc.
  * SPDX-FileCopyrightText: 2014 María Asensio Valverde <masensio@solidgear.es>
  * SPDX-FileCopyrightText: 2014 David A. Velasco <dvelasco@solidgear.es>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.ui.helpers;
 
-import android.Manifest;
 import android.accounts.Account;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -69,7 +68,6 @@ import com.owncloud.android.ui.events.SyncEventFinished;
 import com.owncloud.android.utils.DisplayUtils;
 import com.owncloud.android.utils.EncryptionUtils;
 import com.owncloud.android.utils.FileStorageUtils;
-import com.owncloud.android.utils.PermissionUtil;
 import com.owncloud.android.utils.UriUtils;
 import com.owncloud.android.utils.theme.ViewThemeUtils;
 
@@ -134,12 +132,9 @@ public class FileOperationsHelper {
     private String getUrlFromFile(String storagePath, Pattern pattern) {
         String url = null;
 
-        InputStreamReader fr = null;
-        BufferedReader br = null;
-        try {
-            fr = new InputStreamReader(new FileInputStream(storagePath), StandardCharsets.UTF_8);
-            br = new BufferedReader(fr);
-
+        try (FileInputStream inputStream = new FileInputStream(storagePath);
+             InputStreamReader fr = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+             BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
                 Matcher m = pattern.matcher(line);
@@ -150,23 +145,8 @@ public class FileOperationsHelper {
             }
         } catch (IOException e) {
             Log_OC.d(TAG, e.getMessage());
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    Log_OC.d(TAG, "Error closing buffered reader for URL file", e);
-                }
-            }
-
-            if (fr != null) {
-                try {
-                    fr.close();
-                } catch (IOException e) {
-                    Log_OC.d(TAG, "Error closing file reader for URL file", e);
-                }
-            }
         }
+
         return url;
     }
 
@@ -1058,34 +1038,42 @@ public class FileOperationsHelper {
         fileActivity.showLoadingDialog(fileActivity.getString(R.string.wait_checking_credentials));
     }
 
-    public void uploadFromCamera(Activity activity, int requestCode) {
-        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    public void uploadFromCamera(Activity activity, int requestCode, boolean isVideo) {
+        Intent intent;
+        if (isVideo) {
 
-        File photoFile = createImageFile(activity);
+            // FIXME Not working on Emulator
+            intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        } else {
+            intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        }
 
-        Uri photoUri = FileProvider.getUriForFile(activity.getApplicationContext(),
-                                                  activity.getResources().getString(R.string.file_provider_authority), photoFile);
-        pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        File cameraFile = createCameraFile(activity, isVideo);
 
-        if (pictureIntent.resolveActivity(activity.getPackageManager()) != null) {
-            if (PermissionUtil.checkSelfPermission(activity, Manifest.permission.CAMERA)) {
-                activity.startActivityForResult(pictureIntent, requestCode);
-            } else {
-                PermissionUtil.requestCameraPermission(activity, PermissionUtil.PERMISSIONS_CAMERA);
-            }
+        Uri cameraUri = FileProvider.getUriForFile(activity.getApplicationContext(),
+                                                  activity.getResources().getString(R.string.file_provider_authority), cameraFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri);
+
+        if (intent.resolveActivity(activity.getPackageManager()) != null) {
+            activity.startActivityForResult(intent, requestCode);
         } else {
             DisplayUtils.showSnackMessage(activity, "No Camera found");
         }
     }
 
-    public static File createImageFile(Activity activity) {
-        File storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-        return new File(storageDir + "/directCameraUpload.jpg");
+    public static File createCameraFile(Activity activity, boolean isVideo) {
+        String directory = isVideo ? Environment.DIRECTORY_MOVIES : Environment.DIRECTORY_PICTURES;
+        File storageDir = activity.getExternalFilesDir(directory);
+        String fileName = isVideo ? "/directCameraUpload.mp4" : "/directCameraUpload.jpg";
+        return new File(storageDir + fileName);
     }
 
     public static String getCapturedImageName() {
         return getTimestampedFileName(".jpg");
+    }
+
+    public static String getCapturedVideoName() {
+        return getTimestampedFileName(".mp4");
     }
 
     /**

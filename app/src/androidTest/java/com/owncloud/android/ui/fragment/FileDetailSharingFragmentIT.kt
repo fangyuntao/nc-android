@@ -4,7 +4,7 @@
  * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2020 Chris Narkiewicz <hello@ezaquarii.com>
  * SPDX-FileCopyrightText: 2021 TSI-mc
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.fragment
 
@@ -672,10 +672,7 @@ class FileDetailSharingFragmentIT : AbstractIT() {
     }
 
     // open bottom sheet with actions
-    private fun openAdvancedPermissions(
-        sut: FileDetailSharingFragment,
-        userShare: OCShare
-    ) {
+    private fun openAdvancedPermissions(sut: FileDetailSharingFragment, userShare: OCShare) {
         activity.handler.post {
             sut.showSharingMenuActionSheet(userShare)
         }
@@ -723,10 +720,7 @@ class FileDetailSharingFragmentIT : AbstractIT() {
     /**
      * verify send new email note text
      */
-    private fun verifySendNewEmail(
-        sut: FileDetailSharingFragment,
-        userShare: OCShare
-    ) {
+    private fun verifySendNewEmail(sut: FileDetailSharingFragment, userShare: OCShare) {
         activity.runOnUiThread { sut.showSharingMenuActionSheet(userShare) }
 
         waitForIdleSync()

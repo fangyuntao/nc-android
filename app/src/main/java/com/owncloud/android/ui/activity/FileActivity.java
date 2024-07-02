@@ -10,7 +10,7 @@
  * SPDX-FileCopyrightText: 2015 María Asensio Valverde <masensio@solidgear.es>
  * SPDX-FileCopyrightText: 2013 David A. Velasco <dvelasco@solidgear.es>
  * SPDX-FileCopyrightText: 2011 Bartek Przybylski
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.ui.activity;
 
@@ -37,7 +37,9 @@ import com.nextcloud.client.jobs.download.FileDownloadWorker;
 import com.nextcloud.client.jobs.upload.FileUploadHelper;
 import com.nextcloud.client.network.ConnectivityService;
 import com.nextcloud.utils.EditorUtils;
+import com.nextcloud.utils.extensions.ActivityExtensionsKt;
 import com.nextcloud.utils.extensions.BundleExtensionsKt;
+import com.nextcloud.utils.extensions.FileExtensionsKt;
 import com.nextcloud.utils.extensions.IntentExtensionsKt;
 import com.owncloud.android.MainApp;
 import com.owncloud.android.R;
@@ -228,7 +230,7 @@ public abstract class FileActivity extends DrawerActivity
     }
 
     public void checkInternetConnection() {
-        if (connectivityService.isConnected()) {
+        if (connectivityService != null && connectivityService.isConnected()) {
             hideInfoBox();
         }
     }
@@ -270,6 +272,7 @@ public abstract class FileActivity extends DrawerActivity
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        FileExtensionsKt.logFileSize(mFile, TAG);
         outState.putParcelable(FileActivity.EXTRA_FILE, mFile);
         outState.putBoolean(FileActivity.EXTRA_FROM_NOTIFICATION, mFromNotification);
         outState.putLong(KEY_WAITING_FOR_OP_ID, mFileOperationsHelper.getOpIdWaitingFor());
@@ -520,17 +523,17 @@ public abstract class FileActivity extends DrawerActivity
      * Show loading dialog
      */
     public void showLoadingDialog(String message) {
-        // grant that only one waiting dialog is shown
         dismissLoadingDialog();
-        // Construct dialog
+
         Fragment frag = getSupportFragmentManager().findFragmentByTag(DIALOG_WAIT_TAG);
         if (frag == null) {
             Log_OC.d(TAG, "show loading dialog");
-            LoadingDialog loading = LoadingDialog.newInstance(message);
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            loading.show(ft, DIALOG_WAIT_TAG);
-            fm.executePendingTransactions();
+            LoadingDialog loadingDialogFragment = LoadingDialog.newInstance(message);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            boolean isDialogFragmentReady = ActivityExtensionsKt.isDialogFragmentReady(this, loadingDialogFragment);
+            if (isDialogFragmentReady) {
+                loadingDialogFragment.show(fragmentTransaction, DIALOG_WAIT_TAG);
+            }
         }
     }
 
@@ -541,8 +544,11 @@ public abstract class FileActivity extends DrawerActivity
         Fragment frag = getSupportFragmentManager().findFragmentByTag(DIALOG_WAIT_TAG);
         if (frag != null) {
             Log_OC.d(TAG, "dismiss loading dialog");
-            LoadingDialog loading = (LoadingDialog) frag;
-            loading.dismissAllowingStateLoss();
+            LoadingDialog loadingDialogFragment = (LoadingDialog) frag;
+            boolean isDialogFragmentReady = ActivityExtensionsKt.isDialogFragmentReady(this, loadingDialogFragment);
+            if (isDialogFragmentReady) {
+                loadingDialogFragment.dismiss();
+            }
         }
     }
 
@@ -786,11 +792,14 @@ public abstract class FileActivity extends DrawerActivity
             String link = "";
             OCFile file = null;
             for (Object object : result.getData()) {
-                OCShare shareLink = (OCShare) object;
-                if (TAG_PUBLIC_LINK.equalsIgnoreCase(shareLink.getShareType().name())) {
-                    link = shareLink.getShareLink();
-                    file = getStorageManager().getFileByPath(shareLink.getPath());
-                    break;
+                if (object instanceof OCShare shareLink) {
+                    ShareType shareType = shareLink.getShareType();
+
+                    if (shareType != null && TAG_PUBLIC_LINK.equalsIgnoreCase(shareType.name())) {
+                        link = shareLink.getShareLink();
+                        file = getStorageManager().getFileByEncryptedRemotePath(shareLink.getPath());
+                        break;
+                    }
                 }
             }
 
@@ -800,8 +809,12 @@ public abstract class FileActivity extends DrawerActivity
                 sharingFragment.onUpdateShareInformation(result, file);
             }
 
-            if (fileListFragment instanceof OCFileListFragment && file != null) {
-                ((OCFileListFragment) fileListFragment).updateOCFile(file);
+            if (fileListFragment instanceof OCFileListFragment ocFileListFragment && file != null) {
+                if (ocFileListFragment.getAdapterFiles().contains(file)) {
+                    ocFileListFragment.updateOCFile(file);
+                } else {
+                    DisplayUtils.showSnackMessage(this, R.string.file_activity_shared_file_cannot_be_updated);
+                }
             }
         } else {
             // Detect Failure (403) --> maybe needs password

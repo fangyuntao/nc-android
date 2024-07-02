@@ -7,7 +7,7 @@
  * Copyright (C) 2017 Nextcloud GmbH.
  * Copyright (C) 2018 Andy Scherzinger
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.dialog
 
@@ -200,7 +200,8 @@ class SendShareDialog : BottomSheetDialogFragment(R.layout.send_share_fragment),
             icon = match.loadIcon(requireActivity().packageManager)
             label = match.loadLabel(requireActivity().packageManager)
             sendButtonData = SendButtonData(
-                icon, label,
+                icon,
+                label,
                 match.activityInfo.packageName,
                 match.activityInfo.name
             )

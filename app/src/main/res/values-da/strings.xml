@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Fejl ved oprettelse af konto</string>
     <string name="account_icon">Kontoikon</string>
     <string name="account_not_found">Konto blev ikke fundet.</string>
-    <string name="action_clear_failed_uploads">Fjern fejlede uploads</string>
     <string name="action_edit">Redigér</string>
     <string name="action_empty_notifications">Ryd alle notifikationer</string>
     <string name="action_empty_trashbin">Tøm papirkurv</string>
@@ -47,6 +46,7 @@
     <string name="assistant_screen_scheduled_task_status_text">Planlagt</string>
     <string name="assistant_screen_successful_task_text">Fuldført</string>
     <string name="assistant_screen_task_create_success_message">Opgaven er oprettet</string>
+    <string name="assistant_screen_task_delete_fail_message">En fejl opstod under sletning af opgaven</string>
     <string name="assistant_screen_task_delete_success_message">Opgaven er slettet</string>
     <string name="assistant_screen_task_more_actions_bottom_sheet_delete_action">Slet opgave</string>
     <string name="assistant_screen_top_bar_title">Assistent</string>
@@ -164,7 +164,6 @@
     <string name="confirmation_remove_folder_alert">Er du sikker på at du vil slette %1$s med indhold?</string>
     <string name="confirmation_remove_folders_alert">Er du sikker på at du vil slette de valgte artikler med indhold?</string>
     <string name="confirmation_remove_local">Kun lokal</string>
-    <string name="conflict_dialog_error">Fejl ved skabelse af konfliktdialog</string>
     <string name="conflict_file_headline">Fil i konflikt %1$s</string>
     <string name="conflict_local_file">Lokal fil</string>
     <string name="conflict_message_description">Hvis du vælger begge versioner, vil den lokale fil få tilføjet et nummer til sit navn.</string>
@@ -191,13 +190,11 @@
     <string name="could_not_retrieve_url">Kunne ikke hente URL</string>
     <string name="create">Opret</string>
     <string name="create_dir_fail_msg">Kunne ikke oprette mappe</string>
-    <string name="create_new">Opret ny</string>
-    <string name="create_new_document">Lav nyt dokument</string>
-    <string name="create_new_folder">Opret ny mappe</string>
-    <string name="create_new_presentation">Lav ny præsentation</string>
-    <string name="create_new_spreadsheet">Lav nyt regneark</string>
-    <string name="create_rich_workspace">Tilføj mappe info</string>
-    <string name="creates_rich_workspace">opretter mappe info</string>
+    <string name="create_new">Ny</string>
+    <string name="create_new_document">Nyt Dokument</string>
+    <string name="create_new_folder">Ny mappe</string>
+    <string name="create_new_presentation">Ny Præsentation</string>
+    <string name="create_new_spreadsheet">Nyt Regneark</string>
     <string name="credentials_disabled">Brugeroplysninger deaktiverede</string>
     <string name="daily_backup">Daglig backup</string>
     <string name="data_to_back_up">Data at sikkerhedskopiere</string>
@@ -354,6 +351,7 @@
     <string name="file_list_empty_shared_headline">Intet er delt endnu</string>
     <string name="file_list_empty_unified_search_no_results">Ingen resultater fundet for din forespørgsel</string>
     <string name="file_list_folder">mappe</string>
+    <string name="file_list_live">LIVE</string>
     <string name="file_list_loading">Indlæser...</string>
     <string name="file_list_no_app_for_file_type">Ingen app er sat op til at håndtere denne filtype.</string>
     <string name="file_list_seconds_ago">sekunder siden</string>
@@ -592,6 +590,7 @@
     <string name="prefs_category_dev">Udvikling</string>
     <string name="prefs_category_general">Generel</string>
     <string name="prefs_category_more">Mere</string>
+    <string name="prefs_daily_backup_summary">Daglig backup af din kalender og kontakter</string>
     <string name="prefs_daily_contact_backup_summary">Daglig backup af dine kontakter</string>
     <string name="prefs_davx5_setup_error">Uventet fejl under opsætning af DAVx5 (tidligere kendt som DAVdroid)</string>
     <string name="prefs_e2e_active">End-to-end kryptering er blevet konfigureret!</string>
@@ -665,6 +664,7 @@ Enheds legitimationsoplysninger er sat op
     <string name="rename_local_fail_msg">Lokal kopi kunne ikke omdøbes, prøv et andet navn</string>
     <string name="rename_server_fail_msg">Omdøbning ikke mulig, navnet eksisterer</string>
     <string name="request_account_deletion">Anmodning om sletning af konto</string>
+    <string name="request_account_deletion_button">Anmod om sletning</string>
     <string name="reshare_not_allowed">Gendeling er ikke tilladt</string>
     <string name="resharing_is_not_allowed">Videredeling ikke tilladt</string>
     <string name="resized_image_not_possible_download">Intet skaleret billede tilgængeligt. Hent fuldt billede?</string>
@@ -685,9 +685,11 @@ Enheds legitimationsoplysninger er sat op
     <string name="screenshot_04_accounts_heading">Alle dine konti</string>
     <string name="screenshot_04_accounts_subline">på et sted</string>
     <string name="screenshot_05_autoUpload_heading">Automatisk upload</string>
+    <string name="screenshot_05_autoUpload_subline">for dine billeder og videoer</string>
     <string name="screenshot_06_davdroid_heading">Kalender og kontakter</string>
     <string name="screenshot_06_davdroid_subline">Synkronisér med DAVx5</string>
     <string name="search_error">Fejl ved indhenting af søgeresultater</string>
+    <string name="secure_share_not_set_up">Sikker deling er ikke sat op for denne bruger</string>
     <string name="select_all">Vælg alle</string>
     <string name="select_media_folder">Indstil mediemappe</string>
     <string name="select_one_template">Vælg venligst en skabelon</string>
@@ -800,6 +802,7 @@ Enheds legitimationsoplysninger er sat op
     <string name="subject_shared_with_you">\"%1$s\" er blevet delt med dig</string>
     <string name="subject_user_shared_with_you">%1$s delte \"%2$s\" med dig</string>
     <string name="subtitle_photos_only">Kun billeder</string>
+    <string name="subtitle_photos_videos">Billeder og videoer</string>
     <string name="subtitle_videos_only">Kun videoer</string>
     <string name="suggest">Foreslå</string>
     <string name="sync_conflicts_in_favourites_ticker">Konflikter fundet</string>
@@ -862,6 +865,7 @@ Enheds legitimationsoplysninger er sat op
     <string name="upload_cannot_create_file">Kan ikke oprette filen lokalt</string>
     <string name="upload_chooser_title">Sender fra...</string>
     <string name="upload_content_from_other_apps">Send indhold fra andre apps</string>
+    <string name="upload_direct_camera_photo">Foto</string>
     <string name="upload_direct_camera_upload">Send fra kamera</string>
     <string name="upload_file_dialog_filename">Filnavn</string>
     <string name="upload_file_dialog_filetype">Filtype</string>
@@ -878,6 +882,7 @@ Enheds legitimationsoplysninger er sat op
     <string name="upload_local_storage_full">Lokalt lager fuldt</string>
     <string name="upload_local_storage_not_copied">Filen kunne ikke kopieres til lokalt lager</string>
     <string name="upload_lock_failed">Lås på mappe fejlede</string>
+    <string name="upload_manually_cancelled">Upload var annulleret af bruger</string>
     <string name="upload_old_android">Kryptering kun mulig med &gt;= Android 5.0</string>
     <string name="upload_query_move_foreign_files">Utilstrækkelig plads til, at kopiere de valgte filer ind i %1$s mappen. Vil du flytte dem i stedet?</string>
     <string name="upload_scan_doc_upload">Scan dokument fra kamera</string>

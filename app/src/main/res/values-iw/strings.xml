@@ -7,7 +7,6 @@
     <string name="account_creation_failed">יצירת החשבון נכשלה</string>
     <string name="account_icon">סמל חשבון</string>
     <string name="account_not_found">החשבון לא נמצא!</string>
-    <string name="action_clear_failed_uploads">פינוי העלאות שנכשלו</string>
     <string name="action_edit">עריכה</string>
     <string name="action_empty_notifications">פינוי כל ההתראות</string>
     <string name="action_empty_trashbin">פינוי סל האשפה</string>
@@ -32,6 +31,7 @@
     <string name="add_to_cloud">הוספה אל %1$s</string>
     <string name="advanced_settings">הגדרות מתקדמות</string>
     <string name="allow_resharing">לאפשר שיתוף מחדש</string>
+    <string name="app_config_proxy_port_title">פתחת מתווך</string>
     <string name="app_widget_description">מצג וידג׳ט אחד מלוח הבקרה</string>
     <string name="appbar_search_in">חפש ב %s</string>
     <string name="assistant_screen_all_task_type">הכול</string>
@@ -144,7 +144,6 @@
     <string name="confirmation_remove_folder_alert">למחוק את %1$s על תוכנו?</string>
     <string name="confirmation_remove_folders_alert">למחוק את הפריטים הנבחרים ואת תוכנם?</string>
     <string name="confirmation_remove_local">מקומי בלבד</string>
-    <string name="conflict_dialog_error">שגיאה ביצירת תיבת דו־שיח סתירה!</string>
     <string name="conflict_local_file">קובץ מקומי</string>
     <string name="conflict_message_description">בבחירה של שתי הגרסאות, יתווסף מספר בסוף שמו של הקובץ המקומי.</string>
     <string name="conflict_server_file">קובץ בשרת</string>
@@ -168,13 +167,11 @@
     <string name="could_not_retrieve_url">לא ניתן לקבל כתובת</string>
     <string name="create">יצירה</string>
     <string name="create_dir_fail_msg">לא ניתן ליצור תיקייה</string>
-    <string name="create_new">יצירת חדש</string>
-    <string name="create_new_document">יצירת מסמך חדש</string>
-    <string name="create_new_folder">יצירת תיקייה חדשה</string>
-    <string name="create_new_presentation">יצירת מצגת חדשה</string>
-    <string name="create_new_spreadsheet">יצירת גיליון חדש</string>
-    <string name="create_rich_workspace">הוספת פרטי תיקייה</string>
-    <string name="creates_rich_workspace">יוצר פרטי תיקייה</string>
+    <string name="create_new">חדש</string>
+    <string name="create_new_document">מסמך חדש</string>
+    <string name="create_new_folder">תיקייה חדשה</string>
+    <string name="create_new_presentation">מצגת חדשה</string>
+    <string name="create_new_spreadsheet">גיליון נתונים חדש</string>
     <string name="credentials_disabled">פרטי גישה מושבתים</string>
     <string name="daily_backup">גיבוי יומי</string>
     <string name="data_to_back_up">נתונים לגיבוי</string>
@@ -682,7 +679,6 @@
     <string name="unlock_file">שחרור קובץ</string>
     <string name="unread_comments">יש תגובות שלא נקראו</string>
     <string name="unset_encrypted">ביטול הגדרת ההצפנה</string>
-    <string name="unset_favorite">הסרה מהמועדפים</string>
     <string name="unshare_link_forbidden_permissions">לבטל שיתוף לקובץ זה</string>
     <string name="unsharing_failed">ביטול השיתוף נכשל</string>
     <string name="untrusted_domain">גישה דרך שם מתחם בלתי מהימן. נא לעיין בתיעוד לקבלת פרטים נוספים.</string>
@@ -693,6 +689,7 @@
     <string name="upload_cannot_create_file">לא ניתן ליצור קובץ מקומי</string>
     <string name="upload_chooser_title">העלאה מהמיקום…</string>
     <string name="upload_content_from_other_apps">העלאת תוכן מיישומונים אחרים</string>
+    <string name="upload_direct_camera_photo">תמונה</string>
     <string name="upload_direct_camera_upload">העלאה מהמצלמה</string>
     <string name="upload_file_dialog_filename">שם קובץ</string>
     <string name="upload_file_dialog_filetype">סוג קובץ</string>

@@ -1,9 +1,9 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.jobs.download
 
@@ -81,11 +81,7 @@ class FileDownloadHelper {
         backgroundJobManager.cancelFilesDownloadJob(currentUser, currentFile.fileId)
     }
 
-    fun saveFile(
-        file: OCFile,
-        currentDownload: DownloadFileOperation?,
-        storageManager: FileDataStorageManager?
-    ) {
+    fun saveFile(file: OCFile, currentDownload: DownloadFileOperation?, storageManager: FileDataStorageManager?) {
         val syncDate = System.currentTimeMillis()
 
         file.apply {

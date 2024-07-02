@@ -4,7 +4,7 @@
  * SPDX-FileCopyrightText: 2020 Stefan Niedermann <info@niedermann.it>
  * SPDX-FileCopyrightText: 2015 ownCloud Inc.
  * SPDX-FileCopyrightText: 2014 David A. Velasco <dvelasco@solidgear.es>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.ui.adapter;
 
@@ -14,6 +14,8 @@ import android.view.View;
 import com.owncloud.android.databinding.SslUntrustedCertLayoutBinding;
 import com.owncloud.android.ui.dialog.SslUntrustedCertDialog;
 
+import androidx.annotation.NonNull;
+
 /**
  * Dialog to show an Untrusted Certificate
  */
@@ -21,14 +23,14 @@ public class SslErrorViewAdapter implements SslUntrustedCertDialog.ErrorViewAdap
 
     //private final static String TAG = SslErrorViewAdapter.class.getSimpleName();
 
-    private SslError mSslError;
+    private final SslError mSslError;
 
     public SslErrorViewAdapter(SslError sslError) {
         mSslError = sslError;
     }
 
     @Override
-    public void updateErrorView(SslUntrustedCertLayoutBinding binding) {
+    public void updateErrorView(@NonNull SslUntrustedCertLayoutBinding binding) {
         /// clean
         binding.reasonNoInfoAboutError.setVisibility(View.GONE);
 

@@ -1,7 +1,7 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2024 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2024 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-FileCopyrightText: 2023 ZetaTom
  * SPDX-FileCopyrightText: 2022 Álvaro Brey <alvaro@alvarobrey.com>
  * SPDX-FileCopyrightText: 2021 TSI-mc
@@ -17,7 +17,7 @@
  * SPDX-FileCopyrightText: 2015 David A. Velasco <dvelasco@solidgear.es>
  * SPDX-FileCopyrightText: 2012 Lennart Rosam <lennart@familie-rosam.de>
  * SPDX-FileCopyrightText: 2011 Bartosz Przybylski <bart.p.pl@gmail.com>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.utils;
 
@@ -110,12 +110,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import static com.owncloud.android.ui.dialog.SortingOrderDialogFragment.SORTING_ORDER_FRAGMENT;
-import static com.owncloud.android.utils.FileSortOrder.sort_a_to_z_id;
-import static com.owncloud.android.utils.FileSortOrder.sort_big_to_small_id;
-import static com.owncloud.android.utils.FileSortOrder.sort_new_to_old_id;
-import static com.owncloud.android.utils.FileSortOrder.sort_old_to_new_id;
-import static com.owncloud.android.utils.FileSortOrder.sort_small_to_big_id;
-import static com.owncloud.android.utils.FileSortOrder.sort_z_to_a_id;
+import static com.owncloud.android.utils.FileSortOrder.SORT_A_TO_Z_ID;
+import static com.owncloud.android.utils.FileSortOrder.SORT_BIG_TO_SMALL_ID;
+import static com.owncloud.android.utils.FileSortOrder.SORT_NEW_TO_OLD_ID;
+import static com.owncloud.android.utils.FileSortOrder.SORT_OLD_TO_NEW_ID;
+import static com.owncloud.android.utils.FileSortOrder.SORT_SMALL_TO_BIG_ID;
+import static com.owncloud.android.utils.FileSortOrder.SORT_Z_TO_A_ID;
 
 /**
  * A helper class for UI/display related operations.
@@ -650,8 +650,20 @@ public final class DisplayUtils {
      */
     public static Snackbar showSnackMessage(Activity activity, String message) {
         final Snackbar snackbar = Snackbar.make(activity.findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
+        var fab = findFABView(activity);
+        if (fab != null && fab.getVisibility() == View.VISIBLE) {
+            snackbar.setAnchorView(fab);
+        }
         snackbar.show();
         return snackbar;
+    }
+
+    private static View findFABView(Activity activity) {
+        return activity.findViewById(R.id.fab_main);
+    }
+
+    private static View findFABView(View view) {
+        return view.findViewById(R.id.fab_main);
     }
 
     /**
@@ -663,6 +675,10 @@ public final class DisplayUtils {
      */
     public static Snackbar showSnackMessage(View view, @StringRes int messageResource) {
         final Snackbar snackbar = Snackbar.make(view, messageResource, Snackbar.LENGTH_LONG);
+        var fab = findFABView(view.getRootView());
+        if (fab != null && fab.getVisibility() == View.VISIBLE) {
+            snackbar.setAnchorView(fab);
+        }
         snackbar.show();
         return snackbar;
     }
@@ -803,17 +819,17 @@ public final class DisplayUtils {
 
     public static @StringRes int getSortOrderStringId(FileSortOrder sortOrder) {
         switch (sortOrder.name) {
-            case sort_z_to_a_id:
+            case SORT_Z_TO_A_ID:
                 return R.string.menu_item_sort_by_name_z_a;
-            case sort_new_to_old_id:
+            case SORT_NEW_TO_OLD_ID:
                 return R.string.menu_item_sort_by_date_newest_first;
-            case sort_old_to_new_id:
+            case SORT_OLD_TO_NEW_ID:
                 return R.string.menu_item_sort_by_date_oldest_first;
-            case sort_big_to_small_id:
+            case SORT_BIG_TO_SMALL_ID:
                 return R.string.menu_item_sort_by_size_biggest_first;
-            case sort_small_to_big_id:
+            case SORT_SMALL_TO_BIG_ID:
                 return R.string.menu_item_sort_by_size_smallest_first;
-            case sort_a_to_z_id:
+            case SORT_A_TO_Z_ID:
             default:
                 return R.string.menu_item_sort_by_name_a_z;
         }

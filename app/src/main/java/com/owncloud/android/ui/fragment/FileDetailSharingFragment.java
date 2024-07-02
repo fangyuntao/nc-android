@@ -9,7 +9,7 @@
  * Copyright (C) 2020 Chris Narkiewicz <hello@ezaquarii.com>
  * Copyright (C) 2023 TSI-mc
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 
 package com.owncloud.android.ui.fragment;
@@ -36,6 +36,7 @@ import com.nextcloud.client.account.UserAccountManager;
 import com.nextcloud.client.di.Injectable;
 import com.nextcloud.client.network.ClientFactory;
 import com.nextcloud.utils.extensions.BundleExtensionsKt;
+import com.nextcloud.utils.extensions.FileExtensionsKt;
 import com.owncloud.android.R;
 import com.owncloud.android.databinding.FileDetailsSharingFragmentBinding;
 import com.owncloud.android.datamodel.FileDataStorageManager;
@@ -80,6 +81,7 @@ public class FileDetailSharingFragment extends Fragment implements ShareeListAda
     DisplayUtils.AvatarGenerationListener,
     Injectable, FileDetailsSharingMenuBottomSheetActions, QuickSharingPermissionsBottomSheetDialog.QuickPermissionSharingBottomSheetActions {
 
+    private static final String TAG = "FileDetailSharingFragment";
     private static final String ARG_FILE = "FILE";
     private static final String ARG_USER = "USER";
 
@@ -541,7 +543,7 @@ public class FileDetailSharingFragment extends Fragment implements ShareeListAda
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-
+        FileExtensionsKt.logFileSize(file, TAG);
         outState.putParcelable(ARG_FILE, file);
         outState.putParcelable(ARG_USER, user);
     }

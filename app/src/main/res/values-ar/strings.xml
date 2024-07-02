@@ -7,7 +7,6 @@
     <string name="account_creation_failed">فشل إنشاء الحساب</string>
     <string name="account_icon">أيقونة الحساب </string>
     <string name="account_not_found">الحساب غير موجود </string>
-    <string name="action_clear_failed_uploads">مسح الملفات التي فشل رفعها</string>
     <string name="action_edit">تعديل</string>
     <string name="action_empty_notifications">إزالة جميع التنبيهات</string>
     <string name="action_empty_trashbin">تفريغ سلة المهملات</string>
@@ -35,6 +34,9 @@
     <string name="add_to_cloud">أضفه إلى %1$s</string>
     <string name="advanced_settings">الإعدادات المتقدمة</string>
     <string name="allow_resharing">السماح بإعادة المشاركة </string>
+    <string name="app_config_base_url_title">عنوان URL الأساسي</string>
+    <string name="app_config_proxy_host_title">اسم المضيف الوكيل</string>
+    <string name="app_config_proxy_port_title">منفذ البروكسي</string>
     <string name="app_widget_description">عرض أداة واحدة من لوحة القيادة</string>
     <string name="appbar_search_in">بحث في %s</string>
     <string name="assistant_screen_all_task_type">الكل</string>
@@ -57,6 +59,8 @@
     <string name="assistant_screen_task_types_error_state_message">تعذّر جلب أنواع المهام. قم رجاءً بالتحقُّق من اتصالك بالإنترنت.</string>
     <string name="assistant_screen_top_bar_title">المُساعِد</string>
     <string name="assistant_screen_unknown_task_status_text">غير معروف</string>
+    <string name="assistant_task_detail_screen_input_button_title">مُدخَلات</string>
+    <string name="assistant_task_detail_screen_output_button_title">المُخرَجَات</string>
     <string name="associated_account_not_found">الحساب المرتبط غير موجود!</string>
     <string name="auth_access_failed">فشل الوصول لـ: %1$s</string>
     <string name="auth_account_does_not_exist">هذا الحساب لم تتم إضافته في هذا الجهاز بعد</string>
@@ -87,6 +91,9 @@
     <string name="auth_unknown_host_title">لم يتم العثور على المضيف</string>
     <string name="auth_unsupported_multiaccount">%1$s لا يدعم الحسابات المتعددة </string>
     <string name="auth_wrong_connection_title">لا يمكن إنشاء إتصال</string>
+    <string name="authenticator_activity_cancel_login">إلغاء الدخول</string>
+    <string name="authenticator_activity_login_error">حدث إشكال عند معالجة طلبك للدخول. يُرجى المحاولة مرةً أخرى.</string>
+    <string name="authenticator_activity_please_complete_login_process">رجاءً، قم بإكمال عملية الدخول في مستعرض الوب عندك</string>
     <string name="auto_upload_file_behaviour_kept_in_folder">ترك في مجلد الأصل، بسبب كونه للقرائة فقط</string>
     <string name="auto_upload_on_wifi">قم بالرفع عبر شبكة لاسلكية غير محدودة البيانات فقط</string>
     <string name="auto_upload_path">/رفع تلقائي</string>
@@ -171,7 +178,7 @@
     <string name="confirmation_remove_folder_alert">هل توَدُّ حقاً حذف %1$s وما يحتويه؟</string>
     <string name="confirmation_remove_folders_alert">هل توَدُّ حقاً حذف العناصر المختارة وما يحتوّه؟</string>
     <string name="confirmation_remove_local">محلياً فقط</string>
-    <string name="conflict_dialog_error">خطأ في إنشاء حوار التعارض!</string>
+    <string name="conflict_dialog_error">تعذّر إنشاء نافذة حوار حل التعارضات</string>
     <string name="conflict_file_headline">ملف متضارب %1$s </string>
     <string name="conflict_local_file">ملف محلي</string>
     <string name="conflict_message_description">إذا قمت باختيار كلا الاصدارين, الملف المحلي سيحتوي على رقم ملحق باسم الملف.</string>
@@ -198,13 +205,13 @@
     <string name="could_not_retrieve_url">لا يمكن استرجاع الرابط</string>
     <string name="create">إنشاء</string>
     <string name="create_dir_fail_msg">تعذر إنشاء المُجلّد</string>
-    <string name="create_new">إنشاء جديد</string>
-    <string name="create_new_document">إنشاء مستند جديد</string>
-    <string name="create_new_folder">إنشاء مجلدا جديد</string>
-    <string name="create_new_presentation">إنشاء عرض تقديمي جديد</string>
-    <string name="create_new_spreadsheet">إنشاء جدول بيانات جديد</string>
-    <string name="create_rich_workspace">إضافة معلومات المجلد</string>
-    <string name="creates_rich_workspace">إنشاء معلومات عن المجلد</string>
+    <string name="create_new">جديد</string>
+    <string name="create_new_document">مستند جديد</string>
+    <string name="create_new_folder">مجلد جديد</string>
+    <string name="create_new_presentation">عرض تقديمي جديد</string>
+    <string name="create_new_spreadsheet">جدول بيانات جديد</string>
+    <string name="create_rich_workspace">أضِف وصفاً للمجلد</string>
+    <string name="creates_rich_workspace">إضافة وصف للمجلد</string>
     <string name="credentials_disabled">التصريح غير مفعل</string>
     <string name="daily_backup">النسخ الاحتياطي اليومي</string>
     <string name="data_to_back_up">البيانات التي سيتم نسخها احتياطيا</string>
@@ -315,6 +322,7 @@
     <string name="error_showing_encryption_dialog">خطأ في عرض حوار تجهيز التشفير</string>
     <string name="error_starting_direct_camera_upload">خطأ في تشغيل الكاميرا</string>
     <string name="error_starting_doc_scan">خطأ في بدء مسح المستند</string>
+    <string name="error_uploading_direct_camera_upload">تعذّر تحميل الوسائط المأخوذة</string>
     <string name="etm_accounts">الحسابات</string>
     <string name="etm_background_execution_count">أوقات التشغيل خلال 48 ساعة</string>
     <string name="etm_background_job_created">أُنشِئَ</string>
@@ -346,6 +354,7 @@
     <string name="failed_update_ui">فشل تحديث UI</string>
     <string name="favorite">إضافة إلى المفضلة</string>
     <string name="favorite_icon">المفضلة</string>
+    <string name="file_activity_shared_file_cannot_be_updated">ملف مشترك لا يمكن تحديثه</string>
     <string name="file_already_exists">اسم الملف موجود مسبقاً</string>
     <string name="file_delete">حذف </string>
     <string name="file_detail_activity_error">خطأ في استرداد النشاطات للملف</string>
@@ -399,6 +408,7 @@
     <string name="file_not_found">تعذر العثور على الملف</string>
     <string name="file_not_synced">الملف لا يمكن مزامنته. عرض آخر إصدار متوفر.</string>
     <string name="file_rename">إعادة التسمية</string>
+    <string name="file_upload_worker_same_file_already_exists">الملف موجود سلفاً. لم يتم اكتشاف أي تعارض</string>
     <string name="file_version_restored_error">حدث خطأ في استيراد إصدار الملف!</string>
     <string name="file_version_restored_successfully">تم استيراد إصدار الملف بنجاح.</string>
     <string name="filedetails_details">التفاصيل</string>
@@ -661,6 +671,7 @@
     <string name="preview_image_description">معاينة الصورة</string>
     <string name="preview_image_error_no_local_file">لا يوجد ملف محلي للمعاينة</string>
     <string name="preview_image_error_unknown_format">تعذرت عملية عرض الصورة</string>
+    <string name="preview_media_unhandled_http_code_message">الملف مقفلٌ حالياً من قِبَل مستخدِمٍ أو عمليةٍ أخرى؛ وبالتالي لا يمكن حذفه. الرجاء معاودة المحاولة في وقتٍ لاحقٍ.</string>
     <string name="preview_sorry">آسف</string>
     <string name="privacy">الخصوصية</string>
     <string name="public_share_name">اسم جديد</string>
@@ -668,6 +679,7 @@
     <string name="push_notifications_old_login">لا توجد إشعارات دفع بسبب جلسة تسجيل الدخول القديمة. يرجى النظر في إعادة إضافة حسابك.</string>
     <string name="push_notifications_temp_error">إشعارات الدفع غير متوفرة حاليا.</string>
     <string name="qr_could_not_be_read">لايمكن قراءة رمز QR</string>
+    <string name="receive_external_files_activity_start_sync_folder_is_not_exists_message">تعذّر إيجاد المجلد. عملية المزامنة تمّ إلغاؤها</string>
     <string name="recommend_subject">جرب %1$s على جهازك !</string>
     <string name="recommend_text">أريد أن أدعوك لاستخدام %1$s على جهازك
 التنزيل هنا %2$s</string>
@@ -900,7 +912,7 @@
     <string name="unlock_file">فتح قفل الملف</string>
     <string name="unread_comments">توجد تعليقات غير مقروءة</string>
     <string name="unset_encrypted">لم يتم تحديد التشفير</string>
-    <string name="unset_favorite">إزالتها مِن المفضلة</string>
+    <string name="unset_favorite">إزالة مِن المفضلة</string>
     <string name="unshare_link_file_error">حدث خطأ أثناء محاولة إلغاء مشاركة هذا الملف أو المجلد.</string>
     <string name="unshare_link_file_no_exist">غير قادر على المشاركة. يرجى التحقق من وجود الملف.</string>
     <string name="unshare_link_forbidden_permissions">لإلغاء مشاركة هذا الملف</string>
@@ -914,13 +926,16 @@
     <string name="upload_action_cancelled_resume">إستئناف المرفوعات الملغاة</string>
     <string name="upload_action_failed_clear">مسح الملفات التي فشل رفعها</string>
     <string name="upload_action_failed_retry">أعِد محاولات الرفع الفاشلة</string>
-    <string name="upload_action_file_not_exist_message">بعض الملفات غير موجودة و لا يمكن استئناف هذه الملفات</string>
+    <string name="upload_action_file_not_exist_message">بعض الملفات لم تعُد موجودة. عمليات الرفع هذه لا يمكن استئنافها.</string>
     <string name="upload_action_global_upload_pause">جمِّد كل عمليات الرفع</string>
     <string name="upload_action_global_upload_resume">إستَأنِف عمليات الرفع</string>
     <string name="upload_cannot_create_file">لا يمكن إنشاء ملف محلي</string>
     <string name="upload_chooser_title">الرفع من…</string>
     <string name="upload_content_from_other_apps">تحميل محتوى من تطبيقات أخرى</string>
+    <string name="upload_direct_camera_photo">الصِّوَر</string>
+    <string name="upload_direct_camera_promt">هل ترغب في التقاط صورة أو فيديو؟</string>
     <string name="upload_direct_camera_upload">حمّل مِن آلة التصوير</string>
+    <string name="upload_direct_camera_video">الفيديو</string>
     <string name="upload_file_dialog_filename">اسم الملف</string>
     <string name="upload_file_dialog_filetype">نوع الملف</string>
     <string name="upload_file_dialog_filetype_googlemap_shortcut">ملف اختصار خرائط Google (%s)</string>
@@ -933,11 +948,13 @@
     <string name="upload_list_delete">حذف</string>
     <string name="upload_list_empty_headline">لا توجد تحميلات</string>
     <string name="upload_list_empty_text_auto_upload">قم بتحميل بعض الملفات أو قم بتفعيل التحميل التلقائي.</string>
+    <string name="upload_list_expand_header">تبديل توسيع الترويسة</string>
     <string name="upload_list_resolve_conflict">حل تعارُض</string>
     <string name="upload_local_storage_full">التخزين المحلي ممتلئ</string>
     <string name="upload_local_storage_not_copied">تعذر نسخ الملف إلى التخزين المحلي</string>
     <string name="upload_lock_failed">فشل قفّل المجلد</string>
     <string name="upload_manually_cancelled">عملية الرفع تمّ إلغاؤها من مُستخدِم</string>
+    <string name="upload_notification_manager_start_text">%1$d / %2$d - %3$s</string>
     <string name="upload_old_android">التشفير ممكن فقط مع &gt;= Android 5.0</string>
     <string name="upload_query_move_foreign_files">يمنع وجود مساحة غير كافية نسخ الملفات المحددة إلى المجلد %1$s. هل ترغب في نقلهم إلى هناك بدلاً من ذلك؟</string>
     <string name="upload_quota_exceeded">الحصة التخزينية تمّ استنفاذها</string>

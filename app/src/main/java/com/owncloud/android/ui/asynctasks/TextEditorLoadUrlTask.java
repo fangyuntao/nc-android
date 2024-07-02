@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2019 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.asynctasks;
 
@@ -47,15 +47,15 @@ public class TextEditorLoadUrlTask extends AsyncTask<Void, Void, String> {
             return "";
         }
 
-        RemoteOperationResult result = new DirectEditingOpenFileRemoteOperation(file.getRemotePath(), editor.getId())
-            .execute(user, editorWebViewWeakReference.get());
+        RemoteOperationResult<String> result = new DirectEditingOpenFileRemoteOperation(file.getRemotePath(), editor.getId())
+            .executeNextcloudClient(user, editorWebView);
 
 
         if (!result.isSuccess()) {
             return "";
         }
 
-        return (String) result.getData().get(0);
+        return result.getResultData();
     }
 
     @Override

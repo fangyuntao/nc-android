@@ -1,11 +1,11 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-FileCopyrightText: 2020-2022 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2015 ownCloud Inc.
  * SPDX-FileCopyrightText: 2012 Bartosz Przybylski <bart.p.pl@gmail.com>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.ui.dialog;
 
@@ -21,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.nextcloud.client.account.User;
 import com.nextcloud.client.di.Injectable;
 import com.nextcloud.utils.extensions.BundleExtensionsKt;
+import com.nextcloud.utils.extensions.FileExtensionsKt;
 import com.owncloud.android.R;
 import com.owncloud.android.databinding.ConflictResolveDialogBinding;
 import com.owncloud.android.datamodel.FileDataStorageManager;
@@ -62,6 +63,7 @@ public class ConflictsResolveDialog extends DialogFragment implements Injectable
     @Inject ViewThemeUtils viewThemeUtils;
     @Inject SyncedFolderProvider syncedFolderProvider;
 
+    private static final String TAG = "ConflictsResolveDialog";
     private static final String KEY_NEW_FILE = "file";
     private static final String KEY_EXISTING_FILE = "ocfile";
     private static final String KEY_USER = "user";
@@ -78,7 +80,10 @@ public class ConflictsResolveDialog extends DialogFragment implements Injectable
 
         Bundle args = new Bundle();
         args.putParcelable(KEY_EXISTING_FILE, existingFile);
-        args.putSerializable(KEY_NEW_FILE, new File(newFile.getStoragePath()));
+
+        File file = new File(newFile.getStoragePath());
+        FileExtensionsKt.logFileSize(file, TAG);
+        args.putSerializable(KEY_NEW_FILE, file);
         args.putParcelable(KEY_USER, user);
         dialog.setArguments(args);
 
@@ -136,6 +141,8 @@ public class ConflictsResolveDialog extends DialogFragment implements Injectable
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        FileExtensionsKt.logFileSize(existingFile, TAG);
+        FileExtensionsKt.logFileSize(newFile, TAG);
         outState.putParcelable(KEY_EXISTING_FILE, existingFile);
         outState.putSerializable(KEY_NEW_FILE, newFile);
         outState.putParcelable(KEY_USER, user);

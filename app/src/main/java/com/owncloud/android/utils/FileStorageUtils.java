@@ -6,7 +6,7 @@
  * SPDX-FileCopyrightText: 2016-2018 Andy Scherzinger <info@andy-scherzinger.de>
  * SPDX-FileCopyrightText: 2016 ownCloud Inc.
  * SPDX-FileCopyrightText: 2014 David A. Velasco <dvelasco@solidgear.es>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.utils;
 
@@ -106,6 +106,17 @@ public final class FileStorageUtils {
         // that can be in the accountName since 0.1.190B
     }
 
+    public static String getTemporalEncryptedFolderPath(String accountName) {
+        return MainApp
+            .getAppContext()
+            .getFilesDir()
+            .getAbsolutePath()
+            + File.separator
+            + accountName
+            + File.separator
+            + "temp_encrypted_folder";
+    }
+
     /**
      * Get absolute path to tmp folder inside app folder for given accountName.
      */
@@ -181,7 +192,7 @@ public final class FileStorageUtils {
 
         String relativeSubfolderPath = "";
         if (parentFile == null) {
-            Log_OC.e("AutoUpload", "Parent folder does not exists!");
+            Log_OC.e("AutoUpload", "Parent folder does not exist!");
         } else {
             relativeSubfolderPath = parentFile.getAbsolutePath();
         }
@@ -360,17 +371,13 @@ public final class FileStorageUtils {
         }
     }
 
-    @SuppressFBWarnings(value="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE",
-            justification="False-positive on the output stream")
+    @SuppressFBWarnings(value = "OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE",
+        justification = "False-positive on the output stream")
     public static boolean copyFile(File src, File target) {
         boolean ret = true;
 
-        InputStream in = null;
-        OutputStream out = null;
-
-        try {
-            in = new FileInputStream(src);
-            out = new FileOutputStream(target);
+        try (InputStream in = new FileInputStream(src);
+             OutputStream out = new FileOutputStream(target)) {
             byte[] buf = new byte[1024];
             int len;
             while ((len = in.read(buf)) > 0) {
@@ -378,21 +385,6 @@ public final class FileStorageUtils {
             }
         } catch (IOException ex) {
             ret = false;
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    Log_OC.e(TAG, "Error closing input stream during copy", e);
-                }
-            }
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    Log_OC.e(TAG, "Error closing output stream during copy", e);
-                }
-            }
         }
 
         return ret;

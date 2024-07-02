@@ -3,7 +3,7 @@
   ~ Nextcloud - Android Client
   ~
   ~ SPDX-FileCopyrightText: 2019-2024 Nextcloud GmbH and Nextcloud contributors
-  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
 -->
 <resources>
     <!-- Beta indicator -->
@@ -43,6 +43,7 @@
     <bool name="show_external_links">true</bool>
     <bool name="show_outdated_server_warning">true</bool>
     <bool name="is_branded_client">false</bool>
+    <bool name="is_branded_plus_client">false</bool>
 
     <!-- Calendar & Contacts backup -->
     <string name="contacts_backup_folder">/.Contacts-Backup</string>

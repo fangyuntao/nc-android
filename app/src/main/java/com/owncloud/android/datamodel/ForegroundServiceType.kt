@@ -1,9 +1,9 @@
 /*
  * Nextcloud - Android Client
  *
- * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper_ozturk@proton.me>
+ * SPDX-FileCopyrightText: 2023 Alper Ozturk <alper.ozturk@nextcloud.com>
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.datamodel
 
@@ -18,7 +18,8 @@ import androidx.annotation.RequiresApi
  * This wrapper is designed for compatibility on those versions.
  */
 enum class ForegroundServiceType {
-    DataSync, MediaPlayback;
+    DataSync,
+    MediaPlayback;
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun getId(): Int {

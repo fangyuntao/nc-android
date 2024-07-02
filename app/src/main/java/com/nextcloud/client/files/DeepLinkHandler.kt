@@ -2,7 +2,7 @@
  * Nextcloud - Android Client
  *
  * SPDX-FileCopyrightText: 2020 Chris Narkiewicz <hello@ezaquarii.com>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.files
 
@@ -33,6 +33,9 @@ class DeepLinkHandler(
         val BASE_URL_GROUP_INDEX = 1
         val INDEX_PATH_GROUP_INDEX = 2
         val FILE_ID_GROUP_INDEX = 3
+
+        fun isDeepLinkTypeIsNavigation(deepLinkUrl: String): Boolean =
+            DeepLinkConstants.navigationPaths.any { deepLinkUrl.endsWith(it) }
     }
 
     /**

@@ -7,7 +7,6 @@
     <string name="account_creation_failed">ایجاد حساب ناموفق بود</string>
     <string name="account_icon">آیکون حساب</string>
     <string name="account_not_found">حساب پیدا نشد!</string>
-    <string name="action_clear_failed_uploads">پاک کردن آپلودهای ناموفق</string>
     <string name="action_edit">ویرایش</string>
     <string name="action_empty_notifications">پاک کردن تمام اعلانها</string>
     <string name="action_empty_trashbin">خالی کردن سطل زباله</string>
@@ -35,6 +34,7 @@
     <string name="add_to_cloud">افزودن به %1$s</string>
     <string name="advanced_settings">تنظمیات پیش‌رفته</string>
     <string name="allow_resharing">مجاز به اشتراک گذاری مجدد</string>
+    <string name="app_config_proxy_port_title">پورت پروکسی</string>
     <string name="app_widget_description">نمایش یک ابزارک از پیشخوان</string>
     <string name="appbar_search_in">جستجو در %s</string>
     <string name="assistant_screen_all_task_type">همه</string>
@@ -158,7 +158,6 @@
     <string name="confirmation_remove_folder_alert">آیا واقعا می خواهید %1$s و محتویات آن را حذف کنید؟</string>
     <string name="confirmation_remove_folders_alert">آیا واقعاً می‌خواهید موارد انتخاب شده و محتوای آنها حذف شود؟</string>
     <string name="confirmation_remove_local">فقط محلی</string>
-    <string name="conflict_dialog_error">هنگام ساختن دیالوگ مغایرت‌ها خطایی رخ داده است!</string>
     <string name="conflict_file_headline">فایل متناقض %1$s</string>
     <string name="conflict_local_file">پروندهٔ محلّی</string>
     <string name="conflict_message_description">اگر هردو نسخه را انتخاب کنید، یک شماره به نام فایل محلی اضافه خواهد شد.</string>
@@ -185,13 +184,11 @@
     <string name="could_not_retrieve_url">امکان بازیابی URL وجود ندارد</string>
     <string name="create">ساخت</string>
     <string name="create_dir_fail_msg">امکان ساخت پوشه وجود ندارد</string>
-    <string name="create_new">ایجاد جدید</string>
-    <string name="create_new_document">ساختن سند جدید</string>
-    <string name="create_new_folder">ساختن پوشه جدید</string>
-    <string name="create_new_presentation">ساختن ارائه جدید</string>
-    <string name="create_new_spreadsheet">"تازه ترین ها اول "</string>
-    <string name="create_rich_workspace">اطلاعات پوشه را اضافه کنید</string>
-    <string name="creates_rich_workspace">ایجاد اطلاعات پوشه</string>
+    <string name="create_new">جدید</string>
+    <string name="create_new_document">سند جدید</string>
+    <string name="create_new_folder">پوشه جدید</string>
+    <string name="create_new_presentation">ارائه جدید</string>
+    <string name="create_new_spreadsheet">صفحهٔ گستردهٔ جدید</string>
     <string name="credentials_disabled">اعتبارنامه غیرفعال است</string>
     <string name="daily_backup">پشتیبان روزانه</string>
     <string name="data_to_back_up">داده برای پشتیبان‌گیری</string>
@@ -857,7 +854,7 @@
     <string name="unlock_file">باز کردن قفل پرونده</string>
     <string name="unread_comments">نظرات خوانده نشده وجود دارد</string>
     <string name="unset_encrypted">به صورت رمزگذاری شده تنظیم نشده است</string>
-    <string name="unset_favorite">حذف از موارد دلخواه</string>
+    <string name="unset_favorite">حذف از برگزیده‌ها</string>
     <string name="unshare_link_file_error">هنگام لغو اشتراک‌گذاری فایل یا پوشه خطایی رخ داده است.</string>
     <string name="unshare_link_file_no_exist">امکان لغو اشتراک‌گذاری نیست. لطفا موجود بودن فایل را بررسی کنید.</string>
     <string name="unshare_link_forbidden_permissions">حذف اشتراک‌گذاری این فایل</string>
@@ -871,7 +868,6 @@
     <string name="upload_action_cancelled_resume">ازسرگیری آپلودهای لغو شده</string>
     <string name="upload_action_failed_clear">پاک کردن آپلودهای ناموفق</string>
     <string name="upload_action_failed_retry">تلاش مجدد آپلودهای ناموفق</string>
-    <string name="upload_action_file_not_exist_message">برخی فایل‌ها وجود ندارند درنتیجه نمی‌توان آن فایل‌ها را ازسرگیری کرد</string>
     <string name="upload_action_global_upload_pause">توقف موقت همه آپلودها</string>
     <string name="upload_action_global_upload_resume">ازسرگیری همه آپلودها</string>
     <string name="upload_cannot_create_file">پرونده محلی ایجاد نمی شود</string>

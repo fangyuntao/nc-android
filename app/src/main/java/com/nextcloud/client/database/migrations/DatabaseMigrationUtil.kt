@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2023 Álvaro Brey <alvaro@alvarobrey.com>
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.database.migrations
 
@@ -46,11 +46,7 @@ object DatabaseMigrationUtil {
     /**
      * Utility method to create a new table with the given columns
      */
-    private fun createNewTable(
-        database: SupportSQLiteDatabase,
-        newTableName: String,
-        columns: Map<String, String>
-    ) {
+    private fun createNewTable(database: SupportSQLiteDatabase, newTableName: String, columns: Map<String, String>) {
         val columnsString = columns.entries.joinToString(",") { "${it.key} ${it.value}" }
         database.execSQL("CREATE TABLE $newTableName ($columnsString)")
     }
@@ -80,11 +76,7 @@ object DatabaseMigrationUtil {
     /**
      * Utility method to replace an old table with a new one, essentially deleting the old one and renaming the new one
      */
-    private fun replaceTable(
-        database: SupportSQLiteDatabase,
-        tableName: String,
-        newTableTempName: String
-    ) {
+    private fun replaceTable(database: SupportSQLiteDatabase, tableName: String, newTableTempName: String) {
         database.execSQL("DROP TABLE $tableName")
         database.execSQL("ALTER TABLE $newTableTempName RENAME TO $tableName")
     }

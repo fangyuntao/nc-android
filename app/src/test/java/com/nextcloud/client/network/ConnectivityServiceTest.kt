@@ -2,7 +2,7 @@
  * Nextcloud - Android Client
  *
  * SPDX-FileCopyrightText: 2021 Chris Narkiewicz <hello@ezaquarii.com>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.network
 
@@ -94,7 +94,7 @@ class ConnectivityServiceTest {
 
         val baseServerUri = URI.create(SERVER_BASE_URL)
         val newServer = Server(baseServerUri, OwnCloudVersion.nextcloud_20)
-        val legacyServer = Server(baseServerUri, OwnCloudVersion.nextcloud_16)
+        val legacyServer = Server(baseServerUri, OwnCloudVersion.nextcloud_17)
 
         @Mock
         lateinit var user: User

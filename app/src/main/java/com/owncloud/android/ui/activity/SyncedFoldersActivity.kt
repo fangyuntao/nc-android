@@ -4,7 +4,7 @@
  * SPDX-FileCopyrightText: 2020 Chris Narkiewicz <hello@ezaquarii.com>
  * SPDX-FileCopyrightText: 2016 Andy Scherzinger
  * SPDX-FileCopyrightText: 2016 Nextcloud
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.activity
 
@@ -33,6 +33,7 @@ import com.nextcloud.client.jobs.upload.FileUploadWorker
 import com.nextcloud.client.preferences.AppPreferences
 import com.nextcloud.client.preferences.SubFolderRule
 import com.nextcloud.utils.extensions.getParcelableArgument
+import com.nextcloud.utils.extensions.isDialogFragmentReady
 import com.owncloud.android.BuildConfig
 import com.owncloud.android.MainApp
 import com.owncloud.android.R
@@ -151,7 +152,7 @@ class SyncedFoldersActivity :
     lateinit var binding: SyncedFoldersLayoutBinding
     lateinit var adapter: SyncedFolderAdapter
 
-    private var syncedFolderPreferencesDialogFragment: SyncedFolderPreferencesDialogFragment? = null
+    private var dialogFragment: SyncedFolderPreferencesDialogFragment? = null
     private var path: String? = null
     private var type = 0
     private var loadJob: Job? = null
@@ -221,11 +222,12 @@ class SyncedFoldersActivity :
 
     private fun showPowerCheckDialog() {
         val alertDialog = AlertDialog.Builder(this)
-            .setView(findViewById(R.id.root_layout))
+            .setView(R.id.root_layout)
             .setPositiveButton(R.string.common_ok) { dialog, _ -> dialog.dismiss() }
             .setTitle(R.string.autoupload_disable_power_save_check)
             .setMessage(getString(R.string.power_save_check_dialog_message))
             .show()
+
         viewThemeUtils.platform.colorTextButtons(alertDialog.getButton(AlertDialog.BUTTON_POSITIVE))
     }
 
@@ -306,7 +308,8 @@ class SyncedFoldersActivity :
             }
             val syncFolderItems = sortSyncedFolderItems(
                 mergeFolderData(currentAccountSyncedFoldersList, mediaFolders)
-            )
+            ).filterNotNull()
+
             CoroutineScope(Dispatchers.Main).launch {
                 adapter.setSyncFolderItems(syncFolderItems)
                 adapter.notifyDataSetChanged()
@@ -314,7 +317,9 @@ class SyncedFoldersActivity :
                 if (!TextUtils.isEmpty(path)) {
                     val section = adapter.getSectionByLocalPathAndType(path, type)
                     if (section >= 0) {
-                        onSyncFolderSettingsClick(section, adapter[section])
+                        adapter.get(section)?.let {
+                            onSyncFolderSettingsClick(section, it)
+                        }
                     }
                 }
                 loadJob = null
@@ -387,7 +392,8 @@ class SyncedFoldersActivity :
             syncedFolder.type,
             syncedFolder.isHidden,
             syncedFolder.subfolderRule,
-            syncedFolder.isExcludeHidden
+            syncedFolder.isExcludeHidden,
+            syncedFolder.lastScanTimestampMs
         )
     }
 
@@ -418,7 +424,8 @@ class SyncedFoldersActivity :
             mediaFolder.type,
             syncedFolder.isHidden,
             syncedFolder.subfolderRule,
-            syncedFolder.isExcludeHidden
+            syncedFolder.isExcludeHidden,
+            syncedFolder.lastScanTimestampMs
         )
     }
 
@@ -448,7 +455,8 @@ class SyncedFoldersActivity :
             mediaFolder.type,
             false,
             SubFolderRule.YEAR_MONTH,
-            false
+            false,
+            SyncedFolder.NOT_SCANNED_YET
         )
     }
 
@@ -541,7 +549,8 @@ class SyncedFoldersActivity :
                         MediaFolderType.CUSTOM,
                         false,
                         SubFolderRule.YEAR_MONTH,
-                        false
+                        false,
+                        SyncedFolder.NOT_SCANNED_YET
                     )
                     onSyncFolderSettingsClick(0, emptyCustomFolder)
                 } else {
@@ -554,7 +563,9 @@ class SyncedFoldersActivity :
         return result
     }
 
-    override fun onSyncStatusToggleClick(section: Int, syncedFolderDisplayItem: SyncedFolderDisplayItem) {
+    override fun onSyncStatusToggleClick(section: Int, syncedFolderDisplayItem: SyncedFolderDisplayItem?) {
+        if (syncedFolderDisplayItem == null) return
+
         if (syncedFolderDisplayItem.id > SyncedFolder.UNPERSISTED_ID) {
             syncedFolderProvider.updateSyncedFolderEnabled(
                 syncedFolderDisplayItem.id,
@@ -567,24 +578,33 @@ class SyncedFoldersActivity :
             }
         }
         if (syncedFolderDisplayItem.isEnabled) {
-            backgroundJobManager.startImmediateFilesSyncJob(overridePowerSaving = false)
+            backgroundJobManager.startImmediateFilesSyncJob(syncedFolderDisplayItem.id, overridePowerSaving = false)
             showBatteryOptimizationInfo()
         }
     }
 
-    override fun onSyncFolderSettingsClick(section: Int, syncedFolderDisplayItem: SyncedFolderDisplayItem) {
-        val fm = supportFragmentManager
-        val ft = fm.beginTransaction()
-        ft.addToBackStack(null)
-        syncedFolderPreferencesDialogFragment = SyncedFolderPreferencesDialogFragment.newInstance(
+    override fun onSyncFolderSettingsClick(section: Int, syncedFolderDisplayItem: SyncedFolderDisplayItem?) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction().apply {
+            addToBackStack(null)
+        }
+
+        dialogFragment = SyncedFolderPreferencesDialogFragment.newInstance(
             syncedFolderDisplayItem,
             section
-        ).also {
-            it.show(ft, SYNCED_FOLDER_PREFERENCES_DIALOG_TAG)
+        )
+
+        dialogFragment?.let {
+            if (isDialogFragmentReady(it)) {
+                it.show(fragmentTransaction, SYNCED_FOLDER_PREFERENCES_DIALOG_TAG)
+            } else {
+                Log_OC.d(TAG, "SyncedFolderPreferencesDialogFragment not ready")
+            }
         }
     }
 
-    override fun onVisibilityToggleClick(section: Int, syncedFolder: SyncedFolderDisplayItem) {
+    override fun onVisibilityToggleClick(section: Int, syncedFolder: SyncedFolderDisplayItem?) {
+        if (syncedFolder == null) return
+
         syncedFolder.isHidden = !syncedFolder.isHidden
         saveOrUpdateSyncedFolder(syncedFolder)
         adapter.setSyncFolderItem(section, syncedFolder)
@@ -616,18 +636,18 @@ class SyncedFoldersActivity :
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == SyncedFolderPreferencesDialogFragment.REQUEST_CODE__SELECT_REMOTE_FOLDER &&
-            resultCode == RESULT_OK && syncedFolderPreferencesDialogFragment != null
+            resultCode == RESULT_OK && dialogFragment != null
         ) {
             val chosenFolder: OCFile? = FolderPickerActivity.EXTRA_FOLDER?.let {
                 data?.getParcelableArgument(it, OCFile::class.java)
             }
-            syncedFolderPreferencesDialogFragment?.setRemoteFolderSummary(chosenFolder?.remotePath)
+            dialogFragment?.setRemoteFolderSummary(chosenFolder?.remotePath)
         } else if (
             requestCode == SyncedFolderPreferencesDialogFragment.REQUEST_CODE__SELECT_LOCAL_FOLDER &&
-            resultCode == RESULT_OK && syncedFolderPreferencesDialogFragment != null
+            resultCode == RESULT_OK && dialogFragment != null
         ) {
             val localPath = data!!.getStringExtra(UploadFilesActivity.EXTRA_CHOSEN_FILES)
-            syncedFolderPreferencesDialogFragment!!.setLocalFolderSummary(localPath)
+            dialogFragment!!.setLocalFolderSummary(localPath)
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
@@ -658,12 +678,13 @@ class SyncedFoldersActivity :
                 syncedFolder.type,
                 syncedFolder.isHidden,
                 syncedFolder.subFolderRule,
-                syncedFolder.isExcludeHidden
+                syncedFolder.isExcludeHidden,
+                SyncedFolder.NOT_SCANNED_YET
             )
             saveOrUpdateSyncedFolder(newCustomFolder)
             adapter.addSyncFolderItem(newCustomFolder)
         } else {
-            val item = adapter[syncedFolder.section]
+            val item = adapter.get(syncedFolder.section) ?: return
             updateSyncedFolderItem(
                 item,
                 syncedFolder.id,
@@ -683,7 +704,7 @@ class SyncedFoldersActivity :
 
             adapter.notifyItemChanged(adapter.getSectionHeaderIndex(syncedFolder.section))
         }
-        syncedFolderPreferencesDialogFragment = null
+        dialogFragment = null
         if (syncedFolder.isEnabled) {
             showBatteryOptimizationInfo()
         }
@@ -697,7 +718,7 @@ class SyncedFoldersActivity :
             // existing synced folder setup to be updated
             syncedFolderProvider.updateSyncFolder(item)
             if (item.isEnabled) {
-                backgroundJobManager.startImmediateFilesSyncJob(overridePowerSaving = false)
+                backgroundJobManager.startImmediateFilesSyncJob(item.id, overridePowerSaving = false)
             } else {
                 val syncedFolderInitiatedKey = KEY_SYNCED_FOLDER_INITIATED_PREFIX + item.id
                 val arbitraryDataProvider =
@@ -714,7 +735,7 @@ class SyncedFoldersActivity :
         if (storedId != -1L) {
             item.id = storedId
             if (item.isEnabled) {
-                backgroundJobManager.startImmediateFilesSyncJob(overridePowerSaving = false)
+                backgroundJobManager.startImmediateFilesSyncJob(item.id, overridePowerSaving = false)
             } else {
                 val syncedFolderInitiatedKey = KEY_SYNCED_FOLDER_INITIATED_PREFIX + item.id
                 arbitraryDataProvider.deleteKeyForAccount("global", syncedFolderInitiatedKey)
@@ -723,7 +744,7 @@ class SyncedFoldersActivity :
     }
 
     override fun onCancelSyncedFolderPreference() {
-        syncedFolderPreferencesDialogFragment = null
+        dialogFragment = null
     }
 
     override fun onDeleteSyncedFolderPreference(syncedFolder: SyncedFolderParcelable?) {
@@ -780,11 +801,7 @@ class SyncedFoldersActivity :
         item.setExcludeHidden(excludeHidden)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             PermissionUtil.PERMISSIONS_EXTERNAL_STORAGE -> {
                 // If request is cancelled, result arrays are empty.

@@ -4,7 +4,7 @@
  * SPDX-FileCopyrightText: 2019 Chris Narkiewicz <hello@ezaquarii.com>
  * SPDX-FileCopyrightText: 2018 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2018 Nextcloud
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.adapter;
 
@@ -102,7 +102,12 @@ public class UploadListAdapter extends SectionedRecyclerViewAdapter<SectionedVie
                           group.getGroupName(), group.getGroupItemCount()));
         viewThemeUtils.platform.colorPrimaryTextViewElement(headerViewHolder.binding.uploadListTitle);
 
-        headerViewHolder.binding.uploadListTitle.setOnClickListener(v -> toggleSectionExpanded(section));
+        headerViewHolder.binding.uploadListTitle.setOnClickListener(v -> {
+            toggleSectionExpanded(section);
+            headerViewHolder.binding.uploadListState.setImageResource(isSectionExpanded(section) ?
+                                                                          R.drawable.ic_expand_less :
+                                                                          R.drawable.ic_expand_more);
+        });
 
         switch (group.type) {
             case CURRENT, FINISHED -> headerViewHolder.binding.uploadListAction.setImageResource(R.drawable.ic_close);
@@ -141,9 +146,11 @@ public class UploadListAdapter extends SectionedRecyclerViewAdapter<SectionedVie
 
             if (itemId == R.id.action_upload_list_failed_clear) {
                 uploadsStorageManager.clearFailedButNotDelayedUploads();
+                clearTempEncryptedFolder();
                 loadUploadItemsFromDb();
-            } else {
+            } else if (itemId == R.id.action_upload_list_failed_retry) {
 
+                // FIXME For e2e resume is not working
                 new Thread(() -> {
                     FileUploadHelper.Companion.instance().retryFailedUploads(
                         uploadsStorageManager,
@@ -152,10 +159,11 @@ public class UploadListAdapter extends SectionedRecyclerViewAdapter<SectionedVie
                         powerManagementService);
                     parentActivity.runOnUiThread(this::loadUploadItemsFromDb);
                 }).start();
-
             }
+
             return true;
         });
+
         failedPopup.show();
     }
 
@@ -169,6 +177,7 @@ public class UploadListAdapter extends SectionedRecyclerViewAdapter<SectionedVie
             if (itemId == R.id.action_upload_list_cancelled_clear) {
                 uploadsStorageManager.clearCancelledUploadsForCurrentAccount();
                 loadUploadItemsFromDb();
+                clearTempEncryptedFolder();
             } else if (itemId == R.id.action_upload_list_cancelled_resume) {
                 retryCancelledUploads();
             }
@@ -179,6 +188,12 @@ public class UploadListAdapter extends SectionedRecyclerViewAdapter<SectionedVie
         popup.show();
     }
 
+    private void clearTempEncryptedFolder() {
+        Optional<User> user = parentActivity.getUser();
+        user.ifPresent(value -> FileDataStorageManager.clearTempEncryptedFolder(value.getAccountName()));
+    }
+
+    // FIXME For e2e resume is not working
     private void retryCancelledUploads() {
         new Thread(() -> {
             boolean showNotExistMessage = FileUploadHelper.Companion.instance().retryCancelledUploads(

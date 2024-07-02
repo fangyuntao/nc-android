@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Creación de cuenta fallida</string>
     <string name="account_icon">Ícono de la cuenta</string>
     <string name="account_not_found">¡No se encontró la cuenta!</string>
-    <string name="action_clear_failed_uploads">Borrar cargas fallidas</string>
     <string name="action_edit">Editar</string>
     <string name="action_empty_notifications">Borrar todas las notificaciones</string>
     <string name="action_empty_trashbin">Eliminar papelera de reciclaje</string>
@@ -33,6 +32,7 @@
     <string name="add_to_cloud">Agregar a %1$s</string>
     <string name="advanced_settings">Configuración avanzada</string>
     <string name="allow_resharing">Permitir volver a compartir</string>
+    <string name="app_config_proxy_port_title">Puerto del proxy</string>
     <string name="app_widget_description">Muestra un widget del panel de control</string>
     <string name="appbar_search_in">Compartir en %s</string>
     <string name="assistant_screen_all_task_type">Todos</string>
@@ -153,7 +153,6 @@
     <string name="confirmation_remove_folder_alert">¿Realmente quieres eliminar %1$s y sus contenidos? </string>
     <string name="confirmation_remove_folders_alert">¿Reamente deseas eliminar los elementos seleccionados y sus contenidos?</string>
     <string name="confirmation_remove_local">Sólo local</string>
-    <string name="conflict_dialog_error">¡Error al crear el diálogo de conflicto!</string>
     <string name="conflict_file_headline">Archivo en conflicto %1$s</string>
     <string name="conflict_local_file">Archivo local</string>
     <string name="conflict_message_description">Si selecciona ambas versiones, el archivo local tendrá un número agregado a su nombre.</string>
@@ -179,13 +178,11 @@
     <string name="could_not_retrieve_url">No se pudo recuperar la URL</string>
     <string name="create">Crear</string>
     <string name="create_dir_fail_msg">No fue posible crear la carpeta</string>
-    <string name="create_new">Crear nuevo</string>
-    <string name="create_new_document">Crear nuevo documento</string>
-    <string name="create_new_folder">Crear nueva carpeta</string>
-    <string name="create_new_presentation">Crear nueva presentación</string>
-    <string name="create_new_spreadsheet">Crear nueva hoja de cálculo</string>
-    <string name="create_rich_workspace">Agregar información de la carpeta</string>
-    <string name="creates_rich_workspace">crear información de la carpeta</string>
+    <string name="create_new">Nuevo</string>
+    <string name="create_new_document">Nuevo documento</string>
+    <string name="create_new_folder">Carpeta nueva</string>
+    <string name="create_new_presentation">Nueva presentación</string>
+    <string name="create_new_spreadsheet">Nueva hoja de cálculo</string>
     <string name="credentials_disabled">Credenciales desactivadas</string>
     <string name="daily_backup">Respaldo diario</string>
     <string name="data_to_back_up">Datos a respaldar</string>
@@ -803,7 +800,6 @@
     <string name="unlock_file">Desbloquear archivo</string>
     <string name="unread_comments">Existen comentarios no leídos</string>
     <string name="unset_encrypted">Desestablecer encripción</string>
-    <string name="unset_favorite">Eliminar de favoritos</string>
     <string name="unshare_link_file_error">Se produjo un error al intentar dejar de compartir este archivo o carpeta.</string>
     <string name="unshare_link_file_no_exist">No se puede dejar de compartir. Por favor, verifica si el archivo existe.</string>
     <string name="unshare_link_forbidden_permissions">para dejar de compartir este archivo</string>
@@ -818,6 +814,7 @@
     <string name="upload_cannot_create_file">No se puede crear el archivo local</string>
     <string name="upload_chooser_title">Cargar forma…</string>
     <string name="upload_content_from_other_apps">Cargar contenido de otras aplicaciones</string>
+    <string name="upload_direct_camera_photo">Foto</string>
     <string name="upload_direct_camera_upload">Cargar desde la cámara</string>
     <string name="upload_file_dialog_filename">Nombre de archivo</string>
     <string name="upload_file_dialog_filetype">Tipo de archivo</string>

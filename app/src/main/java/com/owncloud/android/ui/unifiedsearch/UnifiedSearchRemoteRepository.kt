@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.unifiedsearch
 
@@ -13,6 +13,7 @@ import com.nextcloud.client.network.ClientFactory
 import com.nextcloud.common.NextcloudClient
 import com.owncloud.android.lib.common.SearchProviders
 import com.owncloud.android.lib.common.utils.Log_OC
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,12 +25,18 @@ class UnifiedSearchRemoteRepository(
 ) : IUnifiedSearchRepository {
 
     private var providers: SearchProviders? = null
+    private val tag = "UnifiedSearchRemoteRepository"
 
-    private fun runAsyncWithNcClient(callback: (client: NextcloudClient) -> Unit) =
-        CoroutineScope(Dispatchers.IO).launch {
+    private fun runAsyncWithNcClient(callback: (client: NextcloudClient) -> Unit) {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log_OC.d(tag, "CoroutineExceptionHandler got at runAsyncWithNcClient $exception")
+        }
+
+        CoroutineScope(Dispatchers.IO).launch(coroutineExceptionHandler) {
             val client = clientFactory.createNextcloudClient(currentAccountProvider.user)
             callback(client)
         }
+    }
 
     override fun queryAll(
         query: String,

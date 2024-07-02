@@ -6,7 +6,7 @@
  * SPDX-FileCopyrightText: 2019 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2019 Chris Narkiewicz <hello@ezaquarii.com>
  * SPDX-FileCopyrightText: 2016 Andy Scherzinger <info@andy-scherzinger.de>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.preferences;
 
@@ -329,7 +329,7 @@ public final class AppPreferencesImpl implements AppPreferences {
                                                                 userAccountManager.getUser(),
                                                                 PREF__FOLDER_SORT_ORDER,
                                                                 folder,
-                                                                FileSortOrder.sort_a_to_z.name));
+                                                                FileSortOrder.SORT_A_TO_Z.name));
     }
 
     @Override
@@ -343,7 +343,7 @@ public final class AppPreferencesImpl implements AppPreferences {
 
     @Override
     public FileSortOrder getSortOrderByType(FileSortOrder.Type type) {
-        return getSortOrderByType(type, FileSortOrder.sort_a_to_z);
+        return getSortOrderByType(type, FileSortOrder.SORT_A_TO_Z);
     }
 
     @Override

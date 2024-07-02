@@ -11,7 +11,7 @@
  * SPDX-FileCopyrightText: 2014 Luke Owncloud <owncloud@ohrt.org
  * SPDX-FileCopyrightText: 2014 David A. Velasco <dvelasco@solidgear.es>
  * SPDX-FileCopyrightText: 2012 Bartosz Przybylski <bart.p.pl@gmail.com>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.ui.fragment;
 
@@ -454,18 +454,21 @@ public class ExtendedListFragment extends Fragment implements
      * Restore index and position
      */
     protected void restoreIndexAndTopPosition() {
-        if (mIndexes.size() > 0) {
-            // needs to be checked; not every browse-up had a browse-down before
-
-            int index = mIndexes.remove(mIndexes.size() - 1);
-            final int firstPosition = mFirstPositions.remove(mFirstPositions.size() - 1);
-            int top = mTops.remove(mTops.size() - 1);
-
-            Log_OC.v(TAG, "Setting selection to position: " + firstPosition + "; top: "
-                + top + "; index: " + index);
-
-            scrollToPosition(firstPosition);
+        if (mIndexes == null || mIndexes.isEmpty()) {
+            Log_OC.d(TAG,"Indexes is null or empty");
+            return;
         }
+
+        // needs to be checked; not every browse-up had a browse-down before
+
+        int index = mIndexes.remove(mIndexes.size() - 1);
+        final int firstPosition = mFirstPositions.remove(mFirstPositions.size() - 1);
+        int top = mTops.remove(mTops.size() - 1);
+
+        Log_OC.v(TAG, "Setting selection to position: " + firstPosition + "; top: "
+            + top + "; index: " + index);
+
+        scrollToPosition(firstPosition);
     }
 
     private void scrollToPosition(int position) {

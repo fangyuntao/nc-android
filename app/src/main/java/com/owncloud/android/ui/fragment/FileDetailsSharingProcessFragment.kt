@@ -5,7 +5,7 @@
  * Copyright (C) 2021 TSI-mc
  * Copyright (C) 2021 Nextcloud GmbH
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 
 package com.owncloud.android.ui.fragment
@@ -91,8 +91,12 @@ class FileDetailsSharingProcessFragment :
          * fragment instance to be called while modifying existing share information
          */
         @JvmStatic
-        fun newInstance(share: OCShare, screenType: Int, isReshareShown: Boolean, isExpirationDateShown: Boolean):
-            FileDetailsSharingProcessFragment {
+        fun newInstance(
+            share: OCShare,
+            screenType: Int,
+            isReshareShown: Boolean,
+            isExpirationDateShown: Boolean
+        ): FileDetailsSharingProcessFragment {
             val args = Bundle()
             args.putParcelable(ARG_OCSHARE, share)
             args.putInt(ARG_SCREEN_TYPE, screenType)
@@ -402,7 +406,7 @@ class FileDetailsSharingProcessFragment :
             binding.noteText.setText(share?.note)
         } else {
             binding.shareProcessBtnNext.text = requireContext().resources.getString(R.string.send_share)
-            binding.noteText.setText("")
+            binding.noteText.setText(R.string.empty)
         }
         shareProcessStep = SCREEN_TYPE_NOTE
     }
@@ -447,7 +451,7 @@ class FileDetailsSharingProcessFragment :
     private fun showChangeNameInput(isChecked: Boolean) {
         binding.shareProcessChangeNameContainer.visibility = if (isChecked) View.VISIBLE else View.GONE
         if (!isChecked) {
-            binding.shareProcessChangeName.setText("")
+            binding.shareProcessChangeName.setText(R.string.empty)
         }
     }
 
@@ -474,7 +478,7 @@ class FileDetailsSharingProcessFragment :
         // reset the expiration date if switch is unchecked
         if (!isChecked) {
             chosenExpDateInMills = -1
-            binding.shareProcessSelectExpDate.text = ""
+            binding.shareProcessSelectExpDate.text = getString(R.string.empty)
         }
     }
 
@@ -483,7 +487,7 @@ class FileDetailsSharingProcessFragment :
 
         // reset the password if switch is unchecked
         if (!isChecked) {
-            binding.shareProcessEnterPassword.setText("")
+            binding.shareProcessEnterPassword.setText(R.string.empty)
         }
     }
 

@@ -3,7 +3,7 @@
  *
  * SPDX-FileCopyrightText: 2020 Tobias Kaminsky <tobias@kaminsky.me>
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.owncloud.android.ui.trashbin
 
@@ -36,8 +36,10 @@ class TrashbinLocalRepository(private val testCase: TrashbinActivityIT.TestCase)
                         "image/png",
                         "/trashbin/test.png",
                         "subFolder/test.png",
-                        1395847838, // random date
-                        1395847908 // random date
+                        // random date
+                        1395847838,
+                        // random date
+                        1395847908
                     )
                 )
                 files.add(
@@ -46,8 +48,10 @@ class TrashbinLocalRepository(private val testCase: TrashbinActivityIT.TestCase)
                         "image/jpeg",
                         "/trashbin/image.jpg",
                         "image.jpg",
-                        1395841858, // random date
-                        1395837858 // random date
+                        // random date
+                        1395841858,
+                        // random date
+                        1395837858
                     )
                 )
                 files.add(
@@ -56,8 +60,10 @@ class TrashbinLocalRepository(private val testCase: TrashbinActivityIT.TestCase)
                         "DIR",
                         "/trashbin/folder/",
                         "folder",
-                        1395347858, // random date
-                        1395849858 // random date
+                        // random date
+                        1395347858,
+                        // random date
+                        1395849858
                     )
                 )
 

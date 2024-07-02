@@ -7,7 +7,6 @@
     <string name="account_creation_failed">Konto loomine ebaõnnestus</string>
     <string name="account_icon">Konto ikoon</string>
     <string name="account_not_found">Kontot ei leitud!</string>
-    <string name="action_clear_failed_uploads">Puhasta ebaõnnestunud üleslaadimised</string>
     <string name="action_edit">Redigeeri</string>
     <string name="action_empty_notifications">Kustuta kõik teavitused</string>
     <string name="action_empty_trashbin">Tühjenda prügikast</string>
@@ -136,7 +135,6 @@
     <string name="confirmation_remove_folder_alert">Oled sa kindel, et soovid %1$s ja selle sisu kustutada?</string>
     <string name="confirmation_remove_folders_alert">Oled sa kindel, et soovid valitud objektid ja nende sisud kustutada?</string>
     <string name="confirmation_remove_local">Ainult kohalik</string>
-    <string name="conflict_dialog_error">Konfliktidialoogi loomine ebaõnnestus!</string>
     <string name="conflict_local_file">Kohalik fail</string>
     <string name="conflict_message_description">Kui valid mõlemad versioonid, siis lisatakse kohaliku faili nimele number.</string>
     <string name="conflict_server_file">Serveri fail</string>
@@ -158,10 +156,11 @@
     <string name="could_not_download_image">Täieliku pildifaili allalaadimine ebaõnnestus</string>
     <string name="create">Loo</string>
     <string name="create_dir_fail_msg">Ei suuda kausta luua</string>
-    <string name="create_new_document">Loo uus dokument</string>
-    <string name="create_new_folder">Loo uus kaust</string>
-    <string name="create_new_presentation">Loo uus presentatsioon</string>
-    <string name="create_new_spreadsheet">Loo uus arvutustabel</string>
+    <string name="create_new">Uus</string>
+    <string name="create_new_document">Uus dokument</string>
+    <string name="create_new_folder">Uus kaust</string>
+    <string name="create_new_presentation">Uus esitlus</string>
+    <string name="create_new_spreadsheet">Uus arvutustabel</string>
     <string name="daily_backup">Igapäevane varundus</string>
     <string name="data_to_back_up">Varundatavad andmed</string>
     <string name="delete_account">Eemalda konto</string>
@@ -445,13 +444,13 @@
     <string name="trashbin_empty_headline">Kustutatud faile pole</string>
     <string name="trashbin_file_remove">Kustuta jäädavalt</string>
     <string name="unset_encrypted">Eemalda krüpteering</string>
-    <string name="unset_favorite">Eemalda lemmikutest</string>
     <string name="unshare_link_forbidden_permissions">faili jagamise lõpetamiseks</string>
     <string name="update_link_forbidden_permissions">jagamise uuendamiseks</string>
     <string name="upload_action_failed_clear">Puhasta ebaõnnestunud üleslaadimised</string>
     <string name="upload_action_failed_retry">Proovi ebaõnnestunud üleslaadimisi uuesti</string>
     <string name="upload_cannot_create_file">Kohalike faili loomine ebaõnnestus</string>
     <string name="upload_content_from_other_apps">Lae üles sisu teistest rakendustest</string>
+    <string name="upload_direct_camera_photo">Foto</string>
     <string name="upload_direct_camera_upload">Laadi üles kaamerast</string>
     <string name="upload_file_dialog_filename">Faili nimi</string>
     <string name="upload_files">Failide üleslaadimine</string>

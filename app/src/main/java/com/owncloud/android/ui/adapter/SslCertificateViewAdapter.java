@@ -5,7 +5,7 @@
  * SPDX-FileCopyrightText: 2018 Andy Scherzinger <info@andy-scherzinger.de>
  * SPDX-FileCopyrightText: 2015 ownCloud Inc.
  * SPDX-FileCopyrightText: 2014 David A. Velasco <dvelasco@solidgear.es>
- * SPDX-License-Identifier: GPL-2.0-only AND AGPL-3.0-or-later
+ * SPDX-License-Identifier: GPL-2.0-only AND (AGPL-3.0-or-later OR GPL-2.0-only)
  */
 package com.owncloud.android.ui.adapter;
 
@@ -24,7 +24,7 @@ public class SslCertificateViewAdapter implements SslUntrustedCertDialog.Certifi
 
     //private final static String TAG = SslCertificateViewAdapter.class.getSimpleName();
 
-    private SslCertificate mCertificate;
+    private final SslCertificate mCertificate;
 
     /**
      * Constructor
@@ -36,7 +36,7 @@ public class SslCertificateViewAdapter implements SslUntrustedCertDialog.Certifi
     }
 
     @Override
-    public void updateCertificateView(SslUntrustedCertLayoutBinding binding) {
+    public void updateCertificateView(@NonNull SslUntrustedCertLayoutBinding binding) {
         if (mCertificate != null) {
             binding.nullCert.setVisibility(View.GONE);
             showSubject(mCertificate.getIssuedTo(), binding);

@@ -2,7 +2,7 @@
  * Nextcloud - Android Client
  *
  * SPDX-FileCopyrightText: 2020 Chris Narkiewicz <hello@ezaquarii.com>
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
  */
 package com.nextcloud.client.jobs
 
@@ -100,10 +100,7 @@ class BackgroundJobFactory @Inject constructor(
         }
     }
 
-    private fun createFilesExportWork(
-        context: Context,
-        params: WorkerParameters
-    ): ListenableWorker {
+    private fun createFilesExportWork(context: Context, params: WorkerParameters): ListenableWorker {
         return FilesExportWork(
             context,
             accountManager.user,
@@ -113,10 +110,7 @@ class BackgroundJobFactory @Inject constructor(
         )
     }
 
-    private fun createContentObserverJob(
-        context: Context,
-        workerParameters: WorkerParameters
-    ): ListenableWorker {
+    private fun createContentObserverJob(context: Context, workerParameters: WorkerParameters): ListenableWorker {
         return ContentObserverWork(
             context,
             workerParameters,

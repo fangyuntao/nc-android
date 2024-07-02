@@ -7,7 +7,6 @@
     <string name="account_creation_failed">ການສ້າງບັນຊີບໍ່ສຳເລັດ</string>
     <string name="account_icon">ໄອຄອນບັນຊີ</string>
     <string name="account_not_found">ບໍ່ພົບບັນຊີ!</string>
-    <string name="action_clear_failed_uploads">ການອັບໂຫຼດບໍ່ສຳເລັດ</string>
     <string name="action_edit">ແກ້ໄຂ</string>
     <string name="action_empty_notifications">ລ້າງການແຈ້ງເຕືອນທັງຫມົດ</string>
     <string name="action_empty_trashbin">ລ້າງຖັງຂີ້ເຫຍື່ອ</string>
@@ -145,7 +144,6 @@
     <string name="confirmation_remove_folder_alert">ທ່ານຕ້ອງການ ລຶບ%1$s ແລະ ເນື້ອຫາບໍ?</string>
     <string name="confirmation_remove_folders_alert">ທ່ານຕ້ອງການລຶບລາຍການທີ່ເລືອກ ແລະ ເນື້ອຫາແທ້ບໍ?</string>
     <string name="confirmation_remove_local">ຊ່ອງເກັບຢ່າງດຽວ</string>
-    <string name="conflict_dialog_error">ຄວາມຜິດພາດໃນການສ້າງການສົນທະນາຜິດພາດ!</string>
     <string name="conflict_file_headline">ຟາຍຜິດພາດ%1$s</string>
     <string name="conflict_message_description">ຖ້າທ່ານເລືອກເອົາທັງສອງເວີຊັ້ນ, ບ່ອນເກັບຟາຍຈະມີຈໍານວນສະສົມ</string>
     <string name="contactlist_item_icon">ລາຍການໄອຄອນຜູ້ຕິດຕໍ່</string>
@@ -168,13 +166,7 @@
     <string name="could_not_retrieve_url">ບໍ່ສາມາດເກັບURL ໄດ້</string>
     <string name="create">ສ້າງ</string>
     <string name="create_dir_fail_msg">ບໍ່ສາມາດສ້າງໂຟນເດີໄດ້</string>
-    <string name="create_new">ສ້າງໃຫມ່</string>
-    <string name="create_new_document">ສ້າງເອກະສານໃຫມ່</string>
-    <string name="create_new_folder">ສ້າງໂຟນເດີໃຫມ່</string>
-    <string name="create_new_presentation">ສ້າງບົດສະເຫນີໃຫມ່</string>
-    <string name="create_new_spreadsheet">ສ້າງຕາຕະລາງໃຫມ່</string>
-    <string name="create_rich_workspace">ເພີ່ມຂໍ້ມູນໂຟນເດີ</string>
-    <string name="creates_rich_workspace">ສ້າງໂຟນເດີຂໍ້ມຸນ</string>
+    <string name="create_new_folder">ໂຟນເດີໃຫມ່</string>
     <string name="credentials_disabled">ຂໍ້ມູນປະຈໍາຕົວຖືກປິດ</string>
     <string name="default_credentials_wrong">ການຢັ້ງຢືນຕົວຕົນທີ່ບໍ່ຖືກຕ້ອງ</string>
     <string name="delete_account">ຍ້າຍບັນຊີ</string>
@@ -683,7 +675,6 @@
     <string name="trashbin_not_emptied">ຟາຍບໍ່ສາມາດລຶບໄດ້ຖາວອນ!</string>
     <string name="unread_comments">ຄວາມຄິດເຫັນທີ່ບໍ່ອ່ານ</string>
     <string name="unset_encrypted">ຍົກເລີິກການຕັ້ງຄ່າເຂົ້າລະຫັດຜ່ານ</string>
-    <string name="unset_favorite">ຍ້າຍອອກຈາກລາຍການທີ່ມັກ</string>
     <string name="unshare_link_file_error">ເກີດຂໍ້ຜິດພາດໃນຂະນະທີ່ພະຍາຍາມຍົກເລີກຟາຍແບ້ງປັນ ຫຼື ໂຟນເດີນີ້.</string>
     <string name="unshare_link_file_no_exist">ບໍ່ສາມາດແບ່ງປັນໄດ້. ກະລຸນາກວດເບິ່ງວ່າມີຟາຍຢູ່ ຫຼື ບໍ່.</string>
     <string name="unshare_link_forbidden_permissions">ເພື່ອຍົກເລີກການແບ່ງປັນຟາຍນີ້</string>
